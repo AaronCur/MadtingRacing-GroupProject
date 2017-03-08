@@ -17,7 +17,7 @@ static double const MS_PER_UPDATE = 10.0;
 /// 
 Game::Game():
 	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
-	m_currentGameState(GameState::License)
+	m_currentGameState(GameState::MainMenu)
 
 {
 	if (!m_comicSans.loadFromFile("c:/windows/fonts/comic.ttf"))
@@ -27,6 +27,7 @@ Game::Game():
 
 	m_licenseScreen = new License(*this, m_comicSans);
 	m_splashScreen = new Splash(*this, m_comicSans);
+	m_mainMenu = new MainMenu(*this, m_comicSans);
 	controller = new Xbox360Controller();
 	
 }

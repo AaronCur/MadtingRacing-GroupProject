@@ -17,5 +17,10 @@ private:
 	sf::Time m_cumulativeTime;//the time 
 	sf::Font m_font;
 	sf::Window m_window;
+	sf::Sprite m_mainMenuSprite;
+	sf::Texture m_mainMenuTexture;
+	sf::Sprite m_mainMenuSpriteTwo;
+	sf::Sprite m_mainMenuSpriteThree;
+	sf::Sprite m_mainMenuSpriteFour;
 };
 #endif // !

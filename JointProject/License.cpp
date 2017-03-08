@@ -21,7 +21,7 @@ void License::update(sf::Time deltaTime)
 
 	if (m_cumulativeTime.asSeconds() > 3)
 	{
-		m_game->setGameState(GameState::Splash);
+		m_game->setGameState(GameState::MainMenu);
 
 	}
 }
