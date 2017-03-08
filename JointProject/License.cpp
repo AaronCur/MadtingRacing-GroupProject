@@ -19,15 +19,11 @@ void License::update(sf::Time deltaTime)
 {
 	m_cumulativeTime += deltaTime;
 
-	if (m_cumulativeTime.asSeconds() > 3)
-	{
-		m_game->setGameState(GameState::Splash);
-
-	}
+	
 }
 
 void License::render(sf::RenderWindow & window)
 {
-	window.clear(sf::Color::White);
+	window.clear(sf::Color::Black);
 	window.display();
 }

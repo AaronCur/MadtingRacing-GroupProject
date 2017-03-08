@@ -17,18 +17,16 @@ public:
 	void update(sf::Time deltaTime);
 	void render(sf::RenderWindow& window);
 	void anyKeyPress();
-	//bool m_pressed;//allowing to change sprites 
-	//void print(sf::Time deltaTime);
-	
+	void initialise(sf::Font font);
 	
 private:
 	Game *m_game;//pointer to games class 
 	sf::Time m_cumulativeTime;//the time 
-	sf::Font m_comicSans;//font 
-	sf::Text m_textMessage;//the text message 
-	sf::Sprite m_splash;//first sprite
-	sf::Texture m_texture;//first texture 
-	int alpha;
+	sf::Sprite m_globeSprite;//first sprite
+	sf::Texture m_globeTexture;//first texture 
+	sf::Text m_globeText;
+	sf::Text m_globeTextTwo;
+	sf::Font m_font;
 	
 };
 #endif // !
