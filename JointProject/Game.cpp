@@ -16,7 +16,7 @@ static double const MS_PER_UPDATE = 10.0;
 /// </summary>
 /// 
 Game::Game():
-	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
+	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
 	m_currentGameState(GameState::License)
 
 {
@@ -84,9 +84,9 @@ void Game::processEvents()
 			m_window.close();
 		}
 		//To check for the Akeypress to transition from splash screen to main menu
-		if (controller->m_currentState.A == true && m_currentGameState == GameState::Splash)
+		if (controller->m_currentState.A == true && m_currentGameState == GameState::License)
 		{
-			m_splashScreen->anyKeyPress();
+			m_licenseScreen->checkButtonPress();
 		}
 		
 
