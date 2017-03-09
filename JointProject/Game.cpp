@@ -16,7 +16,7 @@ static double const MS_PER_UPDATE = 10.0;
 /// </summary>
 /// 
 Game::Game():
-	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
+	m_window(sf::VideoMode(1000, 650, 32), "Button Game James"),
 	m_currentGameState(GameState::Splash)
 
 
@@ -120,6 +120,7 @@ void Game::update(sf::Time time)
 		m_mainMenu->update(time, *controller);
 		break;
 	case GameState::Help:
+		controller->update();
 		m_helpScreen->update(time, *controller);
 		break;
 	case GameState::GameScreen:

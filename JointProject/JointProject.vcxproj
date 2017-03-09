@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E3A4CD81-F1E3-47FF-A1D7-B42EECD2434B}</ProjectGuid>
+    <ProjectGuid>{67D63CE2-8111-4135-AD3E-25180E129AC6}</ProjectGuid>
     <RootNamespace>JointProject</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -68,12 +68,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SFML_SDK)\include;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SFML_SDK)\include;$(IncludePath)</IncludePath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -83,6 +78,8 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SFML_SDK)\lib; .\lib</AdditionalLibraryDirectories>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -90,18 +87,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>H:\Programing\include;.\include;$(SFML_SDK)\include</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;.\lib</AdditionalLibraryDirectories>
-=======
-      <AdditionalIncludeDirectories>H:\Programming\include;.\include;$(SFML_SDK)\include</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib; .\lib</AdditionalLibraryDirectories>
->>>>>>> a3915a517d4a806e0180b073fc4d56ad38c738ac
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -116,6 +102,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SFML_SDK)\lib; .\lib</AdditionalLibraryDirectories>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -125,20 +113,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-<<<<<<< HEAD
-      <AdditionalIncludeDirectories>H:\Programing\include;.\include;$(SFML_SDK)\include</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>H:\Programming\include;.\include;$(SFML_SDK)\include</AdditionalIncludeDirectories>
->>>>>>> a3915a517d4a806e0180b073fc4d56ad38c738ac
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-<<<<<<< HEAD
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib;.\lib</AdditionalLibraryDirectories>
-=======
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib; .\lib</AdditionalLibraryDirectories>
->>>>>>> a3915a517d4a806e0180b073fc4d56ad38c738ac
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="help.png" />
-    <Image Include="logo2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

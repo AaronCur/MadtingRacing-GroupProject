@@ -17,11 +17,22 @@ public:
 	void render(sf::RenderWindow& window);
 private:
 	Game *m_game;
-	sf::Time m_cumulativeTime;
 	sf::Font m_comicSans;
-	sf::Text m_textMessage;
-	sf::Text m_name;
-	sf::Text m_by;
+	sf::Font m_font;
+	sf::Time m_cumulativeTime;
+	sf::Text m_R1;
+	sf::Text m_R2;
+	sf::Text m_L1;
+	sf::Text m_L2;
+	sf::Text m_A;
+	sf::Text m_X;
+	sf::Text m_Y;
+	sf::Text m_B;
+	sf::Text m_rightAnalog;
+	sf::Text m_leftAnalog;
+	sf::Text m_dPad;
+	sf::Text m_start;
+
 	sf::Texture logoTexture;
 	sf::Sprite logoSprite;
 	sf::Sprite explosion;
