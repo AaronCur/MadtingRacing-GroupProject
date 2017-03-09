@@ -123,16 +123,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GamesScreen.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>

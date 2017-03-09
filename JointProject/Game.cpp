@@ -16,8 +16,8 @@ static double const MS_PER_UPDATE = 10.0;
 /// </summary>
 /// 
 Game::Game():
-	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
-	m_currentGameState(GameState::Splash)
+	m_window(sf::VideoMode(1000, 650, 32), "Button Game James"),
+	m_currentGameState(GameState::Options)
 
 {
 	if (!m_comicSans.loadFromFile("c:/windows/fonts/comic.ttf"))
@@ -27,6 +27,7 @@ Game::Game():
 
 	m_licenseScreen = new License(*this, m_comicSans);
 	m_splashScreen = new Splash(*this, m_comicSans);
+	m_options = new Options(*this, m_comicSans);
 	controller = new Xbox360Controller();
 	
 }
@@ -34,6 +35,7 @@ Game::~Game()
 {
 	delete(m_splashScreen);
 	delete(m_licenseScreen);
+	delete(m_options);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -116,9 +118,12 @@ void Game::update(sf::Time time)
 	case GameState::MainMenu:
 		m_mainMenu->update(time, *controller);
 		break;
+	case GameState::Options:
+		controller->update();
+		m_options->update(time, *controller);
+		break;
 	case GameState::GameScreen:
 		break;
-	case GameState::Options:
 	default:
 		break;
 		
@@ -146,6 +151,7 @@ void Game::render()
 		m_mainMenu->render(m_window);
 		break;
 	case GameState::Options:
+		m_options->render(m_window);
 		break;
 	case GameState::GameScreen:
 		break;
