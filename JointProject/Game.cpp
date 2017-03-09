@@ -16,18 +16,20 @@ static double const MS_PER_UPDATE = 10.0;
 /// </summary>
 /// 
 Game::Game():
-	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
+	m_window(sf::VideoMode(1000, 650, 0), "Button Game James"),
 	m_currentGameState(GameState::MainMenu)
 
 {
-	if (!m_comicSans.loadFromFile("c:/windows/fonts/comic.ttf"))
+
+	if (!m_agentOrange.loadFromFile("AGENTORANGE.ttf"))
 	{
 		std::cout << "problem loading font" << std::endl;
+		m_mainMenu = new MainMenu(*this, m_agentOrange);
 	}
 
-	m_licenseScreen = new License(*this, m_comicSans);
-	m_splashScreen = new Splash(*this, m_comicSans);
-	m_mainMenu = new MainMenu(*this, m_comicSans);
+	m_licenseScreen = new License(*this, m_agentOrange);
+	m_splashScreen = new Splash(*this, m_agentOrange);
+	m_mainMenu = new MainMenu(*this, m_agentOrange);
 	controller = new Xbox360Controller();
 	
 }
@@ -116,6 +118,7 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::MainMenu:
 		m_mainMenu->update(time, *controller);
+		controller->update();
 		break;
 	case GameState::GameScreen:
 		break;

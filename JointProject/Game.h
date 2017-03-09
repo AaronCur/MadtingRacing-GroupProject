@@ -51,7 +51,7 @@ protected:
 	License *m_licenseScreen;
 	Splash *m_splashScreen;
 	MainMenu * m_mainMenu;
-	sf::Font m_comicSans;//font 
+	sf::Font m_agentOrange;//font 
 	
 	
 	

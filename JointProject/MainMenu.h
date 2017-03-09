@@ -22,5 +22,33 @@ private:
 	sf::Sprite m_mainMenuSpriteTwo;
 	sf::Sprite m_mainMenuSpriteThree;
 	sf::Sprite m_mainMenuSpriteFour;
+	
+	sf::Texture m_backgroundTexture;
+	sf::Sprite m_backgroundSprite;
+
+	sf::Sprite m_select;
+	sf::Sprite m_selectUpgrade;
+	sf::Sprite m_selectOptions;
+	sf::Sprite m_selectExit;
+	sf::Texture m_selectTex;
+
+	sf::Texture m_carSpriteSheet;
+	sf::Sprite m_carOne;
+	sf::Sprite m_carTwo;
+
+	sf::Text m_play;
+	sf::Text m_upgrades;
+	sf::Text m_options;
+	sf::Text m_exit;
+
+	bool buttonOneSelected = false;
+	bool buttonTwoSelected = false;
+	bool buttonThreeSelected = false;
+	bool buttonFourSelected = false;
+	int buttonCounter = 0;
+	//variable for single press
+	bool pressed = false;
+	int alpha = 0;
+	bool alphaCount = true;
 };
 #endif // !

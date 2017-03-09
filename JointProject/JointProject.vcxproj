@@ -140,8 +140,13 @@
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="background.png" />
     <Image Include="button.png" />
+    <Image Include="CarSprite.png" />
     <Image Include="select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="AGENTORANGE.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

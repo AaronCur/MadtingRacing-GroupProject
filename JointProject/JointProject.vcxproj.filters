@@ -27,10 +27,10 @@
     <ClCompile Include="Splash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Xbox360Controller.cpp">
+    <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
+    <ClCompile Include="Xbox360Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClInclude Include="Splash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Xbox360Controller.h">
+    <ClInclude Include="MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu.h">
+    <ClInclude Include="Xbox360Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -58,5 +58,16 @@
     <Image Include="select.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="CarSprite.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="AGENTORANGE.TTF">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>
