@@ -28,6 +28,6 @@ void License::update(sf::Time deltaTime)
 
 void License::render(sf::RenderWindow & window)
 {
-	window.clear(sf::Color::White);
+	window.clear(sf::Color::Black);
 	window.display();
 }

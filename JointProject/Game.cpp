@@ -17,7 +17,8 @@ static double const MS_PER_UPDATE = 10.0;
 /// 
 Game::Game():
 	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
-	m_currentGameState(GameState::Help)
+	m_currentGameState(GameState::Splash)
+
 
 {
 	if (!m_comicSans.loadFromFile("c:/windows/fonts/comic.ttf"))
@@ -108,12 +109,12 @@ void Game::update(sf::Time time)
 	//	m_splashScreen->print(time);
 		std::cout << "no GameState" << std::endl;
 		break;
-	case GameState::License:
-		m_licenseScreen->update(time);
-		break;
 	case GameState::Splash:
 		controller->update();
 		m_splashScreen->update(time);
+		break;
+	case GameState::License:
+		m_licenseScreen->update(time);
 		break;
 	case GameState::MainMenu:
 		m_mainMenu->update(time, *controller);
@@ -141,11 +142,11 @@ void Game::render()
 	
 	switch (m_currentGameState)
 	{
-	case GameState::License:
-		m_licenseScreen->render(m_window);
-		break;
 	case GameState::Splash:
 		m_splashScreen->render(m_window);
+		break;
+	case GameState::License:
+		m_licenseScreen->render(m_window);
 		break;
 	case GameState::MainMenu:
 		m_mainMenu->render(m_window);
