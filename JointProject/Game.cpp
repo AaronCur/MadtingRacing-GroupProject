@@ -17,7 +17,7 @@ static double const MS_PER_UPDATE = 10.0;
 /// 
 Game::Game():
 	m_window(sf::VideoMode(800, 600, 32), "Button Game James"),
-	m_currentGameState(GameState::License)
+	m_currentGameState(GameState::Help)
 
 {
 	if (!m_comicSans.loadFromFile("c:/windows/fonts/comic.ttf"))
@@ -27,6 +27,7 @@ Game::Game():
 
 	m_licenseScreen = new License(*this, m_comicSans);
 	m_splashScreen = new Splash(*this, m_comicSans);
+	m_helpScreen = new Help(*this, m_comicSans);
 	controller = new Xbox360Controller();
 	
 }
@@ -34,6 +35,7 @@ Game::~Game()
 {
 	delete(m_splashScreen);
 	delete(m_licenseScreen);
+	delete(m_helpScreen);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -116,6 +118,9 @@ void Game::update(sf::Time time)
 	case GameState::MainMenu:
 		m_mainMenu->update(time, *controller);
 		break;
+	case GameState::Help:
+		m_helpScreen->update(time, *controller);
+		break;
 	case GameState::GameScreen:
 		break;
 	case GameState::Options:
@@ -145,12 +150,15 @@ void Game::render()
 	case GameState::MainMenu:
 		m_mainMenu->render(m_window);
 		break;
+	case GameState::Help:
+		m_helpScreen->render(m_window);
+		break;
 	case GameState::Options:
 		break;
 	case GameState::GameScreen:
 		break;
 	default:
-		m_window.clear(sf::Color(0, 0, 0, 255));
+		m_window.clear(sf::Color::Blue);
 		m_window.display();
 		break;
 
