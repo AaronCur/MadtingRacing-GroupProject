@@ -32,12 +32,17 @@ private:
 	sf::Text m_leftAnalog;
 	sf::Text m_dPad;
 	sf::Text m_start;
+	sf::Text m_helpText;
 
 	sf::Texture logoTexture;
 	sf::Sprite logoSprite;
+	sf::Texture backgroundTexture;
+	sf::Sprite backgroundSprite;
 	sf::Sprite explosion;
 
 	double alpha;
+	double alphaText;
 };
 
 #endif // !Help
+

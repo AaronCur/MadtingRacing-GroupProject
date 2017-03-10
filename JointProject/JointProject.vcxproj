@@ -140,7 +140,6 @@
     <Image Include="background.png" />
     <Image Include="button.png" />
     <Image Include="globe.png" />
-    <Image Include="help.png" />
     <Image Include="logo2.png" />
     <Image Include="marker.png" />
     <Image Include="pressed.png" />
@@ -171,10 +170,10 @@
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
-  <ItemGroup>    
+  <ItemGroup>
     <Image Include="CarSprite.png" />
     <Image Include="select.png" />
-  </ItemGroup>  
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
