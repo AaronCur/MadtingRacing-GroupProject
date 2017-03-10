@@ -33,6 +33,7 @@ Game::Game():
 	m_licenseScreen = new License(*this, m_comicSans);
 	m_splashScreen = new Splash(*this, m_comicSans);
 	m_helpScreen = new Help(*this, m_comicSans);
+	m_options = new Options(*this, m_comicSans);
 	controller = new Xbox360Controller();
 	
 }
@@ -41,6 +42,7 @@ Game::~Game()
 	delete(m_splashScreen);
 	delete(m_licenseScreen);
 	delete(m_helpScreen);
+	delete(m_options);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -129,9 +131,14 @@ void Game::update(sf::Time time)
 		controller->update();
 		m_helpScreen->update(time, *controller);
 		break;
+		controller->update();
+		m_helpScreen->update(time, *controller);
+	case GameState::Options:
+		controller->update();
+		m_options->update(time, *controller);
+		break;
 	case GameState::GameScreen:
 		break;
-	case GameState::Options:
 	default:
 		break;
 		
@@ -162,6 +169,7 @@ void Game::render()
 		m_helpScreen->render(m_window);
 		break;
 	case GameState::Options:
+		m_options->render(m_window);
 		break;
 	case GameState::GameScreen:
 		break;

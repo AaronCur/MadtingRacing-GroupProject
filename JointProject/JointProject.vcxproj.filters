@@ -15,7 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="arrow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="globe.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="help.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="logo2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="marker.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="songButton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="songButton1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="songButton2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="songButton3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="unpressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Help.cpp">
@@ -30,14 +74,21 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Splash.cpp">
+    <ClCompile Include="Options.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Xbox360Controller.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Splash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Xbox360Controller.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,11 +105,32 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Splash.h">
+    <ClInclude Include="GamesScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Help.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="License.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Xbox360Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Splash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Xbox360Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="AGENTORANGE.TTF">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="button.png">

@@ -123,7 +123,6 @@ void License::update(sf::Time deltaTime)
 	}
 
 
-
 }
 
 void License::render(sf::RenderWindow & window)
