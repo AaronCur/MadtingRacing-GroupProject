@@ -7,12 +7,14 @@
 #include "Xbox360Controller.h"
 #include "License.h"
 #include "MainMenu.h"
+#include "Help.h"
 
 
 //each class is declared
 class License;
 class Splash;
 class MainMenu;
+class Help;
 
 enum class
 	GameState
@@ -52,8 +54,8 @@ protected:
 	Splash *m_splashScreen;
 	MainMenu * m_mainMenu;
 	sf::Font m_agentOrange;//font 
-	
-	
+	Help * m_helpScreen;
+	sf::Font m_comicSans;//font 
 	
 	
 

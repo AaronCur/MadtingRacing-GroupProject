@@ -16,8 +16,8 @@ static double const MS_PER_UPDATE = 10.0;
 /// </summary>
 /// 
 Game::Game():
-	m_window(sf::VideoMode(1000, 650, 0), "Button Game James"),
-	m_currentGameState(GameState::MainMenu)
+	m_window(sf::VideoMode(1000, 650, 32), "Button Game James"),
+	m_currentGameState(GameState::Splash)
 
 {
 
@@ -27,9 +27,10 @@ Game::Game():
 		m_mainMenu = new MainMenu(*this, m_agentOrange);
 	}
 
-	m_licenseScreen = new License(*this, m_agentOrange);
-	m_splashScreen = new Splash(*this, m_agentOrange);
 	m_mainMenu = new MainMenu(*this, m_agentOrange);
+	m_licenseScreen = new License(*this, m_comicSans);
+	m_splashScreen = new Splash(*this, m_comicSans);
+	m_helpScreen = new Help(*this, m_comicSans);
 	controller = new Xbox360Controller();
 	
 }
@@ -37,6 +38,7 @@ Game::~Game()
 {
 	delete(m_splashScreen);
 	delete(m_licenseScreen);
+	delete(m_helpScreen);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -109,16 +111,20 @@ void Game::update(sf::Time time)
 	//	m_splashScreen->print(time);
 		std::cout << "no GameState" << std::endl;
 		break;
-	case GameState::License:
-		m_licenseScreen->update(time);
-		break;
 	case GameState::Splash:
 		controller->update();
 		m_splashScreen->update(time);
 		break;
+	case GameState::License:
+		m_licenseScreen->update(time);
+		break;
 	case GameState::MainMenu:
 		m_mainMenu->update(time, *controller);
 		controller->update();
+		break;
+	case GameState::Help:
+		controller->update();
+		m_helpScreen->update(time, *controller);
 		break;
 	case GameState::GameScreen:
 		break;
@@ -140,21 +146,24 @@ void Game::render()
 	
 	switch (m_currentGameState)
 	{
-	case GameState::License:
-		m_licenseScreen->render(m_window);
-		break;
 	case GameState::Splash:
 		m_splashScreen->render(m_window);
 		break;
+	case GameState::License:
+		m_licenseScreen->render(m_window);
+		break;
 	case GameState::MainMenu:
 		m_mainMenu->render(m_window);
+		break;
+	case GameState::Help:
+		m_helpScreen->render(m_window);
 		break;
 	case GameState::Options:
 		break;
 	case GameState::GameScreen:
 		break;
 	default:
-		m_window.clear(sf::Color(0, 0, 0, 255));
+		m_window.clear(sf::Color::Blue);
 		m_window.display();
 		break;
 
