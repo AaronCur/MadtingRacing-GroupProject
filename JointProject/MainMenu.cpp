@@ -254,7 +254,6 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 	}
 
-	std::cout << m_select.getPosition().x << std::endl;
 	//Check to see what button is pressed
 	
 	m_carOne.move(10, 0);
