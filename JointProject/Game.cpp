@@ -83,6 +83,7 @@ void Game::processEvents()
 		{
 			m_window.close();
 		}
+		
 		//To check for the Akeypress to transition from splash screen to main menu
 		if (controller->m_currentState.A == true && m_currentGameState == GameState::License)
 		{
