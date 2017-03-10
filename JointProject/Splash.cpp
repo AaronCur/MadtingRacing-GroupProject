@@ -51,7 +51,7 @@ void Splash::update(sf::Time deltaTime)
 //Switches the gamestate when this method is called
 void Splash::anyKeyPress()
 {
-	m_game->setGameState(GameState::MainMenu);
+	m_game->setGameState(GameState::Help);
 }
 
 void Splash::render(sf::RenderWindow & window)

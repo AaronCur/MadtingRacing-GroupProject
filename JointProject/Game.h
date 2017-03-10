@@ -7,6 +7,7 @@
 #include "Xbox360Controller.h"
 #include "License.h"
 #include "MainMenu.h"
+#include "Help.h"
 #include "Options.h"
 
 
@@ -14,6 +15,7 @@
 class License;
 class Splash;
 class MainMenu;
+class Help;
 class Options;
 
 enum class
@@ -53,6 +55,7 @@ protected:
 	License *m_licenseScreen;
 	Splash *m_splashScreen;
 	MainMenu * m_mainMenu;
+	Help * m_helpScreen;
 	Options *m_options;
 	sf::Font m_comicSans;//font 
 	
