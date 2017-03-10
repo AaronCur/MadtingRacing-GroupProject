@@ -12,6 +12,7 @@ public:
 	~MainMenu();
 	void update(sf::Time deltaTime, Xbox360Controller& controller);
 	void render(sf::RenderWindow& window);
+	bool close = false;
 private:
 	Game *m_game;//pointer to games class 
 	sf::Time m_cumulativeTime;//the time 

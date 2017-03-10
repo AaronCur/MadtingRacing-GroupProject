@@ -147,6 +147,10 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		onSong3 = false;
 		onSong2 = true;
 	}
+	else if (controller.m_currentState.B && !controller.m_previousState.B)
+	{
+		m_game->setGameState(GameState::MainMenu);
+	}
 
 	if (controller.m_currentState.DpadRight && onSlider)
 	{

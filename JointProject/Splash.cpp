@@ -3,26 +3,20 @@
 
 Splash::Splash(Game & game, sf::Font font) :
 	m_game(&game),
-	m_font(font)
+	m_font(font),
+	m_globeText("prestige", m_font, 40),
+	m_globeTextTwo("worldwide", m_font, 40)
 {
 	m_globeTexture.loadFromFile("globe.png");
 	m_globeSprite.setTexture(m_globeTexture);
 	m_globeSprite.setPosition(-250, 300);
-	m_globeText.setString("PRESTIGE");
-	m_globeText.setCharacterSize(48);
-	m_globeText.setPosition(265, 200);
+	m_globeText.setPosition(390, 200);
 	m_globeText.setFont(m_font);
-	m_globeTextTwo.setString("WORLDWIDE");
-	m_globeTextTwo.setCharacterSize(48);
-	m_globeTextTwo.setPosition(230, 300);
+	m_globeTextTwo.setPosition(355, 300);
 	m_globeTextTwo.setFont(m_font);
+	
 }
 
-void Splash::initialise(sf::Font font)
-{
-	m_font = font;
-	m_font.loadFromFile("c:/windows/fonts/GOUDYSTO.TTF");
-}
 Splash::~Splash()
 {
 	std::cout << "destructing Splash" << std::endl;
@@ -36,7 +30,7 @@ void Splash::update(sf::Time deltaTime)
 		m_game->setGameState(GameState::License);
 
 	}
-	if (m_globeSprite.getPosition().x < 375)
+	if (m_globeSprite.getPosition().x < 500)
 	{
 		m_globeSprite.move(4, 0);
 	}

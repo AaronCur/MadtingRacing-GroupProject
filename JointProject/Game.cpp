@@ -18,7 +18,7 @@ static double const MS_PER_UPDATE = 10.0;
 Game::Game():
 
 	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
-	m_currentGameState(GameState::License)
+	m_currentGameState(GameState::Splash)
 
 
 {
@@ -31,7 +31,7 @@ Game::Game():
 
 	m_mainMenu = new MainMenu(*this, m_agentOrange);
 	m_licenseScreen = new License(*this, m_comicSans);
-	m_splashScreen = new Splash(*this, m_comicSans);
+	m_splashScreen = new Splash(*this, m_agentOrange);
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
 	controller = new Xbox360Controller();
@@ -98,7 +98,10 @@ void Game::processEvents()
 		{
 			m_licenseScreen->checkButtonPress();
 		}
-		
+		if (m_mainMenu->close)
+		{
+			m_window.close();
+		}
 
 	}
 }
@@ -121,6 +124,7 @@ void Game::update(sf::Time time)
 		m_splashScreen->update(time);
 		break;
 	case GameState::License:
+		controller->update();
 		m_licenseScreen->update(time);
 		break;
 	case GameState::MainMenu:
