@@ -21,6 +21,8 @@ public:
 	void render(sf::RenderWindow& window);
 private:
 	Game *m_game;
+
+	sf::Font m_font;
 	//Track sprite and texture
 	sf::Texture trackTexture;
 	sf::Sprite trackSprite;

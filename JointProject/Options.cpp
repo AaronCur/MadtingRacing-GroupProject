@@ -149,6 +149,8 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		onSong3 = false;
 		onSong2 = true;
 	}
+
+	
 	else if (controller.m_currentState.B && !controller.m_previousState.B)
 	{
 	
@@ -168,7 +170,8 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		}
 		
 	
-
+		//Stops player from going straight to help after selecting options if A button is held
+		//Button has to be released and then pressed before allowing the player to go to the help menu
 	if (controller.m_currentState.A && controller.m_previousState.A == false &&onHelp)
 	{
 		m_game->setGameState(GameState::Help);

@@ -6,18 +6,17 @@
 /// time taken: 9:00 - 13:50
 
 GameScreen::GameScreen(Game & game, sf::Font font) :
-	m_game(&game),
-	m_comicSans(font)
+	m_game(&game)
 {
 	m_font.loadFromFile("AGENTORANGE.TTF");
 
-
+	//Load in the gamescreen track texture
 	if (!trackTexture.loadFromFile("track2.png"))
 	{
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
 	}
-
+	//Load in the track texture for the minimap (added whie border, to distinguish 
 	if (!miniMapTexture.loadFromFile("trackMiniMap.png"))
 	{
 		std::string s("Error Loading Texture");
