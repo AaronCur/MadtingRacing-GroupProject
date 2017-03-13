@@ -21,39 +21,16 @@ public:
 	void render(sf::RenderWindow& window);
 private:
 	Game *m_game;
-	sf::Font m_comicSans;
-	sf::Font m_font;
-	sf::Time m_cumulativeTime;
-	sf::Text m_R1;
-	sf::Text m_R2;
-	sf::Text m_L1;
-	sf::Text m_L2;
-	sf::Text m_A;
-	sf::Text m_X;
-	sf::Text m_Y;
-	sf::Text m_B;
-	sf::Text m_rightAnalog;
-	sf::Text m_leftAnalog;
-	sf::Text m_dPad;
-	sf::Text m_start;
-	sf::Text m_helpText;
-
+	//Track sprite and texture
 	sf::Texture trackTexture;
 	sf::Sprite trackSprite;
+	//Mini map track sprite and texture (added white outline) to distinguish from game screen view
 	sf::Texture miniMapTexture;
 	sf::Sprite miniMapSprite;
-	sf::Texture backgroundTexture;
-	sf::Sprite backgroundSprite;
-	sf::Sprite explosion;
-
+	
+	//The two views that wil make up the render window
 	sf::View gameView;
 	sf::View miniMapView;
-
-	/*sf::RenderWindow gameWindow;
-	sf::RenderWindow miniMapWindow;*/
-
-	double alpha;
-	double alphaText;
 };
 
 #endif // !Help

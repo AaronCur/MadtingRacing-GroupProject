@@ -30,9 +30,11 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 	miniMapSprite.setTexture(miniMapTexture);
 
 
-	//Set up the game view
+	//Set up the game view so its 1 to 1 scale with game window
 	gameView.setViewport(sf::FloatRect(0, 0, 1, 1));
+	//Set the view size
 	gameView.setSize(1000, 650);
+	//Set the origin to the center
 	gameView.setCenter(500, 325);
 	
 	
@@ -57,12 +59,10 @@ void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
 void GameScreen::render(sf::RenderWindow & Window)
 {
 	Window.clear(sf::Color::Blue);
-	//Mini map view
-	
-	//GameView
+	//Draw game view
 	Window.setView(gameView);
 	Window.draw(trackSprite);
-
+	//Draw mini map view
 	Window.setView(miniMapView);
 	Window.draw(miniMapSprite);
 
