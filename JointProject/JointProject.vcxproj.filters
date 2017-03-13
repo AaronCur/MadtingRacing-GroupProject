@@ -15,9 +15,6 @@
     <ClInclude Include="Game.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="GamesScreen.h">
-      <Filter>header</Filter>
-    </ClInclude>
     <ClInclude Include="License.h">
       <Filter>header</Filter>
     </ClInclude>
@@ -31,6 +28,10 @@
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Help.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="GameScreen.h">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,6 +48,7 @@
     <Font Include="Meatloaf.ttf">
       <Filter>resources</Filter>
     </Font>
+    <Font Include="AGENTORANGE.TTF" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="arrow.png">
@@ -103,6 +105,20 @@
     <Image Include="unpressed.png">
       <Filter>resources</Filter>
     </Image>
+    <Image Include="arrow.png" />
+    <Image Include="background.png" />
+    <Image Include="button.png" />
+    <Image Include="globe.png" />
+    <Image Include="logo2.png" />
+    <Image Include="marker.png" />
+    <Image Include="pressed.png" />
+    <Image Include="songButton.png" />
+    <Image Include="songButton1.png" />
+    <Image Include="songButton2.png" />
+    <Image Include="songButton3.png" />
+    <Image Include="unpressed.png" />
+    <Image Include="track.png" />
+    <Image Include="track3.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -132,5 +148,14 @@
     <ClCompile Include="Xbox360Controller.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
 </Project>

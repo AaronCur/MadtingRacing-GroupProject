@@ -121,7 +121,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	{
 		if (controller.m_currentState.A)
 		{
-			m_game->setGameState(GameState::None);
+			m_game->setGameState(GameState::GameScreen);
 		}
 	}
 	if (buttonTwoSelected == true)

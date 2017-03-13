@@ -18,7 +18,7 @@ static double const MS_PER_UPDATE = 10.0;
 Game::Game():
 
 	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
-	m_currentGameState(GameState::Splash)
+	m_currentGameState(GameState::GameScreen)
 
 
 
@@ -35,6 +35,7 @@ Game::Game():
 	m_splashScreen = new Splash(*this, m_agentOrange);
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
+	m_gameScreen = new GameScreen(*this, m_agentOrange);
 	controller = new Xbox360Controller();
 	
 }
@@ -143,6 +144,8 @@ void Game::update(sf::Time time)
 		m_options->update(time, *controller);
 		break;
 	case GameState::GameScreen:
+		controller->update();
+		m_gameScreen->update(time, *controller);
 		break;
 	default:
 		break;
@@ -177,6 +180,7 @@ void Game::render()
 		m_options->render(m_window);
 		break;
 	case GameState::GameScreen:
+		m_gameScreen->render(m_window);
 		break;
 	default:
 		m_window.clear(sf::Color::Blue);
