@@ -34,7 +34,7 @@ Game::Game():
 	m_splashScreen = new Splash(*this, m_agentOrange);
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
-	m_gameScreen = new GameScreen(*this, m_comicSans);
+	m_player = new Player(*this);
 	controller = new Xbox360Controller();
 	
 }
@@ -115,8 +115,6 @@ void Game::processEvents()
 /// <param name="time">update delta time</param>
 void Game::update(sf::Time time)
 {
-	std::cout << m_gameScreen->m_angle << std::endl;
-	std::cout << m_gameScreen->player.getRotation() << std::endl;
 	switch (m_currentGameState)
 	{
 	case GameState::None:
@@ -147,7 +145,7 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::GameScreen:
 		controller->update();
-		m_gameScreen->update(time, *controller);
+		m_player->update(time, *controller);
 		break;
 	default:
 		break;
@@ -182,7 +180,7 @@ void Game::render()
 		m_options->render(m_window);
 		break;
 	case GameState::GameScreen:
-		m_gameScreen->render(m_window);
+		m_player->render(m_window);
 		break;
 	default:
 		m_window.clear(sf::Color::Blue);

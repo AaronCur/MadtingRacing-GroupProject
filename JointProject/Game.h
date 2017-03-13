@@ -10,6 +10,7 @@
 #include "Help.h"
 #include "Options.h"
 #include "GameScreen.h"
+#include "Player.h"
 
 
 //each class is declared
@@ -19,6 +20,7 @@ class MainMenu;
 class Help;
 class Options;
 class GameScreen;
+class Player;
 
 enum class
 	GameState
@@ -61,6 +63,7 @@ protected:
 	Help * m_helpScreen;
 	Options *m_options;
 	GameScreen *m_gameScreen;
+	Player *m_player;
 	sf::Font m_comicSans;//font 
 	
 	

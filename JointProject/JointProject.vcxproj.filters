@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
@@ -10,14 +9,15 @@
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Help.h" />
     <ClInclude Include="Xbox360Controller.h" />
     <ClInclude Include="Game.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScreen.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="License.h">
@@ -30,6 +30,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Splash.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreen.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,6 +56,7 @@
     <Image Include="CarSprite.png" />
     <Image Include="select.png" />
     <Image Include="track3.png" />
+    <Image Include="carPlayer.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="AGENTORANGE.TTF" />

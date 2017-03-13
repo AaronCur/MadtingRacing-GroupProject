@@ -139,6 +139,7 @@
     <Image Include="arrow.png" />
     <Image Include="background.png" />
     <Image Include="button.png" />
+    <Image Include="carPlayer.png" />
     <Image Include="globe.png" />
     <Image Include="help.png" />
     <Image Include="logo2.png" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
@@ -165,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="MainMenu.h" />
