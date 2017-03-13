@@ -66,6 +66,9 @@ void GameScreen::render(sf::RenderWindow & Window)
 	Window.setView(miniMapView);
 	Window.draw(miniMapSprite);
 
+	//For future use 
+	//To scale the screen
+
 	//sf::Event event;
 	//while (Window.pollEvent(event))
 	//{

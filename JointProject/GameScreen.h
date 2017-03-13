@@ -31,6 +31,7 @@ private:
 	//The two views that wil make up the render window
 	sf::View gameView;
 	sf::View miniMapView;
+	/////
 };
 
 #endif // !Help
