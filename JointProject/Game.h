@@ -8,6 +8,7 @@
 #include "License.h"
 #include "MainMenu.h"
 #include "Help.h"
+#include "Options.h"
 
 
 //each class is declared
@@ -15,6 +16,7 @@ class License;
 class Splash;
 class MainMenu;
 class Help;
+class Options;
 
 enum class
 	GameState
@@ -55,6 +57,7 @@ protected:
 	MainMenu * m_mainMenu;
 	sf::Font m_agentOrange;//font 
 	Help * m_helpScreen;
+	Options *m_options;
 	sf::Font m_comicSans;//font 
 	
 	

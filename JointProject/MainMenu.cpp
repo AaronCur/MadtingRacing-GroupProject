@@ -21,7 +21,7 @@ MainMenu::MainMenu(Game & game, sf::Font font) :
 		throw std::exception(main.c_str());
 	}
 
-	if (!m_backgroundTexture.loadFromFile("background.png"))
+	if (!m_backgroundTexture.loadFromFile("background3.png"))
 	{
 		std::string main("Error Loading Texture");
 		throw std::exception(main.c_str());
@@ -136,14 +136,22 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	{
 		if (controller.m_currentState.A)
 		{
-			m_game->setGameState(GameState::License);
+			m_optionScreen->resetTime();
+			m_game->setGameState(GameState::Options);
+			
 		}
 	}
 	if (buttonFourSelected == true)
 	{
-		if (controller.m_currentState.A)
+		if (controller.m_previousState.A)
 		{
-			m_game->setGameState(GameState::None);
+			
+
+			
+			
+				close = true;
+			
+			
 		}
 	}
 	/*if (buttonOneSelected == false)

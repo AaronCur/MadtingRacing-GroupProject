@@ -1,6 +1,8 @@
 #include "License.h"
 #include <iostream>
-
+/// <summary>
+/// author Aaron Curry
+/// time taken: 9:00 - 16:00
 License::License(Game & game, sf::Font font) :
 	m_game(&game),
 	m_comicSans(font),
@@ -60,7 +62,7 @@ void License::update(sf::Time deltaTime)
 	m_cumulativeTime += deltaTime;
 
 
-
+	//To get the MADTING string to animate onto the screen and bounve
 
 	if (m_cumulativeTime.asSeconds() < 1.90)
 	{
@@ -121,7 +123,6 @@ void License::update(sf::Time deltaTime)
 			m_continue.setColor(sf::Color(255, 255, 255, alpha2));
 		}
 	}
-
 
 
 }

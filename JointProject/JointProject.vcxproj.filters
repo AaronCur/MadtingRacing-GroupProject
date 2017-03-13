@@ -1,85 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="resources">
+      <UniqueIdentifier>{78abfcfd-bec4-46d7-9a19-afb2c4d1a7b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="source">
+      <UniqueIdentifier>{60492744-58cf-46dc-a67d-3e0d71259ae1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="header">
+      <UniqueIdentifier>{205bc4a0-00d0-4d75-a2a9-936cac57c368}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Help.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="License.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Splash.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Xbox360Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Help.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GamesScreen.h">
+      <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="License.h">
-      <Filter>Header Files</Filter>
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Options.h">
+      <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Splash.h">
-      <Filter>Header Files</Filter>
+      <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Xbox360Controller.h">
-      <Filter>Header Files</Filter>
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="Help.h">
+      <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="select.png">
-      <Filter>Resource Files</Filter>
+    <Font Include="Adventure Hollow.otf">
+      <Filter>resources</Filter>
+    </Font>
+    <Font Include="Adventure.otf">
+      <Filter>resources</Filter>
+    </Font>
+    <Font Include="AGENTORANGE.TTF">
+      <Filter>resources</Filter>
+    </Font>
+    <Font Include="Meatloaf.ttf">
+      <Filter>resources</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="arrow.png">
+      <Filter>resources</Filter>
     </Image>
     <Image Include="background.png">
-      <Filter>Resource Files</Filter>
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="background2.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="background3.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="button.png">
+      <Filter>resources</Filter>
     </Image>
     <Image Include="CarSprite.png">
-      <Filter>Resource Files</Filter>
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="globe.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="help.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="logo2.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="marker.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="pressed.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="select.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="songButton.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="songButton1.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="songButton2.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="songButton3.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="track2.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="unpressed.png">
+      <Filter>resources</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="AGENTORANGE.TTF">
-      <Filter>Resource Files</Filter>
-    </Font>
-    <Image Include="help.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <ClCompile Include="Game.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Help.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="License.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Splash.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Xbox360Controller.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

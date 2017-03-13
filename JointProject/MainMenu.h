@@ -3,8 +3,10 @@
 #include <SFML\Graphics.hpp>
 #include "Game.h"
 #include "Xbox360Controller.h"
+#include "Options.h"
 
 class Game;
+class Options;
 class MainMenu
 {
 public:
@@ -12,6 +14,7 @@ public:
 	~MainMenu();
 	void update(sf::Time deltaTime, Xbox360Controller& controller);
 	void render(sf::RenderWindow& window);
+	bool close = false;
 private:
 	Game *m_game;//pointer to games class 
 	sf::Time m_cumulativeTime;//the time 
@@ -50,5 +53,7 @@ private:
 	bool pressed = false;
 	int alpha = 0;
 	bool alphaCount = true;
+
+	Options *m_optionScreen;
 };
 #endif // !
