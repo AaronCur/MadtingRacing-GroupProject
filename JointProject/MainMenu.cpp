@@ -146,18 +146,6 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 			close = true;
 		}
 	}
-	/*if (buttonOneSelected == false)
-	{
-		m_playGame.setColor(sf::Color::Blue);
-	}
-	if (buttonTwoSelected == false)
-	{
-		m_options.setColor(sf::Color::Green);
-	}
-	if (buttonThreeSelected == false)
-	{
-		m_exit.setColor(sf::Color::Red);
-	}*/
 
 
 	// Set position of text so it moves with button
@@ -310,7 +298,7 @@ void MainMenu::render(sf::RenderWindow & window)
 	window.draw(m_upgrades);
 	window.draw(m_options);
 	window.draw(m_exit);
-
+	
 	window.display();
 }
 

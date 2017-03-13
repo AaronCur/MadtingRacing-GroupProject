@@ -5,6 +5,7 @@
 #include "Xbox360Controller.h"
 
 class Game;
+
 class MainMenu
 {
 public:

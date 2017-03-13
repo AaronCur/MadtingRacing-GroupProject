@@ -148,6 +148,7 @@
     <Image Include="songButton1.png" />
     <Image Include="songButton2.png" />
     <Image Include="songButton3.png" />
+    <Image Include="track3.png" />
     <Image Include="unpressed.png" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GamesScreen.h" />
+    <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="License.h" />
     <ClInclude Include="MainMenu.h" />
@@ -171,10 +172,10 @@
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
-  <ItemGroup>    
+  <ItemGroup>
     <Image Include="CarSprite.png" />
     <Image Include="select.png" />
-  </ItemGroup>  
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
