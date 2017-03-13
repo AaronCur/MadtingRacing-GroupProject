@@ -21,6 +21,7 @@ Game::Game():
 	m_currentGameState(GameState::Splash)
 
 
+
 {
 
 	if (!m_agentOrange.loadFromFile("AGENTORANGE.ttf"))

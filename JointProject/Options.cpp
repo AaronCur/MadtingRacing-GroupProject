@@ -8,7 +8,6 @@
 Options::Options(Game & game, sf::Font font) :
 	m_game(&game),
 	m_comicSans(font)
-	
 
 {
 	//loads font from file 
@@ -52,33 +51,17 @@ Options::Options(Game & game, sf::Font font) :
 	m_sliderSprite.setTexture(m_sliderTexture);
 	setPosition();
 
-	
-	m_cumulativeTime.Zero;
 }
 
 Options::~Options()
 {
 	std::cout << "destructing License " << std::endl;
 }
-void Options::resetTime()
-{
-//	if (m_game->m_currentGameState!= GameState::Options)
-	//{
-	//	m_optionsClock.restart();
-	//	m_cumulativeTime.Zero;
-	////}
-	
 
-}
 
 void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 {
-	resetTime();
-
-	
-
 	m_cumulativeTime += deltaTime;
-
 
 	if (controller.m_currentState.DpadDown && onHelp && !controller.m_previousState.DpadDown)
 	{
@@ -190,19 +173,6 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 	{
 		m_game->setGameState(GameState::Help);
 	}
-	/*if (controller.m_currentState.DpadRight && onSlider)
-	{
-		increaseVolume();
-	}
-	else if (controller.m_currentState.DpadLeft && onSlider)
-	{
-		decreaseVolume();
-	}
-	else if(controller.m_currentState.A && onHelp)
-	{
-		m_game->setGameState(GameState::Help);
-	}
-*/
 
 	controller.m_previousState = controller.m_currentState;
 

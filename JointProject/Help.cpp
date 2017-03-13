@@ -163,7 +163,9 @@ void Help::update(sf::Time dt, Xbox360Controller&controller)
 	// Button to go back to previous menu
 	if (controller.m_currentState.B)
 	{
+
 		m_game->setGameState(GameState::Options);
+
 	}
 }
 

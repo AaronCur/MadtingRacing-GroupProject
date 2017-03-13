@@ -18,8 +18,7 @@ public:
 	void render(sf::RenderWindow& window);
 	void increaseVolume();
 	void decreaseVolume();
-	void resetTime();
-	
+
 private:
 	Game *m_game;
 	sf::Time m_cumulativeTime;
@@ -49,6 +48,6 @@ private:
 	bool onSong2 = false;
 	bool onSong3 = false;
 	bool onSlider = false;
-	
+
 };
 #endif // !Options

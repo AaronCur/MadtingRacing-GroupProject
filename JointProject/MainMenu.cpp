@@ -136,22 +136,18 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	{
 		if (controller.m_currentState.A)
 		{
-			m_optionScreen->resetTime();
+
 			m_game->setGameState(GameState::Options);
-			
+
 		}
 	}
 	if (buttonFourSelected == true)
 	{
 		if (controller.m_previousState.A)
 		{
-			
 
-			
-			
-				close = true;
-			
-			
+			close = true;
+
 		}
 	}
 	/*if (buttonOneSelected == false)
