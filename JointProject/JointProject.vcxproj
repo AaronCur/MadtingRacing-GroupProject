@@ -133,23 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Font Include="AGENTORANGE.TTF" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="arrow.png" />
-    <Image Include="background.png" />
-    <Image Include="button.png" />
-    <Image Include="globe.png" />
-    <Image Include="logo2.png" />
-    <Image Include="marker.png" />
-    <Image Include="pressed.png" />
-    <Image Include="songButton.png" />
-    <Image Include="songButton1.png" />
-    <Image Include="songButton2.png" />
-    <Image Include="songButton3.png" />
-    <Image Include="unpressed.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -162,10 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GamesScreen.h" />
+    <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="License.h" />
-    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
@@ -173,28 +155,15 @@
   <ItemGroup>
     <Font Include="Adventure Hollow.otf" />
     <Font Include="Adventure.otf" />
-    <Font Include="AGENTORANGE.TTF" />
     <Font Include="Meatloaf.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="arrow.png" />
-    <Image Include="background.png" />
     <Image Include="background2.png" />
     <Image Include="background3.png" />
-    <Image Include="button.png" />
     <Image Include="CarSprite.png" />
-    <Image Include="globe.png" />
     <Image Include="help.png" />
-    <Image Include="logo2.png" />
-    <Image Include="marker.png" />
-    <Image Include="pressed.png" />
     <Image Include="select.png" />
-    <Image Include="songButton.png" />
-    <Image Include="songButton1.png" />
-    <Image Include="songButton2.png" />
-    <Image Include="songButton3.png" />
     <Image Include="track2.png" />
-    <Image Include="unpressed.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />

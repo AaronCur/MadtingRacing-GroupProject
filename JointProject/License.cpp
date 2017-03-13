@@ -22,7 +22,7 @@ License::License(Game & game, sf::Font font) :
 	{
 		std::cout << "problem loading font" << std::endl;
 	}
-	if (!m_track.loadFromFile("track2.png"))
+	if (!m_track.loadFromFile("LicenseBg.png"))
 	{
 		std::cout << "problem loading texture" << std::endl;
 	}

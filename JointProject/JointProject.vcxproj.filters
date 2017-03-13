@@ -15,9 +15,6 @@
     <ClInclude Include="Game.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="GamesScreen.h">
-      <Filter>header</Filter>
-    </ClInclude>
     <ClInclude Include="License.h">
       <Filter>header</Filter>
     </ClInclude>
@@ -31,6 +28,9 @@
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Help.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreen.h">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -132,5 +132,14 @@
     <ClCompile Include="Xbox360Controller.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
 </Project>
