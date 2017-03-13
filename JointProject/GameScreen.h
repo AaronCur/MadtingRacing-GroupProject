@@ -30,11 +30,16 @@ private:
 	double distanceLeft = 0;
 	double distanceRight = 0;
 
+	double m_speed = 0;
+
 	bool topRight = false;
 	bool topLeft = false;
 	bool bottomLeft = false;
 	bool bottomRight = false;
 
 	bool found = false;
+
+	double dt = 0;
+	sf::Time m_time;
 };
 #endif // !GameScreen

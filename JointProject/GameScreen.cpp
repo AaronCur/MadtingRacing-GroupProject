@@ -38,6 +38,8 @@ void GameScreen::render(sf::RenderWindow& window)
 
 void GameScreen::update(sf::Time deltaTime, Xbox360Controller& controller)
 {
+	m_time += deltaTime;
+	dt = m_time.asSeconds();
 	double speed = 0;
 	if (controller.m_currentState.LeftThumbStick.y != 0)
 	{
@@ -124,12 +126,82 @@ void GameScreen::update(sf::Time deltaTime, Xbox360Controller& controller)
 		}
 		else if (distanceRight > distanceLeft)
 		{
-			player.rotate(-2);
+			if (m_speed != 0)
+			{
+				if (controller.m_currentState.X == true)
+				{
+					player.rotate(-4);
+				}
+				else
+				{
+					player.rotate(-1);
+				}
+			}
 		}
 		else if (distanceLeft > distanceRight)
 		{
-			player.rotate(2);
+			if (m_speed != 0)
+			{
+				if (controller.m_currentState.X == true)
+				{
+					player.rotate(4);
+				}
+				else
+				{
+					player.rotate(1);
+				}
+			}
 		}
+		/*player.setPosition((player.getPosition().x + cos(player.getRotation() * DEG_TO_RAD) * m_speed * (dt / 1000)),
+			(player.getPosition().y + sin(player.getRotation() * DEG_TO_RAD) * m_speed * (dt / 1000)));*/
+		if (controller.m_currentState.RTrigger > 10)
+		{
+			if (m_speed < 3)
+			{
+				m_speed = m_speed + 0.1;
+			}
+		}
+		if (controller.m_currentState.X == true)
+		{
+			if (m_speed > 0)
+			{
+				/*if (m_speed > -0.1 && m_speed < 0.1)
+				{
+					m_speed = 0;
+				}*/
+				m_speed = m_speed - 0.15;
+			}
+		}
+		if (controller.m_currentState.LTrigger > 10)
+		{
+			if (m_speed > -1)
+			{
+				/*if (m_speed  -2)
+				{
+					m_speed = 0;
+				}*/
+				m_speed = m_speed - 0.1;
+			}
+		}
+		if (controller.m_currentState.RTrigger < 10)
+		{
+			if (m_speed > 0)
+			{
+				m_speed = m_speed - 0.02;
+			}
+		}
+		if (controller.m_currentState.LTrigger < 10)
+		{
+			if (m_speed < 0)
+			{
+				m_speed = m_speed + 0.02;
+			}
+		}
+		if (m_speed > -0.1 && m_speed < 0.1)
+		{
+			m_speed = 0;
+		}
+		player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
 }
 
 void GameScreen::move()

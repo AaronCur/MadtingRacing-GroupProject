@@ -43,7 +43,7 @@ public:
 	GameState m_currentGameState;
 	GameState m_previousGameState;
 	void setGameState(GameState gameState);
-	
+	double dt;
 protected:
 	
 	void update(sf::Time deltaTime);
