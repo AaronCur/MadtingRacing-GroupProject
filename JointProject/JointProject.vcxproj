@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CarSelect.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -144,10 +145,12 @@
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CarSelect.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="License.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
@@ -163,6 +166,7 @@
     <Image Include="CarSprite.png" />
     <Image Include="help.png" />
     <Image Include="select.png" />
+    <Image Include="Speed.png" />
     <Image Include="track2.png" />
   </ItemGroup>
   <ItemGroup>

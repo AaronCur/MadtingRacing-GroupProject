@@ -2,7 +2,7 @@
 #include <iostream>
 
 /// <summary>
-/// Aaron Curry //James Condon
+/// Aaron Curry //James Condon //Jake Comiskey
 /// C00207200
 /// </summary>
 
@@ -18,7 +18,7 @@ static double const MS_PER_UPDATE = 10.0;
 Game::Game():
 
 	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
-	m_currentGameState(GameState::GameScreen)
+	m_currentGameState(GameState::Splash)
 
 
 
@@ -36,6 +36,7 @@ Game::Game():
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
 	m_gameScreen = new GameScreen(*this, m_agentOrange);
+	m_carSelectScreen = new CarSelect(*this, m_agentOrange);
 	controller = new Xbox360Controller();
 
 	//miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.35f));
@@ -49,6 +50,7 @@ Game::~Game()
 	delete(m_helpScreen);
 	delete(m_options);
 	delete(m_gameScreen);
+	delete(m_carSelectScreen);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -152,6 +154,10 @@ void Game::update(sf::Time time)
 		controller->update();
 		m_gameScreen->update(time, *controller);
 		break;
+	case GameState::CarSelect:
+		controller->update();
+		m_carSelectScreen->update(time, *controller);
+		break;
 	default:
 		break;
 		
@@ -186,6 +192,9 @@ void Game::render()
 		break;
 	case GameState::GameScreen:
 		m_gameScreen->render(m_window);
+		break;
+	case GameState::CarSelect:
+		m_carSelectScreen->render(m_window);
 		break;
 	default:
 		m_window.clear(sf::Color::Blue);

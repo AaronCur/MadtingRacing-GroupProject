@@ -54,6 +54,8 @@ private:
 	int alpha = 0;
 	bool alphaCount = true;
 
+	sf::Text m_speed;
+
 	Options *m_optionScreen;
 };
 #endif // !

@@ -33,6 +33,8 @@
     <ClInclude Include="GameScreen.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="CarSelect.h" />
+    <ClInclude Include="MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf">
@@ -41,66 +43,30 @@
     <Font Include="Adventure.otf">
       <Filter>resources</Filter>
     </Font>
-    <Font Include="AGENTORANGE.TTF">
-      <Filter>resources</Filter>
-    </Font>
     <Font Include="Meatloaf.ttf">
       <Filter>resources</Filter>
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="arrow.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="background.png">
-      <Filter>resources</Filter>
-    </Image>
     <Image Include="background2.png">
       <Filter>resources</Filter>
     </Image>
     <Image Include="background3.png">
       <Filter>resources</Filter>
     </Image>
-    <Image Include="button.png">
-      <Filter>resources</Filter>
-    </Image>
     <Image Include="CarSprite.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="globe.png">
       <Filter>resources</Filter>
     </Image>
     <Image Include="help.png">
       <Filter>resources</Filter>
     </Image>
-    <Image Include="logo2.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="marker.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="pressed.png">
-      <Filter>resources</Filter>
-    </Image>
     <Image Include="select.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="songButton.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="songButton1.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="songButton2.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="songButton3.png">
       <Filter>resources</Filter>
     </Image>
     <Image Include="track2.png">
       <Filter>resources</Filter>
     </Image>
-    <Image Include="unpressed.png">
+    <Image Include="Speed.png">
       <Filter>resources</Filter>
     </Image>
   </ItemGroup>
@@ -141,5 +107,15 @@
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="CarSelect.cpp" />
   </ItemGroup>
 </Project>
