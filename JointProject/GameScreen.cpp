@@ -52,19 +52,19 @@ GameScreen::~GameScreen()
 
 void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
 {
-	
+	follow.setCenter(rec.getPosition()); //put in player postion where rec is.
 }
 
-void GameScreen::render(sf::RenderWindow & Window)
+void GameScreen::render(sf::RenderWindow & window)
 {
-	Window.clear(sf::Color::Blue);
+	window.clear(sf::Color::Blue);
 	//Draw game view
-	Window.setView(gameView);
-	Window.draw(trackSprite);
+	window.setView(gameView);
+	window.draw(trackSprite);
 	//Draw mini map view
-	Window.setView(miniMapView);
-	Window.draw(miniMapSprite);
-
+	window.setView(miniMapView);
+	window.draw(miniMapSprite);
+	window.setView(follow);
 	//For future use 
 	//To scale the screen
 
@@ -81,5 +81,5 @@ void GameScreen::render(sf::RenderWindow & Window)
 	//	}
 	//}
 
-	Window.display();
+	window.display();
 }
