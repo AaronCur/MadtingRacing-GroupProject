@@ -127,11 +127,6 @@ void Help::update(sf::Time dt, Xbox360Controller&controller)
 {
 	m_cumulativeTime += dt;
 
-	/*if (m_cumulativeTime.asSeconds() > 1)
-	{
-	m_game->setGameState(State::Splash);
-	}*/
-
 	if (logoSprite.getPosition().y > -421 && logoSprite.getPosition().y > 0)
 	{
 		alpha = alpha + 2.8;

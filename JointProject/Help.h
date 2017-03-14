@@ -1,7 +1,6 @@
 #pragma once
 #ifndef HELP
 #define HELP
-
 #include<SFML\Graphics.hpp>
 #include"Game.h"
 #include "Xbox360Controller.h"

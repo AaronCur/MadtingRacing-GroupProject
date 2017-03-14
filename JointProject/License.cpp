@@ -22,7 +22,7 @@ License::License(Game & game, sf::Font font) :
 	{
 		std::cout << "problem loading font" << std::endl;
 	}
-	if (!m_track.loadFromFile("track2.png"))
+	if (!m_track.loadFromFile("LicenseBg.png"))
 	{
 		std::cout << "problem loading texture" << std::endl;
 	}
@@ -89,18 +89,21 @@ void License::update(sf::Time deltaTime)
 	}
 
 
-
+	//To translate "Racing" down the screen 
 	if (m_racing.getPosition().y < 135)
 	{
 		m_racing.move(0, 5);
 	}
 
+	//After 3 seconds fade in the text "Racing" by incrementing its alpha value
 	if (m_cumulativeTime.asSeconds() > 3 && alpha < 255)
 	{
 		alpha++;
 		m_racing.setColor(sf::Color(0, 0, 0, alpha));
 
 	}
+	//To get the Press A to continue text to appear after 6 seconds
+	//Flip bool is used to alternate between fading in and fading out when the alpha value reaches 0 or 255
 	if (m_cumulativeTime.asSeconds() >= 6)
 	{
 		if (alpha2 >= 254)
@@ -134,6 +137,7 @@ void License::render(sf::RenderWindow & window)
 	window.draw(m_trackSprite);
 	window.draw(m_madTing);
 	window.draw(m_racing);
+	//Only draw after 6 seconds
 	if (m_cumulativeTime.asSeconds() >= 6)
 	{
 		window.draw(m_continue);

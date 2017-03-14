@@ -3,7 +3,9 @@
 #define LICENSE
 #include <SFML\Graphics.hpp>
 #include "Game.h"
-
+/// <summary>
+/// author Aaron Curry
+/// time taken: 9:00 - 16:00
 
 class Game;
 
