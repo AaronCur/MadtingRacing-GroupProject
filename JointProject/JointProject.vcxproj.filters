@@ -34,6 +34,7 @@
     <ClInclude Include="GameScreen.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="CarSelect.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf">
@@ -48,6 +49,7 @@
     <Font Include="Meatloaf.ttf">
       <Filter>resources</Filter>
     </Font>
+    <Font Include="AGENTORANGE.TTF" />
     <Font Include="AGENTORANGE.TTF" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +121,18 @@
     <Image Include="unpressed.png" />
     <Image Include="track.png" />
     <Image Include="track3.png" />
+    <Image Include="arrow.png" />
+    <Image Include="background.png" />
+    <Image Include="button.png" />
+    <Image Include="globe.png" />
+    <Image Include="logo2.png" />
+    <Image Include="marker.png" />
+    <Image Include="pressed.png" />
+    <Image Include="songButton.png" />
+    <Image Include="songButton1.png" />
+    <Image Include="songButton2.png" />
+    <Image Include="songButton3.png" />
+    <Image Include="unpressed.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -157,5 +171,15 @@
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="CarSelect.cpp" />
   </ItemGroup>
 </Project>

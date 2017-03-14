@@ -152,6 +152,7 @@
     <Image Include="unpressed.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CarSelect.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CarSelect.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Help.h" />

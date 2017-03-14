@@ -38,6 +38,7 @@ MainMenu::MainMenu(Game & game, sf::Font font) :
 	m_carOne.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	m_carOne.rotate(270);
 	m_carOne.setPosition(0, 250);
+	m_carOne.setScale(.5, .5);
 
 	m_carTwo.setTexture(m_carSpriteSheet);
 	sf::IntRect carTwoRect(317, 233, 72, 131);
@@ -45,6 +46,7 @@ MainMenu::MainMenu(Game & game, sf::Font font) :
 	m_carTwo.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	m_carTwo.rotate(90);
 	m_carTwo.setPosition(800, 400);
+	m_carTwo.setScale(.5, .5);
 
 	m_backgroundSprite.setTexture(m_backgroundTexture);
 
