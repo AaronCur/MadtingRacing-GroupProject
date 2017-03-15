@@ -1,3 +1,4 @@
+#pragma once
 #include "MainMenu.h"
 #include <iostream>
 
@@ -89,6 +90,7 @@ MainMenu::~MainMenu()
 void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 {
 	
+	
 	if (buttonCounter == 1)
 	{
 		buttonOneSelected = true;
@@ -117,24 +119,25 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 		buttonThreeSelected = false;
 		buttonFourSelected = true;
 	}
-	if (buttonOneSelected == true)
-	{
-		if (controller.m_currentState.A)
+	//if (buttonOneSelected == true)
+	//{
+		if (controller.m_currentState.A&& controller.m_previousState.A == false && buttonOneSelected)
 		{
 			m_game->setGameState(GameState::GameScreen);
 		}
-	}
+		//controller.m_previousState = controller.m_currentState;
+	//}
 	if (buttonTwoSelected == true)
 	{
 
-		if (controller.m_currentState.A)
+		if (controller.m_currentState.A&& controller.m_previousState.A == false)
 		{
 			m_game->setGameState(GameState::License);
 		}
 	}
 	if (buttonThreeSelected == true)
 	{
-		if (controller.m_currentState.A)
+		if (controller.m_currentState.A&& controller.m_previousState.A == false)
 		{
 
 			m_game->setGameState(GameState::Options);
@@ -143,7 +146,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	}
 	if (buttonFourSelected == true)
 	{
-		if (controller.m_previousState.A)
+		if (controller.m_previousState.A == true)
 		{
 
 			close = true;
@@ -275,7 +278,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	}
 	
 	
-
+	
 
 }
 

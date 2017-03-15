@@ -1,6 +1,7 @@
 #pragma once
 #ifndef  GAME
 #define GAME
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 #include "Splash.h"
@@ -10,7 +11,8 @@
 #include "Help.h"
 #include "Options.h"
 #include "GameScreen.h"
-
+#include "Pause.h"
+#include "PauseOptions.h"
 
 //each class is declared
 class License;
@@ -19,6 +21,8 @@ class MainMenu;
 class Help;
 class Options;
 class GameScreen;
+class Pause;
+class PauseOptions;
 
 enum class
 	GameState
@@ -32,7 +36,9 @@ enum class
 	Exit,
 	HighScores,
 	Help,
-	GameScreen
+	GameScreen,
+	Pause,
+	PauseOptions
 };
 class Game
 {
@@ -62,6 +68,8 @@ protected:
 	Options *m_options;
 	sf::Font m_comicSans;//font 
 	GameScreen *m_gameScreen;
+	Pause *m_pause;
+	PauseOptions *m_pauseOptions;
 	
 
 };

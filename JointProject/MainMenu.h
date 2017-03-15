@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MAINMENU
 #define MAINMENU	
 #include <SFML\Graphics.hpp>

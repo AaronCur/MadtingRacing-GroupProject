@@ -53,18 +53,32 @@ GameScreen::~GameScreen()
 void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
 {
 	follow.setCenter(rec.getPosition()); //put in player postion where rec is.
+
+	if (controller.m_currentState.Start && controller.m_previousState.Start == false )
+	{
+		m_game->setGameState(GameState::Pause);
+	}
 }
 
 void GameScreen::render(sf::RenderWindow & window)
 {
 	window.clear(sf::Color::Blue);
 	//Draw game view
-	window.setView(gameView);
-	window.draw(trackSprite);
-	//Draw mini map view
-	window.setView(miniMapView);
-	window.draw(miniMapSprite);
-	window.setView(follow);
+	
+		window.setView(gameView);
+		window.draw(trackSprite);
+		//Draw mini map view
+		window.setView(miniMapView);
+		window.draw(miniMapSprite);
+		//window.setView(follow);
+	
+
+	//window.setView(gameView);
+	//window.draw(trackSprite);
+	////Draw mini map view
+	//window.setView(miniMapView);
+	//window.draw(miniMapSprite);
+	//window.setView(follow);
 	//For future use 
 	//To scale the screen
 
