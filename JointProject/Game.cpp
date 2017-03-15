@@ -17,8 +17,8 @@ static double const MS_PER_UPDATE = 10.0;
 /// 
 Game::Game():
 
-	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
-	m_currentGameState(GameState::Splash)
+	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing", sf::Style::None),
+	m_currentGameState(GameState::CarSelect)
 
 
 

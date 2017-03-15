@@ -164,6 +164,7 @@
     <Image Include="background2.png" />
     <Image Include="background3.png" />
     <Image Include="CarSprite.png" />
+    <Image Include="garage.png" />
     <Image Include="help.png" />
     <Image Include="select.png" />
     <Image Include="Speed.png" />

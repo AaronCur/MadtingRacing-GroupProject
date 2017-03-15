@@ -32,6 +32,13 @@ private:
 
 	sf::Texture m_carSheetTexture;
 
+	sf::Texture m_speedTexture;
+	sf::Sprite m_speedSprite[6];
+	sf::Sprite m_brakeSprite[6];
+
+	sf::Texture m_garageTexture;
+	sf::Sprite m_garageSprite;
+
 	sf::Text m_speed;
 	sf::Text m_brake;
 
@@ -44,4 +51,9 @@ private:
 	bool pressed = false;
 	bool up = true;
 	bool down = false;
+
+
+	bool carOne = false;
+	bool carTwo = false;
+	bool carThree = false;
 };

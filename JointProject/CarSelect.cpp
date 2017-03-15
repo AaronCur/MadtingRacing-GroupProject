@@ -1,3 +1,8 @@
+/// <summary>
+/// Worked on my Jake Comiskey
+/// Time worked on : 
+/// </summary>
+
 #include "CarSelect.h"
 #include <iostream>
 
@@ -19,6 +24,42 @@ CarSelect::CarSelect(Game & game, sf::Font font) :
 		std::string main("Error Loading Texture");
 		throw std::exception(main.c_str());
 	}
+	if (!m_speedTexture.loadFromFile("Speed.png"))
+	{
+
+	}
+
+	if (!m_garageTexture.loadFromFile("garage.png"))
+	{
+
+	}
+
+	/*m_speedSprite.setTexture(m_speedTexture);
+	m_speedSprite.setPosition(800, 410);
+*/
+	for (int i = 0; i < 6; i++)
+	{
+		m_speedSprite[i].setTexture(m_speedTexture);
+	}
+	m_speedSprite[0].setPosition(800, 410);
+	m_speedSprite[1].setPosition(830, 410);
+	m_speedSprite[2].setPosition(860, 410);
+	m_speedSprite[3].setPosition(890, 410);
+	m_speedSprite[4].setPosition(920, 410);
+	m_speedSprite[5].setPosition(950, 410);
+
+
+	for (int i = 0; i < 6; i++)
+	{
+		m_brakeSprite[i].setTexture(m_speedTexture);
+	}
+	m_brakeSprite[0].setPosition(800, 465);
+	m_brakeSprite[1].setPosition(830, 465);
+	m_brakeSprite[2].setPosition(860, 465);
+	m_brakeSprite[3].setPosition(890, 465);
+	m_brakeSprite[4].setPosition(920, 465);
+	m_brakeSprite[5].setPosition(950, 465);
+
 
 	m_selectSpriteCarOne.setTexture(m_selectTexture);
 	m_selectSpriteCarOne.setPosition(170, 130);
@@ -67,8 +108,12 @@ CarSelect::CarSelect(Game & game, sf::Font font) :
 	m_carSelectThreeBig.setPosition(400, 100);
 	m_carSelectThreeBig.setScale(1.5, 1.5);
 
+	m_garageSprite.setTexture(m_garageTexture);
+
 	m_speed.setPosition(660, 400);
+	m_speed.setColor(sf::Color::Black);
 	m_brake.setPosition(660, 450);
+	m_brake.setColor(sf::Color::Black);
 }
 	
 
@@ -133,11 +178,28 @@ void CarSelect::update(sf::Time deltaTime, Xbox360Controller &controller)
 	if (controller.m_currentState.B)
 	{
 		m_game->setGameState(GameState::MainMenu);
+		buttonCount = 0;
 	}
 
 	if (buttonCount == 1 && controller.m_currentState.A)
 	{
-		m_carSelectOneBig.scale(.5, .5);
+		carOne = true;
+		carTwo = false;
+		carThree = false;
+	}
+
+	if (buttonCount == 2 && controller.m_currentState.A)
+	{
+		carOne = false;
+		carTwo = true;
+		carThree = false;
+	}
+
+	if (buttonCount == 3 && controller.m_currentState.A)
+	{
+		carOne = false;
+		carTwo = false;
+		carThree = true;
 	}
 }
 
@@ -145,6 +207,8 @@ void CarSelect::update(sf::Time deltaTime, Xbox360Controller &controller)
 void CarSelect::render(sf::RenderWindow & window)
 {
 	window.clear();
+
+	window.draw(m_garageSprite);
 
 	window.draw(m_carSelectOne);
 	window.draw(m_carSelectTwo);
@@ -156,19 +220,47 @@ void CarSelect::render(sf::RenderWindow & window)
 	{
 		window.draw(m_selectSpriteCarOne);
 		window.draw(m_carSelectOneBig);
+		window.draw(m_speedSprite[0]);
+		window.draw(m_speedSprite[1]); 
+		window.draw(m_speedSprite[2]);
+		window.draw(m_speedSprite[3]);
+		window.draw(m_speedSprite[4]);
+		window.draw(m_speedSprite[5]);
+
+
+		window.draw(m_brakeSprite[0]);
+		window.draw(m_brakeSprite[1]);
+		window.draw(m_brakeSprite[2]);
 	}
 
 	else if (buttonCount == 2 && buttonTwoSelected == true)
 	{
 		window.draw(m_selectSpriteCarTwo);
 		window.draw(m_carSelectTwoBig);
+		window.draw(m_speedSprite[0]);
+		window.draw(m_speedSprite[1]);
+
+		window.draw(m_brakeSprite[0]); 
+		window.draw(m_brakeSprite[1]);
+		window.draw(m_brakeSprite[2]);
+		window.draw(m_brakeSprite[3]);
 	}
 	
 	else if (buttonCount == 3 && buttonThreeSelected == true)
 	{
 		window.draw(m_selectSpriteCarThree);
 		window.draw(m_carSelectThreeBig);
+		window.draw(m_speedSprite[0]);
+		window.draw(m_speedSprite[1]);
+		window.draw(m_speedSprite[2]);
+
+		window.draw(m_brakeSprite[0]);
+		window.draw(m_brakeSprite[1]);
+		window.draw(m_brakeSprite[2]);
+		window.draw(m_brakeSprite[3]);
+		window.draw(m_brakeSprite[4]);
 	}
+	
 	
 	
 	window.display();
