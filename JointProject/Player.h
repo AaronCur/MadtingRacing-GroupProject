@@ -27,7 +27,8 @@ private:
 	sf::Font m_font;
 	sf::Texture m_trackTexture;
 	sf::Sprite m_trackSprite;
-	
+	sf::Texture m_carFireTexture;
+	sf::Sprite m_carFireSprite;
 	double m_acceleration = 0.1;
 	double m_friction = 0.02;
 	double m_maxSpeed = 1;
@@ -46,7 +47,11 @@ private:
 	bool bottomLeft = false;
 	bool bottomRight = false;
 
-	
+	bool gearChanged = false;
+
+	double fireCount = 0;
+
+	sf::Vector2f m_centre;
 	sf::Texture m_carSpriteSheet;
 
 	bool found = false;

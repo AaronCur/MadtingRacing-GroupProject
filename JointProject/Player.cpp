@@ -28,6 +28,13 @@ Player::Player(Game & game) :
 		std::string main("Error Loading Texture");
 		throw std::exception(main.c_str());
 	}
+
+	// Load in fire.
+	if (!m_carFireTexture.loadFromFile("fire.png"))
+	{
+		std::string s("Error Loading Texture");
+		throw std::exception(s.c_str());
+	}
 	//follow.setCenter(500, 325);
 	follow.setViewport(sf::FloatRect(0, 0, 1.5, 1.5));
 	follow.setSize(1000, 650);
@@ -36,6 +43,10 @@ Player::Player(Game & game) :
 
 	m_trackSprite.setTexture(m_trackTexture);
 	m_trackSprite.setPosition(0, 0);
+
+	// Set fire sprite initial position
+	m_carFireSprite.setTexture(m_carFireTexture);
+	m_carFireSprite.setPosition(carSprite.getPosition());
 
 	// Car sprite variables.
 	carSprite.setTexture(m_carSpriteSheet);
@@ -57,8 +68,13 @@ void Player::render(sf::RenderWindow& window)
 
 	window.setView(follow);
 	window.draw(m_trackSprite);
-	//window.draw(player);
+	//window.draw(player)
 	window.draw(carSprite);
+	// Only draw when gear is changed
+	if (gearChanged == true)
+	{
+		window.draw(m_carFireSprite);
+	}
 
 }
 
@@ -83,6 +99,16 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 	// Set car sprite to ontop of plater cube.
 	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+
+	/*m_carFireSprite.setPosition(carSprite.getPosition().x - 30, carSprite.getPosition().y + 5);*/
+
+	m_centre.x = player.getPosition().x + player.getTextureRect().width / 2;
+	m_centre.y = player.getPosition().y + player.getTextureRect().height / 2; 
+
+	m_carFireSprite.setPosition(m_centre.x , m_centre.y);
+	m_carFireSprite.setOrigin(4, + 32);
+	
+	m_carFireSprite.setRotation(carSprite.getRotation());
 
 	//carSprite.rotate(player.getRotation());
 	
@@ -211,7 +237,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		}
 		else if (m_gear == 3)
 		{
-			m_maxSpeed = 20;
+			m_maxSpeed = 6;
 		}
 
 		// Car stalls when too low speed
@@ -238,18 +264,22 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 			if (m_gear == -1 && m_speed == 0)
 			{
 				m_gear = m_gear + 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 0 && m_speed == 0)
 			{
 				m_gear = m_gear + 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 1 && m_speed >= 0.8)
 			{
 				m_gear = m_gear + 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 2 && m_speed >= 2.8)
 			{
 				m_gear = m_gear + 1;
+				gearChanged = true;
 			}
 		}
 		// Gear down when LB is hit.
@@ -258,22 +288,27 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 			if (m_gear == 4 && m_speed <= 4)
 			{
 				m_gear = m_gear - 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 3 && m_speed <= 2)
 			{
 				m_gear = m_gear - 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 2 && m_speed <= 1)
 			{
 				m_gear = m_gear - 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 1 && m_speed <= 0.5)
 			{
 				m_gear = m_gear - 1;
+				gearChanged = true;
 			}
 			else if (m_gear == 0 && m_speed == 0)
 			{
 				m_gear = m_gear - 1;
+				gearChanged = true;
 			}
 		}
 
@@ -350,6 +385,17 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
 
 		follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120  );
+		
+		if (gearChanged == true)
+		{
+			fireCount = fireCount + 1;
+			if (fireCount == 3)
+			{
+				gearChanged = false;
+				fireCount = 0;
+				gearChanged = false;
+			}
+		}
 		
 }
 

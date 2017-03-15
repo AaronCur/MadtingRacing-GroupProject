@@ -10,7 +10,7 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 {
 	m_font.loadFromFile("AGENTORANGE.TTF");
 	circle = sf::CircleShape(40);
-	rectangle = sf::RectangleShape(sf::Vector2f(10, 10));
+	rectangle = sf::RectangleShape(sf::Vector2f(900, 20));
 	//Load in the gamescreen track texture
 	/*if (!trackTexture.loadFromFile("track2.png"))
 	{
@@ -18,7 +18,7 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 		throw std::exception(s.c_str());
 	}*/
 	//Load in the track texture for the minimap (added whie border, to distinguish 
-	if (!miniMapTexture.loadFromFile("bigTrack.png"))
+	if (!miniMapTexture.loadFromFile("bigTrackMini.png"))
 	{
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
