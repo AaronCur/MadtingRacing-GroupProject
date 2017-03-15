@@ -36,6 +36,7 @@ Game::Game():
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
 	m_gameScreen = new GameScreen(*this, m_agentOrange);
+	m_player = new Player(*this);
 	controller = new Xbox360Controller();
 
 	//miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.35f));
@@ -151,6 +152,7 @@ void Game::update(sf::Time time)
 	case GameState::GameScreen:
 		controller->update();
 		m_gameScreen->update(time, *controller);
+		m_player->update(time, *controller);
 		break;
 	default:
 		break;
@@ -166,7 +168,7 @@ void Game::update(sf::Time time)
 /// </summary>
 void Game::render()
 {
-	
+	m_window.clear(sf::Color::White);
 	switch (m_currentGameState)
 	{
 	case GameState::Splash:
@@ -184,16 +186,16 @@ void Game::render()
 	case GameState::Options:
 		m_options->render(m_window);
 		break;
-	case GameState::GameScreen:
-		m_gameScreen->render(m_window);
+	case GameState::GameScreen :
+		m_player->render(m_window);
+		m_gameScreen->render(m_window, *m_player);
+		
 		break;
 	default:
-		m_window.clear(sf::Color::Blue);
-		m_window.display();
 		break;
 
 	}
-
+	m_window.display();
 	
 }
 

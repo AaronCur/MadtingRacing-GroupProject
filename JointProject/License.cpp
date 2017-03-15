@@ -132,8 +132,6 @@ void License::update(sf::Time deltaTime)
 
 void License::render(sf::RenderWindow & window)
 {
-
-	window.clear(sf::Color::White);
 	window.draw(m_trackSprite);
 	window.draw(m_madTing);
 	window.draw(m_racing);
@@ -143,7 +141,4 @@ void License::render(sf::RenderWindow & window)
 		window.draw(m_continue);
 	}
 
-
-
-	window.display();
 }

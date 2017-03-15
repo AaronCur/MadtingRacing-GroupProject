@@ -281,8 +281,6 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 void MainMenu::render(sf::RenderWindow & window)
 {
-	window.clear(sf::Color::White);
-	
 	window.draw(m_backgroundSprite);
 	window.draw(m_carOne);
 	window.draw(m_carTwo);
@@ -314,7 +312,5 @@ void MainMenu::render(sf::RenderWindow & window)
 	window.draw(m_upgrades);
 	window.draw(m_options);
 	window.draw(m_exit);
-
-	window.display();
 }
 
