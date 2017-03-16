@@ -167,7 +167,6 @@ void Help::update(sf::Time dt, Xbox360Controller&controller)
 void Help::render(sf::RenderWindow & window)
 {
 
-	window.clear(sf::Color::White);
 	window.draw(backgroundSprite);
 	window.draw(logoSprite);
 	window.draw(m_R1);
@@ -184,5 +183,4 @@ void Help::render(sf::RenderWindow & window)
 	window.draw(m_start);
 	window.draw(m_helpText);
 
-	window.display();
 }

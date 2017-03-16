@@ -35,6 +35,7 @@
     </ClInclude>
     <ClInclude Include="CarSelect.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf">
@@ -72,6 +73,10 @@
     <Image Include="garage.png">
       <Filter>resources</Filter>
     </Image>
+    <Image Include="bigTrack.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="fire.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -120,6 +125,7 @@
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
     <ClCompile Include="CarSelect.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />

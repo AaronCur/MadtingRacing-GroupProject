@@ -11,7 +11,7 @@
 #include "Options.h"
 #include "GameScreen.h"
 #include "CarSelect.h"
-
+#include "Player.h"
 
 //each class is declared
 class License;
@@ -21,6 +21,7 @@ class Help;
 class Options;
 class GameScreen;
 class CarSelect;
+class Player;
 
 enum class
 	GameState
@@ -67,6 +68,7 @@ protected:
 	GameScreen *m_gameScreen;
 	CarSelect *m_carSelectScreen;
 	
+	Player *m_player;
 
 };
 #endif // !GAME
