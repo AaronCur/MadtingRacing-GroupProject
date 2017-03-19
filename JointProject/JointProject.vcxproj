@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CarSelect.cpp" />
+    <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="OptionsHelp.cpp" />
+    <ClCompile Include="OrientedBoundingBox.cpp" />
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="PauseOptions.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -150,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CarSelect.h" />
+    <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Help.h" />
@@ -157,6 +160,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="OptionsHelp.h" />
+    <ClInclude Include="OrientedBoundingBox.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="PauseOptions.h" />
     <ClInclude Include="Player.h" />
