@@ -14,6 +14,8 @@
 #include "Pause.h"
 #include "PauseOptions.h"
 #include "OptionsHelp.h"
+#include "CarSelect.h"
+#include "Player.h"
 
 //each class is declared
 class License;
@@ -25,6 +27,9 @@ class GameScreen;
 class Pause;
 class PauseOptions;
 class OptionsHelp;
+class CarSelect;
+class Player;
+
 
 enum class
 	GameState
@@ -41,7 +46,8 @@ enum class
 	GameScreen,
 	Pause,
 	PauseOptions,
-	OptionsHelp
+	OptionsHelp,
+	CarSelect
 };
 class Game
 {
@@ -74,7 +80,8 @@ protected:
 	Pause *m_pause;
 	PauseOptions *m_pauseOptions;
 	OptionsHelp *m_helpOptions;
-	
+	CarSelect *m_carSelectScreen;
+	Player *m_player;
 
 };
 #endif // !GAME

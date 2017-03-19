@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CarSelect.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -143,10 +144,12 @@
     <ClCompile Include="OptionsHelp.cpp" />
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="PauseOptions.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CarSelect.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Help.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="OptionsHelp.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="PauseOptions.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
@@ -167,9 +171,13 @@
   <ItemGroup>
     <Image Include="background2.png" />
     <Image Include="background3.png" />
+    <Image Include="bigTrack.png" />
     <Image Include="CarSprite.png" />
+    <Image Include="garage.png" />
+    <Image Include="fire.png" />
     <Image Include="help.png" />
     <Image Include="select.png" />
+    <Image Include="Speed.png" />
     <Image Include="track2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

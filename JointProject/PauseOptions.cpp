@@ -182,7 +182,7 @@ void PauseOptions::update(sf::Time deltaTime, Xbox360Controller &controller)
 
 void PauseOptions::render(sf::RenderWindow & window)
 {
-	window.clear(sf::Color::White);
+	
 	window.draw(m_backgroundSprite);
 	for (int i = 0; i < 2; i++)
 	{
@@ -200,7 +200,7 @@ void PauseOptions::render(sf::RenderWindow & window)
 	window.draw(m_highscoreText);
 	window.draw(m_songtxt);
 	window.draw(m_options);
-	window.display();
+	
 }
 void PauseOptions::buttonUpdate()
 {

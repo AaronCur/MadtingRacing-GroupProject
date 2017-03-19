@@ -45,6 +45,9 @@
     <ClInclude Include="Pause.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="CarSelect.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf">
@@ -76,6 +79,18 @@
     <Image Include="track2.png">
       <Filter>resources</Filter>
     </Image>
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="Speed.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="garage.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="bigTrack.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="fire.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pause.cpp">
@@ -114,5 +129,34 @@
     <ClCompile Include="OptionsHelp.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="CarSelect.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
 </Project>

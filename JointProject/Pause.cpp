@@ -291,7 +291,7 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 void Pause::render(sf::RenderWindow & window)
 {
-	window.clear(sf::Color::White);
+	
 
 
 	window.setView(pause);
@@ -325,5 +325,5 @@ void Pause::render(sf::RenderWindow & window)
 	window.draw(m_exit);
 	window.draw(m_paused);
 
-	window.display();
+
 }

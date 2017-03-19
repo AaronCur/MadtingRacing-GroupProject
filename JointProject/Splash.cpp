@@ -50,9 +50,7 @@ void Splash::anyKeyPress()
 
 void Splash::render(sf::RenderWindow & window)
 {
-	window.clear(sf::Color::White);
 	window.draw(m_globeSprite);
 	window.draw(m_globeText);
 	window.draw(m_globeTextTwo);
-	window.display();
 }
