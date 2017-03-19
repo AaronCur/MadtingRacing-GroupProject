@@ -42,6 +42,7 @@ private:
 	sf::Text m_paused;
 	
 	
+	
 	sf::View pause;
 
 	bool buttonOneSelected = false;
@@ -52,9 +53,15 @@ private:
 	//variable for single press
 	bool pressed = false;
 	int alpha;
+	int alpha2;
 	bool alphaCount = true;
 //	bool alpha = 0;
 	bool flip;
+	bool animaIn = true;
+	bool animaOut = false;
+	bool selected = false;
+	bool exit = false;
+	
 
 	Options *m_optionScreen;
 };

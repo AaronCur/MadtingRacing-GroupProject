@@ -36,6 +36,7 @@ Game::Game():
 	m_gameScreen = new GameScreen(*this, m_agentOrange);
 	m_pause = new Pause(*this, m_agentOrange);
 	m_pauseOptions = new PauseOptions(*this, m_agentOrange);
+	m_helpOptions = new OptionsHelp(*this, m_agentOrange);
 	controller = new Xbox360Controller();
 
 	//miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.35f));
@@ -51,6 +52,7 @@ Game::~Game()
 	delete(m_gameScreen);
 	delete(m_pause);
 	delete(m_pauseOptions);
+	delete(m_helpOptions);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -162,6 +164,10 @@ void Game::update(sf::Time time)
 		controller->update();
 		m_pauseOptions->update(time, *controller);
 		break;
+	case GameState::OptionsHelp:
+		controller->update();
+		m_helpOptions->update(time, *controller);
+		break;
 	default:
 		break;
 		
@@ -202,6 +208,9 @@ void Game::render()
 		break;
 	case GameState::PauseOptions:
 		m_pauseOptions->render(m_window);
+		break;
+	case GameState::OptionsHelp:
+		m_helpOptions->render(m_window);
 		break;
 	default:
 		m_window.clear(sf::Color::Blue);

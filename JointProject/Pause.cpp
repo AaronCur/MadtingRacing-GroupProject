@@ -4,6 +4,7 @@
 /// author Aaron Curry
 /// time taken: 10:00 - 12:00
 ///				18:00 - 20:00
+///             21:00 - 22:20
 /// </summary>
 Pause::Pause(Game & game, sf::Font font) :
 	m_game(&game),
@@ -11,6 +12,7 @@ Pause::Pause(Game & game, sf::Font font) :
 	m_resume("Resume", m_font, 30),
 	m_options("Options", m_font, 30),
 	m_exit("Press B to exit to MAIN MENU", m_adventure, 30),
+	m_paused("GAME PAUSED", m_font, 45),
 	alpha(0),
 	flip(false)
 {
@@ -47,7 +49,7 @@ Pause::Pause(Game & game, sf::Font font) :
 
 
 	m_buttonOne.setTexture(m_buttonTexture);
-	m_buttonOne.setPosition(355, -50);
+	m_buttonOne.setPosition(355, -150);
 
 	m_buttonTwo.setTexture(m_buttonTexture);
 	m_buttonTwo.setPosition(355, 700);
@@ -61,12 +63,14 @@ Pause::Pause(Game & game, sf::Font font) :
 	m_resume.setPosition(3600, 140);
 	m_options.setColor(sf::Color::White);
 	m_options.setPosition(360, 360);
-
+	m_paused.setColor(sf::Color::White);
+	m_paused.setPosition(300, 250);
+	m_paused.setStyle(sf::Text::Bold);
 
 //	m_exit.setFont(m_adventure);
 	m_exit.setColor(sf::Color::Black);
 	
-	m_exit.setPosition(320, 510);
+	m_exit.setPosition(310, 510);
 
 
 	m_options.setScale(0.7, 1);
@@ -123,7 +127,16 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
 	{
 		if (controller.m_currentState.A&& controller.m_previousState.A == false)
 		{
+			//Initiates the out animations
+			animaOut = true;
+			selected = true;
+
+		}
+		//When animations are finished and the button was selected, then change gamestate
+		if (animaOut == false && selected == true)
+		{
 			m_game->setGameState(GameState::GameScreen);
+			selected = false;
 		}
 	}
 	if (buttonTwoSelected == true)
@@ -131,15 +144,51 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 		if (controller.m_currentState.A && controller.m_previousState.A == false)
 		{
+			//initiates the out animations
+			animaOut = true;
+			
+			selected = true;
+			
+		}
+		//When the animations are done and the button was selected , then change game state
+		if (animaOut == false && selected == true)
+		{
 			m_game->setGameState(GameState::PauseOptions);
+			selected = false;
+		}
+	}
+	//When iniciated by the options / exit / b button presses the butttons animate off screen.
+	//Also resets the bools so these animations are repeated when the player comes back to the screen.
+	if (animaOut == true)
+	{
+		if (m_buttonOne.getPosition().y > -150)
+		{
+			m_buttonOne.move(0, -10);
+		}
+		if (m_buttonTwo.getPosition().y < 680)
+		{
+			m_buttonTwo.move(0, +10);
+		}
+		else
+		{
+			animaOut = false;
+			animaIn = true;
 		}
 	}
 	
+	
 	if (controller.m_currentState.B && controller.m_previousState.B == false)
 	{
-		m_game->setGameState(GameState::MainMenu);
+		animaOut = true;
+		exit = true;
+		
 	}
-
+	//Exits the game once the B button is pressed and after the animations going out are finished
+	if (animaOut == false && exit == true)
+	{
+		m_game->setGameState(GameState::MainMenu);
+		exit = false;
+	}
 	//// Set position of text so it moves with button
 	m_resume.setPosition(m_buttonOne.getPosition().x + 120, m_buttonOne.getPosition().y + 15);
 	m_options.setPosition(m_buttonTwo.getPosition().x + 120, m_buttonTwo.getPosition().y + 15);
@@ -177,14 +226,26 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 
 	//Translate buttons onto screen until they reach a point
-	if (m_buttonOne.getPosition().y < 124)
+	//When iniciated by the options / exit / b button presses the butttons animate off screen.
+	//Also resets the bools so these animations are repeated when you come back to the screen.
+	if (animaIn == true)
 	{
-		m_buttonOne.move(0, 10);
+		if (m_buttonOne.getPosition().y < 124)
+		{
+			m_buttonOne.move(0, 10);
+		}
+		if (m_buttonTwo.getPosition().y > 349)
+		{
+			m_buttonTwo.move(0, -10);
+
+		}
+		else
+		{
+			animaIn = false;
+		}
+		
 	}
-	if (m_buttonTwo.getPosition().y > 349)
-	{
-		m_buttonTwo.move(0, -10);
-	}
+
 
 	//To get the text to pulse 
 	if (m_cumulativeTime.asSeconds() > 1)
@@ -212,6 +273,18 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 	}
 	
+	//Fades in the Game Paused text in time with the IN animations
+	if (animaIn == true && alpha2 < 255)
+	{
+		alpha2 += 7.99;
+		m_paused.setColor(sf::Color(255, 255, 255, alpha2));
+	}
+	//Fades in the Game Paused text in time with the OUT animations
+	else if (animaOut == true && alpha2 > 0)
+	{
+		alpha2 -= 7;
+		m_paused.setColor(sf::Color(255, 255, 255, alpha2));
+	}
 
 
 }
@@ -227,8 +300,9 @@ void Pause::render(sf::RenderWindow & window)
 	window.draw(m_buttonOne);
 	window.draw(m_buttonTwo);
 	//After the buttons are on screen the selector will appear
-	if (m_cumulativeTime.asSeconds() > 1)
+	if (animaIn == false && animaOut == false)
 	{
+		
 		if (buttonCounter == 1)
 		{
 			window.draw(m_selectBack);
@@ -249,6 +323,7 @@ void Pause::render(sf::RenderWindow & window)
 	window.draw(m_resume);
 	window.draw(m_options);
 	window.draw(m_exit);
+	window.draw(m_paused);
 
 	window.display();
 }

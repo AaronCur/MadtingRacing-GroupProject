@@ -140,6 +140,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Options.cpp" />
+    <ClCompile Include="OptionsHelp.cpp" />
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="PauseOptions.cpp" />
     <ClCompile Include="Splash.cpp" />
@@ -152,6 +153,8 @@
     <ClInclude Include="License.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionsHelp.h" />
+    <ClInclude Include="Pause.h" />
     <ClInclude Include="PauseOptions.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />

@@ -5,12 +5,13 @@
 /// </summary>
 PauseOptions::PauseOptions(Game & game, sf::Font font) :
 	m_game(&game),
-	m_comicSans(font)
+	m_font(font),
+	m_options("Options", m_font, 35)
 
 {
-	//loads font from file 
-	m_font.loadFromFile("AGENTORANGE.TTF");
 
+	m_options.setPosition(740,18);
+	m_options.setStyle(sf::Text::Bold);
 	m_helpText.setFont(m_font);
 	m_helpText.setString("Help");
 	m_helpText.setStyle(sf::Text::Italic | sf::Text::Bold);
@@ -173,7 +174,7 @@ void PauseOptions::update(sf::Time deltaTime, Xbox360Controller &controller)
 	//Button has to be released and then pressed before allowing the player to go to the help menu
 	if (controller.m_currentState.A && controller.m_previousState.A == false && onHelp)
 	{
-		m_game->setGameState(GameState::Help);
+		m_game->setGameState(GameState::OptionsHelp);
 	}
 
 	buttonUpdate();
@@ -198,6 +199,7 @@ void PauseOptions::render(sf::RenderWindow & window)
 	window.draw(m_helpText);
 	window.draw(m_highscoreText);
 	window.draw(m_songtxt);
+	window.draw(m_options);
 	window.display();
 }
 void PauseOptions::buttonUpdate()
@@ -258,6 +260,7 @@ void PauseOptions::setPosition()
 	m_helpText.setPosition(220, 65);
 	m_highscoreText.setPosition(210, 205);
 	m_songtxt.setPosition(520, 560);
+	
 
 }
 

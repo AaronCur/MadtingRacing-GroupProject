@@ -39,6 +39,12 @@
     <ClInclude Include="PauseOptions.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsHelp.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf">
@@ -103,6 +109,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="PauseOptions.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsHelp.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

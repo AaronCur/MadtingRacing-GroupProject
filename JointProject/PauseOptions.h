@@ -22,7 +22,7 @@ public:
 private:
 	Game *m_game;
 	sf::Time m_cumulativeTime;
-	sf::Font m_comicSans;
+	sf::Font m_agentOrange;
 	sf::Texture m_buttonTexture;
 	sf::Texture m_arrowTexture;
 	sf::Texture m_checkBoxTexture[2];
@@ -39,7 +39,8 @@ private:
 	sf::Font m_font;
 	sf::Text m_helpText;
 	sf::Text m_highscoreText;
-	sf::Text m_songtxt;;
+	sf::Text m_songtxt;
+	sf::Text m_options;
 
 	int value = 370;
 	bool onHelp = true;

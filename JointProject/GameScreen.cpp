@@ -4,6 +4,9 @@
 /// <summary>
 /// MiniMap author Aaron Curry
 /// time taken: 9:00 - 13:50
+///             9:00 - 14:00
+///             9:00 - 11:00
+/// <summary>
 
 GameScreen::GameScreen(Game & game, sf::Font font) :
 	m_game(&game)
