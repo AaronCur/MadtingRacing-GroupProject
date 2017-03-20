@@ -3,10 +3,10 @@
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
 
-Player::Player(Game & game) :
+Player::Player(Game & game, KeyHandler &key) :
 	m_game(&game),
-
-	m_angle(0)
+	m_angle(0),
+	m_keyHandler(key)
 	
 {
 	// Variables for player cube.
@@ -82,13 +82,21 @@ void Player::carDraw(sf::RenderWindow& window)
 {
 	window.draw(carSprite);
 }
-void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
+void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::RenderWindow& window)
 {
 	// Set up time for acceleration.
 	m_time += deltaTime;
 	dt = m_time.asSeconds();
 	double speed = 0;
 
+	offTrackDetection(window);
+	handleKeyInput(dt);
+
+
+
+	carSprite.setPosition(player.getPosition().x + cos(m_angle*DEG_TO_RAD) * m_speed * (dt / 1000),
+		player.getPosition().y + sin(m_angle * DEG_TO_RAD) * m_speed *(dt / 1000));
+	carSprite.setRotation(m_angle);
 	// Check for left thumb stick input.
 	if (controller.m_currentState.LeftThumbStick.y != 0)
 	{
@@ -97,15 +105,18 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		m_angle = m_angle * RAD_TO_DEG;
 	}
 
-	// Set car sprite to ontop of plater cube.
-	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+
+	
+
+	//// Set car sprite to ontop of plater cube.
+	//carSprite.setPosition(player.getPosition().x, player.getPosition().y);
 
 	/*m_carFireSprite.setPosition(carSprite.getPosition().x - 30, carSprite.getPosition().y + 5);*/
 
 	m_centre.x = player.getPosition().x + player.getTextureRect().width / 2;
 	m_centre.y = player.getPosition().y + player.getTextureRect().height / 2; 
 
-	m_carFireSprite.setPosition(m_centre.x , m_centre.y);
+	//m_carFireSprite.setPosition(m_centre.x , m_centre.y);
 	m_carFireSprite.setOrigin(4, + 32);
 	
 	m_carFireSprite.setRotation(carSprite.getRotation());
@@ -401,5 +412,82 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 void Player::move()
 {
+
+}
+
+void Player::offTrackDetection(sf::RenderWindow& window)
+{
+	
+	image = window.capture();
+	pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
+
+	
+
+	if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
+		&& pixel.r <= 150 && pixel.g <= 150 && pixel.b <= 150)
+	{
+		m_friction = 0.1;
+	}
+	else
+	{
+		m_friction = 0.02;
+	}
+}
+void Player::increaseSpeed()
+{
+	if (m_speed < 100.0)
+	{
+		m_speed += 0.1;
+	}
+}
+
+void Player::decreaseSpeed()
+{
+	if (m_speed > -100.0)
+	{
+		m_speed -= 0.1;
+	}
+}
+
+void Player::increaseRotation()
+{
+	m_angle += 1;
+	if (m_angle == 360.0)
+	{
+		m_angle = 0;
+	}
+
+}
+
+void Player::decreaseRotation()
+{
+	m_angle -= 1;
+	if (m_angle == 0.0)
+	{
+		m_angle = 359.0;
+	}
+
+}
+void Player::handleKeyInput(double dt)
+{
+	if (m_keyHandler.isPressed(sf::Keyboard::Key::Up))
+	{
+		increaseSpeed();
+
+	}
+	if (m_keyHandler.isPressed(sf::Keyboard::Key::Down))
+	{
+		decreaseSpeed();
+	}
+	if (m_keyHandler.isPressed(sf::Keyboard::Key::Left))
+	{
+		decreaseRotation();
+	}
+	if (m_keyHandler.isPressed(sf::Keyboard::Key::Right))
+	{
+		increaseRotation();
+	}
+	
+
 
 }

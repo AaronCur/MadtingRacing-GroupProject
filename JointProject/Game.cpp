@@ -38,7 +38,7 @@ Game::Game():
 	m_pauseOptions = new PauseOptions(*this, m_agentOrange);
 	m_helpOptions = new OptionsHelp(*this, m_agentOrange);
 	m_carSelectScreen = new CarSelect(*this, m_agentOrange);
-	m_player = new Player(*this);
+	m_player = new Player(*this,m_keyHandler);
 	controller = new Xbox360Controller();
 
 	//miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.35f));
@@ -158,7 +158,7 @@ void Game::update(sf::Time time)
 	case GameState::GameScreen:
 		controller->update();
 		m_gameScreen->update(time, *controller);
-		m_player->update(time, *controller);
+		m_player->update(time, *controller, m_window);
 		break;
 	case GameState::CarSelect:
 		controller->update();
