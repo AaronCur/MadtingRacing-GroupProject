@@ -4,24 +4,18 @@
 #include <SFML\Graphics.hpp>
 #include "Game.h"
 #include "Xbox360Controller.h"
-#include "KeyHandler.h"
 class Game;
 
 class Player
 {
 public:
-	Player(Game& Game, KeyHandler &key);
+	Player(Game& Game);
 	~Player();
 	void update(sf::Time deltaTime, Xbox360Controller& controller, sf::RenderWindow& window);
 	void render(sf::RenderWindow& window);
 	void carDraw(sf::RenderWindow& window);
 	void move();
-	void offTrackDetection(sf::RenderWindow& window);
-	void handleKeyInput(double dt);
-	void increaseSpeed();
-	void decreaseSpeed();
-	void increaseRotation();
-	void decreaseRotation();
+	void offTrackDetection();
 	double m_angle;
 	double m_currentAngle;
 	
@@ -32,6 +26,7 @@ private:
 	Game *m_game;
 	sf::Font m_font;
 	sf::Texture m_trackTexture;
+	sf::RenderTexture m_renderTexture;
 	sf::Sprite m_trackSprite;
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
@@ -70,6 +65,6 @@ private:
 	sf::View follow;
 
 
-	KeyHandler &m_keyHandler;
+	
 };
 #endif // !Player

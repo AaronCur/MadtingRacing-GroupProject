@@ -38,7 +38,7 @@ Game::Game():
 	m_pauseOptions = new PauseOptions(*this, m_agentOrange);
 	m_helpOptions = new OptionsHelp(*this, m_agentOrange);
 	m_carSelectScreen = new CarSelect(*this, m_agentOrange);
-	m_player = new Player(*this,m_keyHandler);
+	m_player = new Player(*this);
 	controller = new Xbox360Controller();
 
 	//miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.35f));

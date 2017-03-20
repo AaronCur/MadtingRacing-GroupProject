@@ -16,7 +16,7 @@
 #include "OptionsHelp.h"
 #include "CarSelect.h"
 #include "Player.h"
-#include "KeyHandler.h"
+
 
 //each class is declared
 class License;
@@ -83,7 +83,5 @@ protected:
 	OptionsHelp *m_helpOptions;
 	CarSelect *m_carSelectScreen;
 	Player *m_player;
-
-	KeyHandler m_keyHandler;
 };
 #endif // !GAME

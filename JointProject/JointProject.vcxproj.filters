@@ -17,7 +17,6 @@
     <ClCompile Include="Xbox360Controller.cpp" />
     <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="OrientedBoundingBox.cpp" />
-    <ClCompile Include="KeyHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CarSelect.h" />
@@ -35,7 +34,6 @@
     <ClInclude Include="Xbox360Controller.h" />
     <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="OrientedBoundingBox.h" />
-    <ClInclude Include="KeyHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="background2.png" />

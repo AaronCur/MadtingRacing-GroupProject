@@ -1,12 +1,14 @@
+#include <SFML/Graphics.hpp>
 #include "Player.h"
 #include <math.h>
+#include <iostream>
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
 
-Player::Player(Game & game, KeyHandler &key) :
+Player::Player(Game & game) :
 	m_game(&game),
-	m_angle(0),
-	m_keyHandler(key)
+	m_angle(0)
+	
 	
 {
 	// Variables for player cube.
@@ -21,6 +23,8 @@ Player::Player(Game & game, KeyHandler &key) :
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
 	}
+
+ 
 	
 	// Load in car.
 	if (!m_carSpriteSheet.loadFromFile("CarSprite.png"))
@@ -43,6 +47,9 @@ Player::Player(Game & game, KeyHandler &key) :
 
 	m_trackSprite.setTexture(m_trackTexture);
 	m_trackSprite.setPosition(0, 0);
+	m_renderTexture.create(1000, 650);
+	image = m_renderTexture.getTexture().copyToImage();
+	
 
 	// Set fire sprite initial position
 	m_carFireSprite.setTexture(m_carFireTexture);
@@ -56,7 +63,7 @@ Player::Player(Game & game, KeyHandler &key) :
 	carSprite.rotate(270);
 	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
 	carSprite.setScale(0.3, 0.3);
-
+	
 }
 
 Player::~Player()
@@ -65,10 +72,16 @@ Player::~Player()
 }
 void Player::render(sf::RenderWindow& window)
 {
+	//auto image = m_renderTexture.getTexture().copyToImage();
+	//auto pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y);
+	
+	/*m_renderTexture.clear(sf::Color::White);
+	m_renderTexture.draw(m_trackSprite);
+	m_renderTexture.display();*/
 
 	window.setView(follow);
-	window.draw(m_trackSprite);
 	//window.draw(player)
+	window.draw(m_trackSprite);
 	window.draw(carSprite);
 	// Only draw when gear is changed
 	if (gearChanged == true)
@@ -89,14 +102,20 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	dt = m_time.asSeconds();
 	double speed = 0;
 
-	offTrackDetection(window);
-	handleKeyInput(dt);
+	
+	offTrackDetection();
 
 
+	//if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
+	//	&& pixel.r <= 150 && pixel.g <= 150 && pixel.b <= 150)
+	//{
+	//	m_friction = 0.8;
+	//}
+	//else
+	//{
+	//	m_friction = 0.02;
+	//}
 
-	carSprite.setPosition(player.getPosition().x + cos(m_angle*DEG_TO_RAD) * m_speed * (dt / 1000),
-		player.getPosition().y + sin(m_angle * DEG_TO_RAD) * m_speed *(dt / 1000));
-	carSprite.setRotation(m_angle);
 	// Check for left thumb stick input.
 	if (controller.m_currentState.LeftThumbStick.y != 0)
 	{
@@ -105,308 +124,307 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 		m_angle = m_angle * RAD_TO_DEG;
 	}
 
-
-	
-
-	//// Set car sprite to ontop of plater cube.
-	//carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+	// Set car sprite to ontop of plater cube.
+	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
 
 	/*m_carFireSprite.setPosition(carSprite.getPosition().x - 30, carSprite.getPosition().y + 5);*/
 
 	m_centre.x = player.getPosition().x + player.getTextureRect().width / 2;
-	m_centre.y = player.getPosition().y + player.getTextureRect().height / 2; 
+	m_centre.y = player.getPosition().y + player.getTextureRect().height / 2;
 
-	//m_carFireSprite.setPosition(m_centre.x , m_centre.y);
-	m_carFireSprite.setOrigin(4, + 32);
-	
+	m_carFireSprite.setPosition(m_centre.x, m_centre.y);
+	m_carFireSprite.setOrigin(4, +32);
+
 	m_carFireSprite.setRotation(carSprite.getRotation());
 
 	//carSprite.rotate(player.getRotation());
-	
-		
-			
-		
-		// Code for checking which quadrant the left thumb stick points into. X and y cords checked.
-		if (controller.m_currentState.LeftThumbStick.x <= 100 && controller.m_currentState.LeftThumbStick.x >= 0 && controller.m_currentState.LeftThumbStick.y >= -100 && controller.m_currentState.LeftThumbStick.y <= 0)
-		{
-			topRight = true;
-			topLeft = false;
-			bottomRight = false;
-			bottomLeft = false;
-		}
-		if (controller.m_currentState.LeftThumbStick.x >= -100 && controller.m_currentState.LeftThumbStick.x <= 0 && controller.m_currentState.LeftThumbStick.y >= -100 && controller.m_currentState.LeftThumbStick.y <= 0)
-		{
-			topLeft = true;
-			topRight = false;
-			bottomRight = false;
-			bottomLeft = false;
-		}
-		if (controller.m_currentState.LeftThumbStick.x <= 100 && controller.m_currentState.LeftThumbStick.x >= 0 && controller.m_currentState.LeftThumbStick.y <= 100 && controller.m_currentState.LeftThumbStick.y >= 0)
-		{
-			bottomRight = true;
-			topLeft = false;
-			topRight = false;
-			bottomLeft = false;
-		}
-		if (controller.m_currentState.LeftThumbStick.x >= -100 && controller.m_currentState.LeftThumbStick.x <= 0 && controller.m_currentState.LeftThumbStick.y <= 100 && controller.m_currentState.LeftThumbStick.y >= 0)
-		{
-			bottomLeft = true;
-			topLeft = false;
-			bottomRight = false;
-			topRight = false;
-		}
 
-		// Manipulate angle that the thumb stick points to given its current quadrant.
-		if (topLeft == true)
-		{
-			m_angle = 270 - m_angle;
-		}
-		if (topRight == true)
-		{
-			m_angle = 270 - m_angle;
-		}
-		if (bottomLeft == true)
-		{
-			m_angle = 90 - m_angle;
-		}
-		if(bottomRight == true)
-		{
-			m_angle = 90 - m_angle;
-		}
-		// Work out the distance to the right and left.
-		distanceRight = m_angle - player.getRotation();
-		distanceLeft = player.getRotation() - m_angle;
 
-		if (distanceRight < 0)
-		{
-			distanceRight = distanceRight + 360;
-		}
-		if (distanceLeft < 0)
-		{
-			distanceLeft = distanceLeft + 360;
-		}
-	
-		// Stop the player rotating if it is withing a certain rotation of desired angle.
-		if (player.getRotation() <= (m_angle + 5) && player.getRotation() >= (m_angle - 5))
-		{
-			player.rotate(0);
-		}
-		// Rotate left or right depending on the distance to the desired angle.
-		else if (distanceRight > distanceLeft)
-		{
-			// Only allow rotation when car is moving
-			if (m_speed != 0)
-			{
-				// Rotate more if handbrake is pulled.
-				if (controller.m_currentState.X == true)
-				{
-					player.rotate(-4);
-					carSprite.rotate(-4);
-				}
-				else
-				{
-					player.rotate(-1);
-					carSprite.rotate(-1);
-				}
-			}
-		}
-		else if (distanceLeft > distanceRight)
-		{
-			// Only allow rotation when car is moving
-			if (m_speed != 0)
-			{
-				// Rotate more if handbrake is pulled.
-				if (controller.m_currentState.X == true)
-				{
-					player.rotate(4);
-					carSprite.rotate(4);
-				}
-				else
-				{
-					player.rotate(1);
-					carSprite.rotate(1);
-				}
-			}
-		}
-		
-		// Check what gear car is in and change max speed.
-		if (m_gear == -1)
-		{
-			m_maxSpeed = -1;
-		}
-		if (m_gear == 0)
-		{
-			m_maxSpeed = 0;
-		}
-		else if (m_gear == 1)
-		{
-			m_maxSpeed = 1;
-		}
-		else if (m_gear == 2)
-		{
-			m_maxSpeed = 3;
-		}
-		else if (m_gear == 3)
-		{
-			m_maxSpeed = 6;
-		}
 
-		// Car stalls when too low speed
-		if (m_gear == 2)
-		{
-			if (m_speed <= 0.9)
-			{
-				m_gear = 0;
-			}
-		}
-		else if (m_gear == 3)
-		{
-			if (m_speed <= 2.9)
-			{
-				m_gear = 0;
-			}
-		}
-		
 
-		
-	    // Gear up when RB is hit.
-		if (controller.m_currentState.RB == true)
-		{
-			if (m_gear == -1 && m_speed == 0)
-			{
-				m_gear = m_gear + 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 0 && m_speed == 0)
-			{
-				m_gear = m_gear + 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 1 && m_speed >= 0.8)
-			{
-				m_gear = m_gear + 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 2 && m_speed >= 2.8)
-			{
-				m_gear = m_gear + 1;
-				gearChanged = true;
-			}
-		}
-		// Gear down when LB is hit.
-		if (controller.m_currentState.LB == true)
-		{
-			if (m_gear == 4 && m_speed <= 4)
-			{
-				m_gear = m_gear - 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 3 && m_speed <= 2)
-			{
-				m_gear = m_gear - 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 2 && m_speed <= 1)
-			{
-				m_gear = m_gear - 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 1 && m_speed <= 0.5)
-			{
-				m_gear = m_gear - 1;
-				gearChanged = true;
-			}
-			else if (m_gear == 0 && m_speed == 0)
-			{
-				m_gear = m_gear - 1;
-				gearChanged = true;
-			}
-		}
+	// Code for checking which quadrant the left thumb stick points into. X and y cords checked.
+	if (controller.m_currentState.LeftThumbStick.x <= 100 && controller.m_currentState.LeftThumbStick.x >= 0 && controller.m_currentState.LeftThumbStick.y >= -100 && controller.m_currentState.LeftThumbStick.y <= 0)
+	{
+		topRight = true;
+		topLeft = false;
+		bottomRight = false;
+		bottomLeft = false;
+	}
+	if (controller.m_currentState.LeftThumbStick.x >= -100 && controller.m_currentState.LeftThumbStick.x <= 0 && controller.m_currentState.LeftThumbStick.y >= -100 && controller.m_currentState.LeftThumbStick.y <= 0)
+	{
+		topLeft = true;
+		topRight = false;
+		bottomRight = false;
+		bottomLeft = false;
+	}
+	if (controller.m_currentState.LeftThumbStick.x <= 100 && controller.m_currentState.LeftThumbStick.x >= 0 && controller.m_currentState.LeftThumbStick.y <= 100 && controller.m_currentState.LeftThumbStick.y >= 0)
+	{
+		bottomRight = true;
+		topLeft = false;
+		topRight = false;
+		bottomLeft = false;
+	}
+	if (controller.m_currentState.LeftThumbStick.x >= -100 && controller.m_currentState.LeftThumbStick.x <= 0 && controller.m_currentState.LeftThumbStick.y <= 100 && controller.m_currentState.LeftThumbStick.y >= 0)
+	{
+		bottomLeft = true;
+		topLeft = false;
+		bottomRight = false;
+		topRight = false;
+	}
 
-		// Accelerate car when right trigger is pressed.
-		if (controller.m_currentState.RTrigger > 10)
+	// Manipulate angle that the thumb stick points to given its current quadrant.
+	if (topLeft == true)
+	{
+		m_angle = 270 - m_angle;
+	}
+	if (topRight == true)
+	{
+		m_angle = 270 - m_angle;
+	}
+	if (bottomLeft == true)
+	{
+		m_angle = 90 - m_angle;
+	}
+	if (bottomRight == true)
+	{
+		m_angle = 90 - m_angle;
+	}
+	// Work out the distance to the right and left.
+	distanceRight = m_angle - player.getRotation();
+	distanceLeft = player.getRotation() - m_angle;
+
+	if (distanceRight < 0)
+	{
+		distanceRight = distanceRight + 360;
+	}
+	if (distanceLeft < 0)
+	{
+		distanceLeft = distanceLeft + 360;
+	}
+
+	// Stop the player rotating if it is withing a certain rotation of desired angle.
+	if (player.getRotation() <= (m_angle + 5) && player.getRotation() >= (m_angle - 5))
+	{
+		player.rotate(0);
+	}
+	// Rotate left or right depending on the distance to the desired angle.
+	else if (distanceRight > distanceLeft)
+	{
+		// Only allow rotation when car is moving
+		if (m_speed != 0)
 		{
-			// Going forward.
-			if (m_speed < m_maxSpeed)
+			// Rotate more if handbrake is pulled.
+			if (controller.m_currentState.X == true)
 			{
-				if (m_gear >= 0)
-				{
-					m_speed = m_speed + m_acceleration;
-				}
-				if (m_gear == -1)
-				{
-					
-				}
+				player.rotate(-4);
+				carSprite.rotate(-4);
 			}
-			// Going in reverse.
-			else if (m_speed > m_maxSpeed)
+			else
 			{
-				if (m_gear == -1)
-				{
-					m_speed = m_speed - m_acceleration;
-				}
+				player.rotate(-1);
+				carSprite.rotate(-1);
 			}
 		}
-
-		// Handbrake when X is pressed.
-		if (controller.m_currentState.X == true)
+	}
+	else if (distanceLeft > distanceRight)
+	{
+		// Only allow rotation when car is moving
+		if (m_speed != 0)
 		{
-			// Effect spead appropriatly due to direction of travel.
-			if (m_speed > 0)
+			// Rotate more if handbrake is pulled.
+			if (controller.m_currentState.X == true)
 			{
-				m_speed = m_speed - 0.15;
+				player.rotate(4);
+				carSprite.rotate(4);
 			}
-			if (m_speed < 0)
+			else
 			{
-				m_speed = m_speed + 0.15;
+				player.rotate(1);
+				carSprite.rotate(1);
 			}
 		}
+	}
 
-		// Brake when left triger is pressed.
-		if (controller.m_currentState.LTrigger > 10)
+	// Check what gear car is in and change max speed.
+	if (m_gear == -1)
+	{
+		m_maxSpeed = -1;
+	}
+	if (m_gear == 0)
+	{
+		m_maxSpeed = 0;
+	}
+	else if (m_gear == 1)
+	{
+		m_maxSpeed = 1;
+	}
+	else if (m_gear == 2)
+	{
+		m_maxSpeed = 3;
+	}
+	else if (m_gear == 3)
+	{
+		m_maxSpeed = 6;
+	}
+
+	// Car stalls when too low speed
+	if (m_gear == 2)
+	{
+		if (m_speed <= 0.9)
 		{
-			// Effect spead appropriatly due to direction of travel.
-			if (m_speed > -1)
-			{
-				m_speed = m_speed - m_acceleration;
-			}
-			if (m_speed < 0)
+			m_gear = 0;
+		}
+	}
+	else if (m_gear == 3)
+	{
+		if (m_speed <= 2.9)
+		{
+			m_gear = 0;
+		}
+	}
+
+
+
+	// Gear up when RB is hit.
+	if (controller.m_currentState.RB == true)
+	{
+		if (m_gear == -1 && m_speed == 0)
+		{
+			m_gear = m_gear + 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 0 && m_speed == 0)
+		{
+			m_gear = m_gear + 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 1 && m_speed >= 0.8)
+		{
+			m_gear = m_gear + 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 2 && m_speed >= 2.8)
+		{
+			m_gear = m_gear + 1;
+			gearChanged = true;
+		}
+	}
+	// Gear down when LB is hit.
+	if (controller.m_currentState.LB == true)
+	{
+		if (m_gear == 4 && m_speed <= 4)
+		{
+			m_gear = m_gear - 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 3 && m_speed <= 2)
+		{
+			m_gear = m_gear - 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 2 && m_speed <= 1)
+		{
+			m_gear = m_gear - 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 1 && m_speed <= 0.5)
+		{
+			m_gear = m_gear - 1;
+			gearChanged = true;
+		}
+		else if (m_gear == 0 && m_speed == 0)
+		{
+			m_gear = m_gear - 1;
+			gearChanged = true;
+		}
+	}
+
+	// Accelerate car when right trigger is pressed.
+	if (controller.m_currentState.RTrigger > 10)
+	{
+		// Going forward.
+		if (m_speed < m_maxSpeed)
+		{
+			if (m_gear >= 0)
 			{
 				m_speed = m_speed + m_acceleration;
 			}
-		}
-
-		// Friction for slowing down car.
-		if (m_speed > 0.1)
-		{
-			m_speed = m_speed - m_friction;
-		}
-		if (m_speed < -0.1)
-		{
-			m_speed = m_speed + m_friction;
-		}
-		
-		// Stop car completly.
-		if (m_speed > -0.1 && m_speed < 0.1)
-		{
-			m_speed = 0;
-		}
-
-		// Move car in correct direction with given speed.
-		player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
-
-		follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120  );
-		
-		if (gearChanged == true)
-		{
-			fireCount = fireCount + 1;
-			if (fireCount == 3)
+			if (m_gear == -1)
 			{
-				gearChanged = false;
-				fireCount = 0;
-				gearChanged = false;
+
 			}
 		}
+		// Going in reverse.
+		else if (m_speed > m_maxSpeed)
+		{
+			if (m_gear == -1)
+			{
+				m_speed = m_speed - m_acceleration;
+			}
+		}
+	}
+
+	// Handbrake when X is pressed.
+	if (controller.m_currentState.X == true)
+	{
+		// Effect spead appropriatly due to direction of travel.
+		if (m_speed > 0)
+		{
+			m_speed = m_speed - 0.15;
+		}
+		if (m_speed < 0)
+		{
+			m_speed = m_speed + 0.15;
+		}
+	}
+
+	// Brake when left triger is pressed.
+	if (controller.m_currentState.LTrigger > 10)
+	{
+		// Effect spead appropriatly due to direction of travel.
+		if (m_speed > -1)
+		{
+			m_speed = m_speed - m_acceleration;
+		}
+		if (m_speed < 0)
+		{
+			m_speed = m_speed + m_acceleration;
+		}
+	}
+
+	// Friction for slowing down car.
+	if (m_speed > 0.1)
+	{
+		m_speed = m_speed - m_friction;
+		pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y);
+	}
+	if (m_speed < -0.1)
+	{
+		m_speed = m_speed + m_friction;
+	}
+
+	// Stop car completly.
+	if (m_speed > -0.1 && m_speed < 0.1)
+	{
+		m_speed = 0;
+	}
+
+	// Move car in correct direction with given speed.
+	player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
+
+	follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120);
+
+	if (gearChanged == true)
+	{
+		fireCount = fireCount + 1;
+		if (fireCount == 3)
+		{
+			gearChanged = false;
+			fireCount = 0;
+			gearChanged = false;
+		}
+	}
+
 		
 }
 
@@ -415,79 +433,18 @@ void Player::move()
 
 }
 
-void Player::offTrackDetection(sf::RenderWindow& window)
+void Player::offTrackDetection()
 {
-	
-	image = window.capture();
-	pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
+ pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
 
-	
 
-	if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
+	/*if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
 		&& pixel.r <= 150 && pixel.g <= 150 && pixel.b <= 150)
 	{
-		m_friction = 0.1;
+		m_friction = 0.8;
 	}
 	else
 	{
 		m_friction = 0.02;
-	}
-}
-void Player::increaseSpeed()
-{
-	if (m_speed < 100.0)
-	{
-		m_speed += 0.1;
-	}
-}
-
-void Player::decreaseSpeed()
-{
-	if (m_speed > -100.0)
-	{
-		m_speed -= 0.1;
-	}
-}
-
-void Player::increaseRotation()
-{
-	m_angle += 1;
-	if (m_angle == 360.0)
-	{
-		m_angle = 0;
-	}
-
-}
-
-void Player::decreaseRotation()
-{
-	m_angle -= 1;
-	if (m_angle == 0.0)
-	{
-		m_angle = 359.0;
-	}
-
-}
-void Player::handleKeyInput(double dt)
-{
-	if (m_keyHandler.isPressed(sf::Keyboard::Key::Up))
-	{
-		increaseSpeed();
-
-	}
-	if (m_keyHandler.isPressed(sf::Keyboard::Key::Down))
-	{
-		decreaseSpeed();
-	}
-	if (m_keyHandler.isPressed(sf::Keyboard::Key::Left))
-	{
-		decreaseRotation();
-	}
-	if (m_keyHandler.isPressed(sf::Keyboard::Key::Right))
-	{
-		increaseRotation();
-	}
-	
-
-
+	}*/
 }
