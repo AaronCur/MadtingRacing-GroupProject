@@ -11,6 +11,8 @@
 /// time taken: 9:00 - 13:50
 
 class Game;
+class Player;
+class Ai;
 
 class GameScreen
 {
@@ -18,10 +20,11 @@ public:
 	GameScreen(Game& game, sf::Font font);
 	~GameScreen();
 	void update(sf::Time dt, Xbox360Controller&controller);
-	void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow& window, Player& player, Ai & ai);
 private:
 	Game *m_game;
-
+	sf::CircleShape circle;
+	sf::CircleShape circle2;
 	sf::Font m_font;
 	//Track sprite and texture
 	sf::Texture trackTexture;

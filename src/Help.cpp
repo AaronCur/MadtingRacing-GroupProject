@@ -158,8 +158,21 @@ void Help::update(sf::Time dt, Xbox360Controller&controller)
 	// Button to go back to previous menu
 	if (controller.m_currentState.B)
 	{
+		m_R2.setColor(sf::Color(0, 0, 0, 0));
+		m_R1.setColor(sf::Color(0, 0, 0, 0));
+		m_L2.setColor(sf::Color(0, 0, 0, 0));
+		m_L1.setColor(sf::Color(0, 0, 0, 0));
+		m_X.setColor(sf::Color(0, 0, 0, 0));
+		m_Y.setColor(sf::Color(0, 0, 0, 0));
+		m_B.setColor(sf::Color(0, 0, 0, 0));
+		m_A.setColor(sf::Color(0, 0, 0, 0));
+		m_rightAnalog.setColor(sf::Color(0, 0, 0, 0));
+		m_leftAnalog.setColor(sf::Color(0, 0, 0, 0));
+		m_dPad.setColor(sf::Color(0, 0, 0, 0));
+		m_start.setColor(sf::Color(0, 0, 0, 0));
 
 		m_game->setGameState(GameState::Options);
+		
 
 	}
 }

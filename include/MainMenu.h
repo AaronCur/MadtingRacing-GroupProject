@@ -44,6 +44,7 @@ private:
 	sf::Text m_options;
 	sf::Text m_exit;
 
+	bool ready = false;
 	bool buttonOneSelected = false;
 	bool buttonTwoSelected = false;
 	bool buttonThreeSelected = false;

@@ -1,5 +1,5 @@
 background:
-   file: bg.png
+   file: ./resources/images/bigTrack.png
 obstacles:
    - type: wall
      position: {x: 100, y: 660}
@@ -73,3 +73,94 @@ obstacles:
    - type: wall
      position: {x: 1032, y: 632}
      rotation: 0
+paths:
+   - type: path
+     position: {x: 1500, y: 410}
+   - type: path
+     position: {x: 1900, y: 315}
+   - type: path
+     position: {x: 1920, y: 340}
+   - type: path
+     position: {x: 1940, y: 390}
+   - type: path
+     position: {x: 2000, y: 435}
+   - type: path
+     position: {x: 2530, y: 460}
+   - type: path
+     position: {x: 3200, y: 260}
+   - type: path
+     position: {x: 3280, y: 260}
+   - type: path
+     position: {x: 3335, y: 275}
+   - type: path
+     position: {x: 3385, y: 300}
+   - type: path
+     position: {x: 3550, y: 775}
+   - type: path
+     position: {x: 3530, y: 795}
+   - type: path
+     position: {x: 3495, y: 861}
+   - type: path
+     position: {x: 3475, y: 930}
+   - type: path
+     position: {x: 3475, y: 930}
+   - type: path
+     position: {x: 3700, y: 1400}
+   - type: path
+     position: {x: 3640, y: 1480}
+   - type: path
+     position: {x: 3120, y: 1665}
+   - type: path
+     position: {x: 3040, y: 1659}
+   - type: path
+     position: {x: 2986, y: 1612}
+   - type: path
+     position: {x: 2936, y: 1535}
+   - type: path
+     position: {x: 2866, y: 1524}
+   - type: path
+     position: {x: 2590, y: 1575}
+   - type: path
+     position: {x: 2430, y: 1470}
+   - type: path
+     position: {x: 2338, y: 1302}
+   - type: path
+     position: {x: 2264, y: 1278}
+   - type: path
+     position: {x: 2209, y: 1296}
+   - type: path
+     position: {x: 2176, y: 1368}
+   - type: path
+     position: {x: 2196, y: 1424}
+   - type: path
+     position: {x: 2216, y: 1478}
+   - type: path
+     position: {x: 2434, y: 2002}
+   - type: path
+     position: {x: 2492, y: 2067}
+   - type: path
+     position: {x: 2667, y: 2061}
+   - type: path
+     position: {x: 3493, y: 1804}
+   - type: path
+     position: {x: 3566, y: 1831}
+   - type: path
+     position: {x: 3590, y: 1893}
+   - type: path
+     position: {x: 3508, y: 1967}
+   - type: path
+     position: {x: 1780, y: 2440}
+   - type: path
+     position: {x: 451, y: 1982}
+   - type: path
+     position: {x: 413, y: 1959}
+   - type: path
+     position: {x: 419, y: 1901}
+   - type: path
+     position: {x: 510, y: 1605}
+   - type: path
+     position: {x: 377, y: 1395}
+   - type: path
+     position: {x: 980, y: 580}
+   - type: path
+     position: {x: 1400, y: 445}

@@ -39,6 +39,7 @@ private:
 	sf::Sprite backgroundSprite;
 	sf::Sprite explosion;
 
+	
 	double alpha;
 	double alphaText;
 };

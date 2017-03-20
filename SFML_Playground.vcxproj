@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
+    <ClInclude Include="BTMath.h" />
     <ClInclude Include="include\CarSelect.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameScreen.h" />
@@ -28,10 +30,13 @@
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\MainMenu.h" />
     <ClInclude Include="include\Options.h" />
+    <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Splash.h" />
     <ClInclude Include="include\Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
+    <ClCompile Include="BTMath.cpp" />
     <ClCompile Include="src\CarSelect.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameScreen.cpp" />
@@ -41,6 +46,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Options.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Splash.cpp" />
     <ClCompile Include="src\Xbox360Controller.cpp" />
   </ItemGroup>

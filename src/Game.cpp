@@ -8,59 +8,65 @@ Game::Game() :
 	m_currentGameState(GameState::GameScreen)
 
 {
-
-
+	
 	int currentLevel = 1;
 	if (!m_agentOrange.loadFromFile("./resources/images/AGENTORANGE.ttf"))
 	{
 		std::cout << "problem loading font" << std::endl;
 		m_mainMenu = new MainMenu(*this, m_agentOrange);
 	}
-
 	m_mainMenu = new MainMenu(*this, m_agentOrange);
 	m_licenseScreen = new License(*this, m_comicSans);
 	m_splashScreen = new Splash(*this, m_agentOrange);
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
 	m_gameScreen = new GameScreen(*this, m_agentOrange);
+	m_player = new Player(*this);
 	controller = new Xbox360Controller();
+
+	if (!LevelLoader::load(currentLevel, m_level))
+	{
+		return;
+
+	}
 	
-	/*if (m_currentGameState == GameState::GameScreen)
-	{*/
-		if (!LevelLoader::load(currentLevel, m_level))
-		{
-			return;
+	for (PathData const &path : m_level.m_paths)
+	{
+		sf::CircleShape circle(60);
+		circle.setOrigin(circle.getRadius(), circle.getRadius());
+		circle.setPosition(path.m_position);
+		m_nodes.push_back(circle);
+	}
 
-		}
+	m_ai = new Ai(*this, m_nodes);
+	
 
 
-		if (!m_backgroundTexture.loadFromFile("./resources/images/track2.png"))
+	if (!m_backgroundTexture.loadFromFile("./resources/images/track2.png"))
 
-		{
-			std::string s("Error loading texture");
-			throw std::exception(s.c_str());
-		}
+	{
+		std::string s("Error loading texture");
+		throw std::exception(s.c_str());
+	}
 
-		//loads the spritesheet texture 
-		if (!m_spriteSheetTexture.loadFromFile("./resources/images/track2.png"))
+	//loads the spritesheet texture 
+	if (!m_spriteSheetTexture.loadFromFile("./resources/images/track2.png"))
 
-		{
-			std::string s("Error loading texture");
-			throw std::exception(s.c_str());
-		}
+	{
+		std::string s("Error loading texture");
+		throw std::exception(s.c_str());
+	}
 
-		/// loads the spritesheet texture 
-		if (!m_texture.loadFromFile("./resources/images/Spritesheet.png"))
-		{
-			std::string s("Error loading texture");
-			throw std::exception(s.c_str());
-		}
+	/// loads the spritesheet texture 
+	if (!m_texture.loadFromFile("./resources/images/Spritesheet.png"))
+	{
+		std::string s("Error loading texture");
+		throw std::exception(s.c_str());
+	}
+	
 		generateWalls();
-		/*m_background.setTexture(m_backgroundTexture);*/
-		m_sprite.setTexture(m_texture);
-		m_sprite2.setTexture(m_spriteSheetTexture);
-	/*}*/
-	
+		generatePath();
+
 }
 
 
@@ -141,6 +147,27 @@ void Game::generateWalls()
 	}
 }
 /// <summary>
+/// this is where the walls are generated and created 
+/// </summary>
+void Game::generatePath()
+{
+	//the rectangle for the wall from the spritesheet 
+	sf::IntRect pathRect(2, 129, 33, 23);
+	for (PathData const &path : m_level.m_paths)
+	{
+		//sets each individual component of the targets to the corresponding 
+		//in the yaml file 
+		std::unique_ptr<sf::Sprite> sprite(new sf::Sprite());
+		sprite->setTexture(m_texture);
+		sprite->setTextureRect(pathRect);
+		sprite->setOrigin(pathRect.width / 2.0, pathRect.height / 2.0);
+		sprite->setPosition(path.m_position);
+		m_pathSprites.push_back(std::move(sprite));
+		
+	}
+}
+
+/// <summary>
 /// sets the current game state 
 /// </summary>
 /// <param name="gameState"></param>
@@ -215,6 +242,8 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::GameScreen:
 		controller->update();
+		m_player->update(time, *controller);
+		m_ai->update(time, *controller, *m_player);
 		m_gameScreen->update(time, *controller);
 		break;
 	default:
@@ -251,16 +280,21 @@ void Game::render()
 		break;
 	case GameState::GameScreen:
 		
+		m_player->render(m_window);
+		m_ai->render(m_window);
 		m_window.draw(m_background);
-		m_gameScreen->render(m_window);
+		for (auto &m_sprite : m_pathSprites)
+		{
+			m_window.draw(*m_sprite);
+		}
 		for (auto &m_sprite : m_wallSprites)
 		{
 			m_window.draw(*m_sprite);
 		}
-		
+		m_gameScreen->render(m_window, *m_player, *m_ai);
 		break;
 	default:
-		
+
 		break;
 	}
 	m_window.display();

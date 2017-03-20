@@ -7,12 +7,16 @@
 /// </summary>
 Options::Options(Game & game, sf::Font font) :
 	m_game(&game),
-	m_comicSans(font)
+	m_comicSans(font),
+	m_optionsTxt("Options", m_meatLoaf, 70)
 
 {
+	setPosition();
 	//loads font from file 
 	m_font.loadFromFile("./resources/images/AGENTORANGE.TTF");
-
+	m_meatLoaf.loadFromFile("./resources/images/Meatloaf.ttf");
+	
+	m_optionsTxt.setPosition(790, -10);
 	m_helpText.setFont(m_font);
 	m_helpText.setString("Help");
 	m_helpText.setStyle(sf::Text::Italic | sf::Text::Bold);
@@ -49,7 +53,7 @@ Options::Options(Game & game, sf::Font font) :
 	m_markerSprite.setTexture(m_markerTexture);
 	m_arrowSprite.setTexture(m_arrowTexture);
 	m_sliderSprite.setTexture(m_sliderTexture);
-	setPosition();
+	
 
 }
 
@@ -62,104 +66,109 @@ Options::~Options()
 void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 {
 	m_cumulativeTime += deltaTime;
-
-	if (controller.m_currentState.DpadDown && onHelp && !controller.m_previousState.DpadDown)
+	if (ready)
 	{
-		m_arrowSprite.setPosition(140, 195);
-		onHelp = false;
-		onHighScores = true;
-	}
-	else if (controller.m_currentState.DpadDown && onHighScores && !controller.m_previousState.DpadDown)
-	{
-		m_arrowSprite.setPosition(45, 305);
-		onHighScores = false;
-		onSlider = true;
-	}
-	else if (controller.m_currentState.DpadDown && onSlider && !controller.m_previousState.DpadDown)
-	{
-		m_arrowSprite.setPosition(55, 560);
-		onSlider = false;
-		onSong1 = true;
-	}
-	else if (controller.m_currentState.DpadDown && onSong1 && !controller.m_previousState.DpadDown)
-	{
-		m_arrowSprite.setPosition(140, 65);
-		onSong1 = false;
-		onHelp = true;
-	}
-	else if (controller.m_currentState.DpadRight && onSong1 && !controller.m_previousState.DpadRight)
-	{
-		m_arrowSprite.setPosition(205, 560);
-		onSong1 = false;
-		onSong2 = true;
-	}
-	else if (controller.m_currentState.DpadRight && onSong2 && !controller.m_previousState.DpadRight)
-	{
-		m_arrowSprite.setPosition(355, 560);
-		onSong2 = false;
-		onSong3 = true;
-	}
-	else if (controller.m_currentState.DpadRight && onSong3 && !controller.m_previousState.DpadRight)
-	{
-		m_arrowSprite.setPosition(55, 560);
-		onSong3 = false;
-		onSong1 = true;
-	}
 
 
-	if (controller.m_currentState.DpadUp && onHelp && !controller.m_previousState.DpadUp)
-	{
-		m_arrowSprite.setPosition(55, 560);
-		onHelp = false;
-		onSong1 = true;
-	}
-	else if (controller.m_currentState.DpadUp && onHighScores && !controller.m_previousState.DpadUp)
-	{
-		m_arrowSprite.setPosition(140, 65);
-		onHighScores = false;
-		onHelp = true;
-	}
-	else if (controller.m_currentState.DpadUp && onSlider && !controller.m_previousState.DpadUp)
-	{
-		m_arrowSprite.setPosition(140, 195);
-		onSlider = false;
-		onHighScores = true;
-	}
-	else if (controller.m_currentState.DpadUp && onSong1 && !controller.m_previousState.DpadUp)
-	{
-		m_arrowSprite.setPosition(45, 305);
-		onSong1 = false;
-		onSlider = true;
-	}
-	else if (controller.m_currentState.DpadLeft && onSong1 && !controller.m_previousState.DpadLeft)
-	{
-		m_arrowSprite.setPosition(355, 560);
-		onSong1 = false;
-		onSong3 = true;
-	}
-	else if (controller.m_currentState.DpadLeft && onSong2 && !controller.m_previousState.DpadLeft)
-	{
-		m_arrowSprite.setPosition(55, 560);
-		onSong2 = false;
-		onSong1 = true;
-	}
-	else if (controller.m_currentState.DpadLeft && onSong3 && !controller.m_previousState.DpadLeft)
-	{
-		m_arrowSprite.setPosition(205, 560);
-		onSong3 = false;
-		onSong2 = true;
-	}
+		if (controller.m_currentState.DpadDown && onHelp && !controller.m_previousState.DpadDown)
+		{
+			m_arrowSprite.setPosition(140, 195);
+			onHelp = false;
+			onHighScores = true;
+		}
+		else if (controller.m_currentState.DpadDown && onHighScores && !controller.m_previousState.DpadDown)
+		{
+			m_arrowSprite.setPosition(45, 305);
+			onHighScores = false;
+			onSlider = true;
+		}
+		else if (controller.m_currentState.DpadDown && onSlider && !controller.m_previousState.DpadDown)
+		{
+			m_arrowSprite.setPosition(55, 560);
+			onSlider = false;
+			onSong1 = true;
+		}
+		else if (controller.m_currentState.DpadDown && onSong1 && !controller.m_previousState.DpadDown)
+		{
+			m_arrowSprite.setPosition(140, 65);
+			onSong1 = false;
+			onHelp = true;
+		}
+		else if (controller.m_currentState.DpadRight && onSong1 && !controller.m_previousState.DpadRight)
+		{
+			m_arrowSprite.setPosition(205, 560);
+			onSong1 = false;
+			onSong2 = true;
+		}
+		else if (controller.m_currentState.DpadRight && onSong2 && !controller.m_previousState.DpadRight)
+		{
+			m_arrowSprite.setPosition(355, 560);
+			onSong2 = false;
+			onSong3 = true;
+		}
+		else if (controller.m_currentState.DpadRight && onSong3 && !controller.m_previousState.DpadRight)
+		{
+			m_arrowSprite.setPosition(55, 560);
+			onSong3 = false;
+			onSong1 = true;
+		}
 
-	
-	else if (controller.m_currentState.B && !controller.m_previousState.B)
-	{
-	
-		m_game->setGameState(GameState::MainMenu);
-		
-	}
 
-	
-	
+		if (controller.m_currentState.DpadUp && onHelp && !controller.m_previousState.DpadUp)
+		{
+			m_arrowSprite.setPosition(55, 560);
+			onHelp = false;
+			onSong1 = true;
+		}
+		else if (controller.m_currentState.DpadUp && onHighScores && !controller.m_previousState.DpadUp)
+		{
+			m_arrowSprite.setPosition(140, 65);
+			onHighScores = false;
+			onHelp = true;
+		}
+		else if (controller.m_currentState.DpadUp && onSlider && !controller.m_previousState.DpadUp)
+		{
+			m_arrowSprite.setPosition(140, 195);
+			onSlider = false;
+			onHighScores = true;
+		}
+		else if (controller.m_currentState.DpadUp && onSong1 && !controller.m_previousState.DpadUp)
+		{
+			m_arrowSprite.setPosition(45, 305);
+			onSong1 = false;
+			onSlider = true;
+		}
+		else if (controller.m_currentState.DpadLeft && onSong1 && !controller.m_previousState.DpadLeft)
+		{
+			m_arrowSprite.setPosition(355, 560);
+			onSong1 = false;
+			onSong3 = true;
+		}
+		else if (controller.m_currentState.DpadLeft && onSong2 && !controller.m_previousState.DpadLeft)
+		{
+			m_arrowSprite.setPosition(55, 560);
+			onSong2 = false;
+			onSong1 = true;
+		}
+		else if (controller.m_currentState.DpadLeft && onSong3 && !controller.m_previousState.DpadLeft)
+		{
+			m_arrowSprite.setPosition(205, 560);
+			onSong3 = false;
+			onSong2 = true;
+		}
+
+
+		else if (controller.m_currentState.B && !controller.m_previousState.B)
+		{
+
+			m_game->setGameState(GameState::MainMenu);
+			ready = false;
+			setPosition();
+
+		}
+
+
+
 		if (controller.m_currentState.DpadRight && onSlider)
 		{
 			increaseVolume();
@@ -168,18 +177,41 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		{
 			decreaseVolume();
 		}
-		
-	
+
+
 		//Stops player from going straight to help after selecting options if A button is held
 		//Button has to be released and then pressed before allowing the player to go to the help menu
-	if (controller.m_currentState.A && controller.m_previousState.A == false &&onHelp)
-	{
-		m_game->setGameState(GameState::Help);
+		if (controller.m_currentState.A && controller.m_previousState.A == false && onHelp)
+		{
+			m_game->setGameState(GameState::Help);
+		}
 	}
+
 
 	controller.m_previousState = controller.m_currentState;
 
 	buttonUpdate();
+	if (m_sliderSprite.getPosition().x > 100)
+	{
+		m_sliderSprite.move(-12, 0);
+		m_buttonSprite[0].move(-12, 0);
+		m_buttonSprite[1].move(-12, 0);
+		m_songSprite[0].move(-12, 0);
+		m_songSprite[1].move(-12, 0);
+		m_songSprite[2].move(-12, 0);
+		m_arrowSprite.move(-12, 0);
+		m_helpText.move(-12, 0);
+		m_highscoreText.move(-12, 0);
+		m_songtxt.move(-12, 0);
+	}
+	else
+	{
+		ready = true;
+	}
+	if (ready)
+	{
+		m_markerSprite.setPosition(value, 310);
+	}
 }
 
 void Options::render(sf::RenderWindow & window)
@@ -193,10 +225,14 @@ void Options::render(sf::RenderWindow & window)
 	{
 		window.draw(m_songSprite[i]);
 	}
-	
+	window.draw(m_optionsTxt);
 	window.draw(m_arrowSprite);
 	window.draw(m_sliderSprite);
-	window.draw(m_markerSprite);
+	if (ready)
+	{
+		window.draw(m_markerSprite);
+	}
+	
 	window.draw(m_helpText);
 	window.draw(m_highscoreText);
 	window.draw(m_songtxt);
@@ -248,17 +284,16 @@ void Options::buttonUpdate()
 }
 void Options::setPosition()
 {
-	m_sliderSprite.setPosition(100,300);
-	m_markerSprite.setPosition(value, 310);
-	m_buttonSprite[0].setPosition(100, 50);
-	m_buttonSprite[1].setPosition(100, 180);
-	m_songSprite[0].setPosition(100, 530);
-	m_songSprite[1].setPosition(250, 530);
-	m_songSprite[2].setPosition(400, 530);
-	m_arrowSprite.setPosition(140, 65);
-	m_helpText.setPosition(220, 65);
-	m_highscoreText.setPosition(210, 205);
-	m_songtxt.setPosition(520,560);
+	m_sliderSprite.setPosition(1100,300);
+	m_buttonSprite[0].setPosition(1100, 50);
+	m_buttonSprite[1].setPosition(1100, 180);
+	m_songSprite[0].setPosition(1100, 530);
+	m_songSprite[1].setPosition(1250, 530);
+	m_songSprite[2].setPosition(1400, 530);
+	m_arrowSprite.setPosition(1140, 65);
+	m_helpText.setPosition(1220, 65);
+	m_highscoreText.setPosition(1210, 205);
+	m_songtxt.setPosition(1520,560);
 	
 }
 

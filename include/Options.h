@@ -37,10 +37,12 @@ private:
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_backgroundTexture;
 	sf::Font m_font;
+	sf::Font m_meatLoaf;
 	sf::Text m_helpText;
 	sf::Text m_highscoreText;
 	sf::Text m_songtxt;;
-	
+	sf::Text m_optionsTxt;
+	bool ready = false;
 	int value = 370;
 	bool onHelp = true;
 	bool onHighScores = false;
