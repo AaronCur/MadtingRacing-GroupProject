@@ -33,6 +33,8 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 	miniMapSprite.setTexture(miniMapTexture);
 
 	
+
+
 	//Set up the game view so its 1 to 1 scale with game window
 	gameView.setViewport(sf::FloatRect(0, 0, 1, 1));
 	//Set the view size
@@ -70,6 +72,7 @@ void GameScreen::render(sf::RenderWindow & window, Player& player)
 	
 	//Draw game view
 	//window.setView(gameView);
+	
 	circle.setPosition(player.carSprite.getPosition());
 	circle.setOutlineColor(sf::Color::Black);
 	circle.setFillColor(sf::Color::Green);

@@ -200,25 +200,42 @@ void CarSelect::update(sf::Time deltaTime, Xbox360Controller &controller)
 		buttonCount = 0;
 	}
 
-	if (buttonCount == 1 && controller.m_currentState.A)
+	if (buttonCount == 1)
 	{
 		carOne = true;
 		carTwo = false;
 		carThree = false;
+		if (controller.m_currentState.A)
+		{
+			carOnePicked = true;
+			m_game->setGameState(GameState::GameScreen);
+		}
+
 	}
 
-	if (buttonCount == 2 && controller.m_currentState.A)
+	if (buttonCount == 2)
 	{
 		carOne = false;
 		carTwo = true;
 		carThree = false;
+		if (controller.m_currentState.A)
+		{
+			carTwoPicked = true;
+			m_game->setGameState(GameState::GameScreen);
+		}
 	}
 
-	if (buttonCount == 3 && controller.m_currentState.A)
+	if (buttonCount == 3)
 	{
 		carOne = false;
 		carTwo = false;
 		carThree = true;
+		if (controller.m_currentState.A)
+		{
+			carThreePicked = true;
+			m_game->setGameState(GameState::GameScreen);
+		}
+
 	}
 }
 

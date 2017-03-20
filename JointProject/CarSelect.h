@@ -10,6 +10,16 @@ public:
 	~CarSelect();
 	void update(sf::Time dt, Xbox360Controller&controller);
 	void render(sf::RenderWindow& window);
+
+	bool carOnePicked = false;
+	bool carTwoPicked = false;
+	bool carThreePicked = false;
+	
+	bool carOne = false;
+	bool carTwo = false;
+	bool carThree = false;
+
+	int buttonCount = 0;
 private:
 	Game *m_game;
 	sf::Font m_agentOrange;
@@ -42,18 +52,15 @@ private:
 	sf::Text m_speed;
 	sf::Text m_brake;
 
-	bool buttonOneSelected = false;
-	bool buttonTwoSelected = false;
-	bool buttonThreeSelected = false;
-	int buttonCount = 0;
+	
 	int alpha = 0;
 	//variable for single press
 	bool pressed = false;
 	bool up = true;
 	bool down = false;
 
+	bool buttonOneSelected = false;
+	bool buttonTwoSelected = false;
+	bool buttonThreeSelected = false;
 
-	bool carOne = false;
-	bool carTwo = false;
-	bool carThree = false;
 };

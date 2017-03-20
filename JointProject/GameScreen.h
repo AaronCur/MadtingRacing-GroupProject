@@ -33,6 +33,9 @@ private:
 	sf::Texture miniMapTexture;
 	sf::Sprite miniMapSprite;
 	sf::Sprite sprite;
+
+	sf::Sprite dirtSprite;
+	sf::Texture dirtTexture;
 	//The two views that wil make up the render window
 	sf::View gameView;
 	sf::View miniMapView;

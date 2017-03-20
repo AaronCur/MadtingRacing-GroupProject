@@ -1,14 +1,19 @@
 #include "Player.h"
+#include <iostream>
 #include <math.h>
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
 
-Player::Player(Game & game) :
+Player::Player(Game & game, CarSelect & CarSelect) :
 	m_game(&game),
 
 	m_angle(0)
 	
 {
+	m_carOneSpeedMax = 1.9;
+	m_carTwoSpeedMax = .3;
+	m_carThreeSpeedMax = .6;
+
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
@@ -50,12 +55,25 @@ Player::Player(Game & game) :
 
 	// Car sprite variables.
 	carSprite.setTexture(m_carSpriteSheet);
-	sf::IntRect carOneRect(15, 13, 73, 129);
-	carSprite.setTextureRect(carOneRect);
-	carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	carSprite.rotate(270);
-	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
-	carSprite.setScale(0.3, 0.3);
+	
+	//if (CarSelect.carOnePicked == true)
+	//{
+	//	carSprite.setTextureRect(carOneRect);
+	//}
+	//if (CarSelect.carTwoPicked == true)
+	//{
+	//	carSprite.setTextureRect(carTwoRect);
+	//}
+	//if (CarSelect.carThreePicked == true)
+	//{
+	//	carSprite.setTextureRect(carThreeRect);
+	//}
+	////carSprite.setTextureRect(carTwoRect);
+	//carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	//carSprite.rotate(270);
+	//carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+	//carSprite.setScale(0.3, 0.3);
 
 }
 
@@ -82,8 +100,32 @@ void Player::carDraw(sf::RenderWindow& window)
 {
 	window.draw(carSprite);
 }
-void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
+
+
+void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect)
 {
+	//draws rectangle around the car that can be used.
+	sf::IntRect carOneRect(35, 30, 178, 313);
+	sf::IntRect carTwoRect(399, 30, 176, 316);
+	sf::IntRect carThreeRect(363, 551, 178, 308);
+
+	if (CarSelect.carOnePicked == true)
+	{
+		carSprite.setTextureRect(carOneRect);
+	}
+	if (CarSelect.carTwoPicked == true)
+	{
+		carSprite.setTextureRect(carTwoRect);
+	}
+	if (CarSelect.carThreePicked == true)
+	{
+		carSprite.setTextureRect(carThreeRect);
+	}
+	//carSprite.setTextureRect(carTwoRect);
+	carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+	carSprite.setScale(0.13, 0.13);
+
 	// Set up time for acceleration.
 	m_time += deltaTime;
 	dt = m_time.asSeconds();
@@ -229,15 +271,16 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		}
 		else if (m_gear == 1)
 		{
-			m_maxSpeed = 1;
+			m_maxSpeed = 2;
 		}
 		else if (m_gear == 2)
 		{
-			m_maxSpeed = 3;
+			m_maxSpeed = 4;
 		}
 		else if (m_gear == 3)
 		{
 			m_maxSpeed = 6;
+			
 		}
 
 		// Car stalls when too low speed
@@ -335,6 +378,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 					m_speed = m_speed - m_acceleration;
 				}
 			}
+			
 		}
 
 		// Handbrake when X is pressed.
@@ -382,9 +426,25 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		}
 
 		// Move car in correct direction with given speed.
-		player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
+		//also each some has a different speed variable so the car will travel slower or faster.
+		if (CarSelect.carOnePicked == true)
+		{
+			player.move(cos(player.getRotation()*3.14159265 / 180) * (m_speed * m_carOneSpeedMax), sin(player.getRotation()*3.14159265 / 180)* (m_speed * m_carOneSpeedMax));
+		}
+
+		if (CarSelect.carTwoPicked == true)
+		{
+			player.move(cos(player.getRotation()*3.14159265 / 180) * (m_speed * m_carTwoSpeedMax), sin(player.getRotation()*3.14159265 / 180)* (m_speed * m_carTwoSpeedMax));
+		}
+		
+		if (CarSelect.carThreePicked == true)
+		{
+			player.move(cos(player.getRotation()*3.14159265 / 180) * (m_speed * m_carThreeSpeedMax), sin(player.getRotation()*3.14159265 / 180)* (m_speed * m_carThreeSpeedMax));
+		}
 
 		follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120  );
+		
+		std::cout << m_speed << std::endl;
 		
 		if (gearChanged == true)
 		{
@@ -396,7 +456,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 				gearChanged = false;
 			}
 		}
-		
+
 }
 
 void Player::move()
