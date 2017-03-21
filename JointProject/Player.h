@@ -4,6 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include "Game.h"
 #include "Xbox360Controller.h"
+// #include <assert.h>
 class Game;
 
 class Player
@@ -18,7 +19,7 @@ public:
 	void offTrackDetection();
 	double m_angle;
 	double m_currentAngle;
-	bool collision(Player p);
+	//bool collision(Player p);
 	
 	sf::RectangleShape player;
 	sf::Sprite carSprite;

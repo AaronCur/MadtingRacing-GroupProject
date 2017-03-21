@@ -57,7 +57,7 @@ Player::Player(Game & game) :
 	player.setOrigin(20, 10);
 
 	// Load in track.
-	if (!m_trackTexture.loadFromFile("bigTrack.png"))
+	if (!m_trackTexture.loadFromFile("testTrack.png"))
 	{
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
@@ -79,14 +79,20 @@ Player::Player(Game & game) :
 		throw std::exception(s.c_str());
 	}
 	//follow.setCenter(500, 325);
-	follow.setViewport(sf::FloatRect(0, 0, 1.5, 1.5));
-	follow.setSize(1000, 650);
-	follow.setCenter(player.getPosition().x , player.getPosition().y );
+	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
+	follow.setSize(4000, 2600);
+	//follow.setCenter(player.getPosition().x , player.getPosition().y );
+	follow.setCenter(2000, 1300);
 
 
 	m_trackSprite.setTexture(m_trackTexture);
 	m_trackSprite.setPosition(0, 0);
-	m_renderTexture.create(1000, 650); //create the render texture
+
+
+
+
+
+	m_renderTexture.create(4000, 2600); //create the render texture
 	m_renderTexture.draw(m_trackSprite); //draw track sprite to the render texture
 	image = m_renderTexture.getTexture().copyToImage(); //copy to the image
 	
@@ -97,12 +103,12 @@ Player::Player(Game & game) :
 
 	// Car sprite variables.
 	carSprite.setTexture(m_carSpriteSheet);
-	sf::IntRect carOneRect(15, 13, 73, 129);
+	sf::IntRect carOneRect(35, 30, 178, 313);
 	carSprite.setTextureRect(carOneRect);
 	carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	carSprite.rotate(270);
 	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
-	carSprite.setScale(0.3, 0.3);
+	carSprite.setScale(0.13, 0.13);
 	
 }
 
@@ -129,7 +135,7 @@ void Player::render(sf::RenderWindow& window)
 		window.draw(m_carFireSprite);
 	}
 
-	image = window.capture();
+
 
 }
 
@@ -146,10 +152,10 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 
 	
 	/*bottom = rect.getPosition().y + rect.getSize().y;
-	left = rect.getPosition().x;
+	left = rect.getPosstd::endl;ition().x;
 	right = rect.getPosition().x + rect.getSize().x;
 	top = rect.getPosition().y;*/
-
+	offTrackDetection();
 
 	//if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
 	//	&& pixel.r <= 150 && pixel.g <= 150 && pixel.b <= 150)
@@ -441,7 +447,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	if (m_speed > 0.1)
 	{
 		m_speed = m_speed - m_friction;
-		pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y);
+		
 	}
 	if (m_speed < -0.1)
 	{
@@ -457,7 +463,8 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	// Move car in correct direction with given speed.
 	player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
 
-	follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120);
+	//follow.setCenter(player.getPosition().x , player.getPosition().y );
+	
 
 	if (gearChanged == true)
 	{
@@ -472,11 +479,13 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	
 
 	//sf::Image image = window.capture();
-	//sf::Color color = image.getPixel(100,100);
+	// assert(player.getPosition().x < image.getSize().x && player.getPosition().y < image.getSize().y);
+	sf::Color color = image.getPixel(player.getPosition().x,player.getPosition().y);
 	//int y = image.getSize().y;
 
-//	std::cout <<  (int)color.b << std::endl;
+	std::cout <<  (int)color.a << std::endl;
 //	std::cout << y << std::endl;
+	
 	
 		
 }
@@ -489,17 +498,24 @@ void Player::move()
 void Player::offTrackDetection()
 {
 // pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
+	int i = player.getPosition().x;
+	int j = player.getPosition().y;
 
+	sf::Color color = image.getPixel(i, j);
+	//std::cout << m_friction << std::endl;
 
-	/*if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
-		&& pixel.r <= 150 && pixel.g <= 150 && pixel.b <= 150)
+	if (color.a < 200)
 	{
-		m_friction = 0.8;
+		m_friction = 0.01;
+		std::cout << "OffTrack" << std::endl;
+	   
 	}
 	else
 	{
-		m_friction = 0.02;
-	}*/
+		m_friction = 0.01;
+		std::cout << color.a << std::endl;
+		//std::cout << "on" << std::endl;
+	}
 }
 
 //bool Player::collision(Player p)
