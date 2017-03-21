@@ -21,7 +21,7 @@ Game::Game() :
 	m_helpScreen = new Help(*this, m_comicSans);
 	m_options = new Options(*this, m_comicSans);
 	m_gameScreen = new GameScreen(*this, m_agentOrange);
-	m_player = new Player(*this);
+	m_player = new Player(*this, m_agentOrange);
 	controller = new Xbox360Controller();
 
 	if (!LevelLoader::load(currentLevel, m_level))
@@ -38,7 +38,32 @@ Game::Game() :
 		m_nodes.push_back(circle);
 	}
 
-	m_ai = new Ai(*this, m_nodes);
+
+	for (PathData const &path : m_level.m_pathsTwo)
+	{
+		sf::CircleShape circle(60);
+		circle.setOrigin(circle.getRadius(), circle.getRadius());
+		circle.setPosition(path.m_position);
+		m_nodesTwo.push_back(circle);
+	}
+	
+	for (PathData const &path : m_level.m_pathsThree)
+	{
+		sf::CircleShape circle(60);
+		circle.setOrigin(circle.getRadius(), circle.getRadius());
+		circle.setPosition(path.m_position);
+		m_nodesThree.push_back(circle);
+	}
+	
+	for (PathData const &path : m_level.m_pathsFour)
+	{
+		sf::CircleShape circle(60);
+		circle.setOrigin(circle.getRadius(), circle.getRadius());
+		circle.setPosition(path.m_position);
+		m_nodesFour.push_back(circle);
+	}
+
+	m_ai = new Ai(*this, m_nodes, m_nodesTwo, m_nodesThree, m_nodesFour);
 	
 
 
@@ -63,9 +88,17 @@ Game::Game() :
 		std::string s("Error loading texture");
 		throw std::exception(s.c_str());
 	}
+
+	lapText.setFont(m_agentOrange);
+	lapText.setString("Time: ");
+	lapText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	lapText.setPosition(20, 40);
+	lapText.setCharacterSize(40);
 	
 		generateWalls();
 		generatePath();
+		generatePathTwo();
+		generatePathThree();
 
 }
 
@@ -168,6 +201,48 @@ void Game::generatePath()
 }
 
 /// <summary>
+/// this is where the walls are generated and created 
+/// </summary>
+void Game::generatePathTwo()
+{
+	//the rectangle for the wall from the spritesheet 
+	sf::IntRect pathRect(2, 129, 33, 23);
+	for (PathData const &path : m_level.m_pathsTwo)
+	{
+		//sets each individual component of the targets to the corresponding 
+		//in the yaml file 
+		std::unique_ptr<sf::Sprite> sprite(new sf::Sprite());
+		sprite->setTexture(m_texture);
+		sprite->setTextureRect(pathRect);
+		sprite->setOrigin(pathRect.width / 2.0, pathRect.height / 2.0);
+		sprite->setPosition(path.m_position);
+		m_pathSprites.push_back(std::move(sprite));
+
+	}
+}
+
+/// <summary>
+/// this is where the walls are generated and created 
+/// </summary>
+void Game::generatePathThree()
+{
+	//the rectangle for the wall from the spritesheet 
+	sf::IntRect pathRect(2, 129, 33, 23);
+	for (PathData const &path : m_level.m_pathsThree)
+	{
+		//sets each individual component of the targets to the corresponding 
+		//in the yaml file 
+		std::unique_ptr<sf::Sprite> sprite(new sf::Sprite());
+		sprite->setTexture(m_texture);
+		sprite->setTextureRect(pathRect);
+		sprite->setOrigin(pathRect.width / 2.0, pathRect.height / 2.0);
+		sprite->setPosition(path.m_position);
+		m_pathSprites.push_back(std::move(sprite));
+
+	}
+}
+
+/// <summary>
 /// sets the current game state 
 /// </summary>
 /// <param name="gameState"></param>
@@ -241,10 +316,12 @@ void Game::update(sf::Time time)
 		m_options->update(time, *controller);
 		break;
 	case GameState::GameScreen:
+		
 		controller->update();
 		m_player->update(time, *controller);
 		m_ai->update(time, *controller, *m_player);
 		m_gameScreen->update(time, *controller);
+	
 		break;
 	default:
 		break;
@@ -282,16 +359,17 @@ void Game::render()
 		
 		m_player->render(m_window);
 		m_ai->render(m_window);
-		m_window.draw(m_background);
-		for (auto &m_sprite : m_pathSprites)
+		/*m_window.draw(m_background);*/
+		/*for (auto &m_sprite : m_pathSprites)
 		{
 			m_window.draw(*m_sprite);
 		}
 		for (auto &m_sprite : m_wallSprites)
 		{
 			m_window.draw(*m_sprite);
-		}
+		}*/
 		m_gameScreen->render(m_window, *m_player, *m_ai);
+		
 		break;
 	default:
 

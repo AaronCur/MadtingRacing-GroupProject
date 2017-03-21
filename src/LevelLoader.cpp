@@ -43,7 +43,38 @@ void operator >> (const YAML::Node& levelNode, LevelData& level)
 		level.current = path.m_position;
 	}
 	
-	
+	const YAML::Node& pathNodeTwo = levelNode["pathsTwo"].as<YAML::Node>();
+	for (unsigned i = 0; i < pathNodeTwo.size(); ++i)
+	{
+
+		PathData path;
+		pathNodeTwo[i] >> path;
+		level.m_pathsTwo.push_back(path);
+		level.send(path);
+		level.current = path.m_position;
+	}
+
+	const YAML::Node& pathNodeThree = levelNode["pathsThree"].as<YAML::Node>();
+	for (unsigned i = 0; i < pathNodeThree.size(); ++i)
+	{
+
+		PathData path;
+		pathNodeThree[i] >> path;
+		level.m_pathsThree.push_back(path);
+		level.send(path);
+		level.current = path.m_position;
+	}
+
+	const YAML::Node& pathNodeFour = levelNode["pathsFour"].as<YAML::Node>();
+	for (unsigned i = 0; i < pathNodeFour.size(); ++i)
+	{
+
+		PathData path;
+		pathNodeFour[i] >> path;
+		level.m_pathsFour.push_back(path);
+		level.send(path);
+		level.current = path.m_position;
+	}
 }
 LevelLoader::LevelLoader()	
 {

@@ -11,6 +11,9 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 	m_font.loadFromFile("./resources/images/AGENTORANGE.TTF");
 	circle = sf::CircleShape(40);
 	circle2 = sf::CircleShape(40);
+	circle3 = sf::CircleShape(40);
+	circle4 = sf::CircleShape(40);
+	circle5 = sf::CircleShape(40);
 	//Load in the gamescreen track texture
 	if (!trackTexture.loadFromFile("./resources/images/track2.png"))
 	{
@@ -58,10 +61,21 @@ void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
 
 void GameScreen::render(sf::RenderWindow & window, Player& player, Ai & ai)
 {
-	
 	circle2.setPosition(ai.m_aiSprite[0].getPosition());
-	circle.setOutlineColor(sf::Color::Black);
-	circle.setFillColor(sf::Color::Red);
+	circle2.setOutlineColor(sf::Color::Black);
+	circle2.setFillColor(sf::Color::White);
+
+	circle3.setPosition(ai.m_aiSprite[1].getPosition());
+	circle3.setOutlineColor(sf::Color::Black);
+	circle3.setFillColor(sf::Color::Magenta);
+
+	circle4.setPosition(ai.m_aiSprite[2].getPosition());
+	circle4.setOutlineColor(sf::Color::Black);
+	circle4.setFillColor(sf::Color::Yellow);
+	
+	circle5.setPosition(ai.m_aiSprite[3].getPosition());
+	circle5.setOutlineColor(sf::Color::Black);
+	circle5.setFillColor(sf::Color::Blue);
 	//Draw game view
 	circle.setPosition(player.carSprite.getPosition());
 	circle.setOutlineColor(sf::Color::Black);
@@ -76,6 +90,9 @@ void GameScreen::render(sf::RenderWindow & window, Player& player, Ai & ai)
 	//To scale the screen
 	window.draw(circle);
 	window.draw(circle2);
+	window.draw(circle3);
+	window.draw(circle4);
+	window.draw(circle5);
 	//sf::Event event;
 	//while (Window.pollEvent(event))
 	//{

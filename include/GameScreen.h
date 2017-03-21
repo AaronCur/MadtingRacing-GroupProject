@@ -25,6 +25,9 @@ private:
 	Game *m_game;
 	sf::CircleShape circle;
 	sf::CircleShape circle2;
+	sf::CircleShape circle3;
+	sf::CircleShape circle4;
+	sf::CircleShape circle5;
 	sf::Font m_font;
 	//Track sprite and texture
 	sf::Texture trackTexture;

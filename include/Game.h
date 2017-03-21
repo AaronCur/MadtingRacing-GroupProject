@@ -52,6 +52,10 @@ public:
 	GameState m_previousGameState;
 	void setGameState(GameState gameState);
 	std::vector<sf::CircleShape> m_nodes;
+	std::vector<sf::CircleShape> m_nodesTwo;
+	std::vector<sf::CircleShape> m_nodesThree;
+	std::vector<sf::CircleShape> m_nodesFour;
+
 protected:
 	void update(sf::Time time);
 	void render();
@@ -60,7 +64,10 @@ protected:
 	void processGameEvents();
 	void generateWalls();
 	void generatePath();
-	
+	void generatePathTwo();
+	void generatePathThree();
+	void generatePathFour();
+
 	sf::Sprite m_sprite;//spritesheet
 	sf::Sprite m_sprite2;//spritesheet 
 	sf::Texture m_texture;
@@ -68,7 +75,8 @@ protected:
 	sf::Texture m_spriteSheetTexture;
 	sf::Texture m_overTexture;
 	sf::Sprite m_background;//backgoround sprite 
- 
+	sf::Text lapText;
+
 	sf::Clock m_clock;//game clock 
 	std::vector<std::unique_ptr<sf::Sprite>> m_wallSprites;//memeber variuable for wall sprites 
 	std::vector<std::unique_ptr<sf::Sprite>> m_pathSprites;

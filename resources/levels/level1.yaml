@@ -75,11 +75,9 @@ obstacles:
      rotation: 0
 paths:
    - type: path
-     position: {x: 1500, y: 410}
+     position: {x: 1700, y: 360}
    - type: path
      position: {x: 1900, y: 315}
-   - type: path
-     position: {x: 1920, y: 340}
    - type: path
      position: {x: 1940, y: 390}
    - type: path
@@ -163,4 +161,213 @@ paths:
    - type: path
      position: {x: 980, y: 580}
    - type: path
-     position: {x: 1400, y: 445}
+     position: {x: 1576, y: 358}
+pathsTwo:
+   - type: path
+     position: {x: 1700, y: 330}
+   - type: path
+     position: {x: 1920, y: 330}
+   - type: path
+     position: {x: 1950, y: 410}
+   - type: path
+     position: {x: 1995, y: 440}
+   - type: path
+     position: {x: 2535, y: 460}
+   - type: path
+     position: {x: 3210, y: 260}
+   - type: path
+     position: {x: 3285, y: 270}
+   - type: path
+     position: {x: 3320, y: 280}
+   - type: path
+     position: {x: 3375, y: 310}
+   - type: path
+     position: {x: 3550, y: 785}
+   - type: path
+     position: {x: 3500, y: 865}
+   - type: path
+     position: {x: 3465, y: 940}
+   - type: path
+     position: {x: 3465, y: 950}
+   - type: path
+     position: {x: 3710, y: 1410}
+   - type: path
+     position: {x: 3642, y: 1490}
+   - type: path
+     position: {x: 3110, y: 1675}
+   - type: path
+     position: {x: 3030, y: 1650}
+   - type: path
+     position: {x: 2950, y: 1600}
+   - type: path
+     position: {x: 2868, y: 1515}
+   - type: path
+     position: {x: 2585, y: 1585}
+   - type: path
+     position: {x: 2430, y: 1480}
+   - type: path
+     position: {x: 2333, y: 1295}
+   - type: path
+     position: {x: 2260, y: 1285}
+   - type: path
+     position: {x: 2200, y: 1300}
+   - type: path
+     position: {x: 2170, y: 1370}
+   - type: path
+     position: {x: 2185, y: 1420}
+   - type: path
+     position: {x: 2210, y: 1460}
+   - type: path
+     position: {x: 2435, y: 2007}
+   - type: path
+     position: {x: 2485, y: 2067}
+   - type: path
+     position: {x: 2660, y: 2061}
+   - type: path
+     position: {x: 3490, y: 1804}
+   - type: path
+     position: {x: 3560, y: 1831}
+   - type: path
+     position: {x: 3585, y: 1893}
+   - type: path
+     position: {x: 3500, y: 1967}
+   - type: path
+     position: {x: 1790, y: 2400}
+   - type: path
+     position: {x: 460, y: 1982}
+   - type: path
+     position: {x: 420, y: 1959}
+   - type: path
+     position: {x: 425, y: 1901}
+   - type: path
+     position: {x: 510, y: 1605}
+   - type: path
+     position: {x: 982, y: 1090}
+   - type: path
+     position: {x: 1078, y: 1065}
+   - type: path
+     position: {x: 1309, y: 998}
+   - type: path
+     position: {x: 1342, y: 936}
+   - type: path
+     position: {x: 1247, y: 589}
+   - type: path
+     position: {x: 1576, y: 358}
+pathsThree:
+   - type: path
+     position: {x: 1700, y: 370}
+   - type: path
+     position: {x: 1978, y: 353}
+   - type: path
+     position: {x: 2049, y: 388}
+   - type: path
+     position: {x: 2523, y: 451}
+   - type: path
+     position: {x: 3356, y: 227}
+   - type: path
+     position: {x: 3433, y: 270}
+   - type: path
+     position: {x: 3433, y: 311}
+   - type: path
+     position: {x: 3508, y: 876}
+   - type: path
+     position: {x: 3693, y: 1385}
+   - type: path
+     position: {x: 3686, y: 1469}
+   - type: path
+     position: {x: 3118, y: 1693}
+   - type: path
+     position: {x: 2989, y: 1524}
+   - type: path
+     position: {x: 2903, y: 1483}
+   - type: path
+     position: {x: 2639, y: 1520}
+   - type: path
+     position: {x: 2466, y: 1476}
+   - type: path
+     position: {x: 2324, y: 1288}
+   - type: path
+     position: {x: 2207, y: 1239}
+   - type: path
+     position: {x: 2167, y: 1309}
+   - type: path
+     position: {x: 2496, y: 2090}
+   - type: path
+     position: {x: 3533, y: 1844}
+   - type: path
+     position: {x: 3563, y: 1867}
+   - type: path
+     position: {x: 3562, y: 1911}
+   - type: path
+     position: {x: 1776, y: 2401}
+   - type: path
+     position: {x: 431, y: 1947}
+   - type: path
+     position: {x: 517, y: 1519}
+   - type: path
+     position: {x: 415, y: 1410}
+   - type: path
+     position: {x: 406, y: 1336}
+   - type: path
+     position: {x: 981, y: 549}
+   - type: path
+     position: {x: 1576, y: 358}
+pathsFour:
+   - type: path
+     position: {x: 1700, y: 340}
+   - type: path
+     position: {x: 1980, y: 360}
+   - type: path
+     position: {x: 2055, y: 390}
+   - type: path
+     position: {x: 2525, y: 460}
+   - type: path
+     position: {x: 3360, y: 230}
+   - type: path
+     position: {x: 3400, y: 230}
+   - type: path
+     position: {x: 3433, y: 311}
+   - type: path
+     position: {x: 3510, y: 880}
+   - type: path
+     position: {x: 3700, y: 1388}
+   - type: path
+     position: {x: 3690, y: 1475}
+   - type: path
+     position: {x: 3110, y: 1699}
+   - type: path
+     position: {x: 2995, y: 1524}
+   - type: path
+     position: {x: 2910, y: 1483}
+   - type: path
+     position: {x: 2642, y: 1525}
+   - type: path
+     position: {x: 2470, y: 1480}
+   - type: path
+     position: {x: 2330, y: 1290}
+   - type: path
+     position: {x: 2215, y: 1245}
+   - type: path
+     position: {x: 2170, y: 1309}
+   - type: path
+     position: {x: 2500, y: 2100}
+   - type: path
+     position: {x: 3533, y: 1844}
+   - type: path
+     position: {x: 3563, y: 1867}
+   - type: path
+     position: {x: 3562, y: 1911}
+   - type: path
+     position: {x: 1776, y: 2401}
+   - type: path
+     position: {x: 431, y: 1947}
+   - type: path
+     position: {x: 517, y: 1519}
+   - type: path
+     position: {x: 415, y: 1410}
+   - type: path
+     position: {x: 406, y: 1336}
+   - type: path
+     position: {x: 981, y: 549}
+   - type: path
+     position: {x: 1576, y: 358}
