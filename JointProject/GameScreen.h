@@ -44,6 +44,10 @@ private:
 	sf::View follow;
 	sf::RectangleShape rec;
 
+	sf::Texture mapSprite;
+	sf::Sprite maptiles[16];
+
+
 	sf::RectangleShape finishLine;
 };
 

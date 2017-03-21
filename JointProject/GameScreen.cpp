@@ -32,13 +32,20 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 
 	miniMapSprite.setTexture(miniMapTexture);
 
+	mapSprite.loadFromFile("MapTexture.png");
+
+	maptiles[16].setTexture(mapSprite);
+
+	sf::IntRect mapRecOne(15, 15, 1000, 650);
+	maptiles[0].setTextureRect(mapRecOne);
+
 
 	//drew rectangle to see collsion box.
-	finishLine.setPosition(2212.89, 2279.41);
+	/*finishLine.setPosition(2212.89, 2279.41);
 	finishLine.setSize(sf::Vector2f(80, 10));
 	finishLine.setFillColor(sf::Color::Blue);
 	finishLine.setOutlineThickness(5);
-	finishLine.setRotation(78);
+	finishLine.setRotation(78);*/
 
 
 	//Set up the game view so its 1 to 1 scale with game window
@@ -93,11 +100,11 @@ void GameScreen::render(sf::RenderWindow & window, Player& player)
 	
 	circle.setOutlineColor(sf::Color::Black);
 	circle.setFillColor(sf::Color::Green);
-	window.draw(finishLine);
+	//window.draw(finishLine);
 	//Draw mini map view
 	window.setView(miniMapView);
 	window.draw(miniMapSprite);
-	window.draw(finishLine);
+	/*window.draw(finishLine);*/
 	//player.carSprite.setScale(1.2, 1.2);
 	window.draw(circle);
 	/*window.setView(follow);
