@@ -18,6 +18,7 @@ public:
 	void offTrackDetection();
 	double m_angle;
 	double m_currentAngle;
+	bool collision(Player p);
 	
 	sf::RectangleShape player;
 	sf::Sprite carSprite;
@@ -26,12 +27,18 @@ private:
 	Game *m_game;
 	sf::Font m_font;
 	sf::Texture m_trackTexture;
+	sf::Texture texture;
 	sf::RenderTexture m_renderTexture;
+	sf::Image image;
+	sf::RectangleShape rect;
+	sf::RectangleShape tempRect;
+	float bottom, left, right, top;
+	std::vector<std::vector<bool>> mask;
 	sf::Sprite m_trackSprite;
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
 	sf::Color pixel;
-	sf::Image image;
+	
 	double m_acceleration = 0.1;
 	double m_friction = 0.02;
 	double m_maxSpeed = 1;

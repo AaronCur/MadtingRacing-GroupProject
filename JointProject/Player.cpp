@@ -2,6 +2,7 @@
 #include "Player.h"
 #include <math.h>
 #include <iostream>
+#include <algorithm>
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
 
@@ -11,6 +12,44 @@ Player::Player(Game & game) :
 	
 	
 {
+
+	rect.setPosition(player.getPosition());
+	rect.setSize(player.getSize());
+
+	/*m_renderTexture.create(rect.getSize().x, rect.getSize().y);
+	sf::RectangleShape tempRect(rect);
+	tempRect.setPosition(0, 0);
+	m_renderTexture.draw(tempRect);
+	m_renderTexture.display();
+
+	texture = m_renderTexture.getTexture();
+	image = texture.copyToImage();
+
+
+	for (int i = 0; i < image.getSize().x; i++)
+	{
+		std::vector<bool>tempmask;
+
+		for(int j = 0; j < image.getSize().y; j++)
+		{
+			if (image.getPixel(i, j).a > 0)
+			{
+				tempmask.push_back(true);
+			}
+			else
+			{
+
+				tempmask.push_back(false);
+			}
+
+			mask.push_back(tempmask);
+		}
+	}*/
+
+
+
+
+
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
@@ -47,8 +86,9 @@ Player::Player(Game & game) :
 
 	m_trackSprite.setTexture(m_trackTexture);
 	m_trackSprite.setPosition(0, 0);
-	m_renderTexture.create(1000, 650);
-	image = m_renderTexture.getTexture().copyToImage();
+	m_renderTexture.create(1000, 650); //create the render texture
+	m_renderTexture.draw(m_trackSprite); //draw track sprite to the render texture
+	image = m_renderTexture.getTexture().copyToImage(); //copy to the image
 	
 
 	// Set fire sprite initial position
@@ -89,6 +129,8 @@ void Player::render(sf::RenderWindow& window)
 		window.draw(m_carFireSprite);
 	}
 
+	image = window.capture();
+
 }
 
 void Player::carDraw(sf::RenderWindow& window)
@@ -103,7 +145,10 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	double speed = 0;
 
 	
-	offTrackDetection();
+	/*bottom = rect.getPosition().y + rect.getSize().y;
+	left = rect.getPosition().x;
+	right = rect.getPosition().x + rect.getSize().x;
+	top = rect.getPosition().y;*/
 
 
 	//if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
@@ -424,7 +469,15 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 			gearChanged = false;
 		}
 	}
+	
 
+	//sf::Image image = window.capture();
+	//sf::Color color = image.getPixel(100,100);
+	//int y = image.getSize().y;
+
+//	std::cout <<  (int)color.b << std::endl;
+//	std::cout << y << std::endl;
+	
 		
 }
 
@@ -435,7 +488,7 @@ void Player::move()
 
 void Player::offTrackDetection()
 {
- pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
+// pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
 
 
 	/*if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
@@ -448,3 +501,28 @@ void Player::offTrackDetection()
 		m_friction = 0.02;
 	}*/
 }
+
+//bool Player::collision(Player p)
+//{
+//	if (right <= p.left || left >= p.right || top >= p.bottom || bottom <= p.top)
+//	{
+//
+//	}
+//	else
+//	{
+//		float colBottom, colTop, colLeft, colRight;
+//		colBottom = std::min(bottom, p.bottom);
+//		colTop = std::max(top, p.top);
+//		colLeft = std::max(left, p.left);
+//		colRight = std::min(right, p.right);
+//
+//		for (int i = colTop; i < colBottom; i++)
+//		{
+//			for (int j = 0; j < length; i++)
+//			{
+//
+//			}
+//		}
+//
+//	}
+//}
