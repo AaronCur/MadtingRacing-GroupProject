@@ -18,7 +18,7 @@ static double const MS_PER_UPDATE = 10.0;
 Game::Game():
 
 	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
-	m_currentGameState(GameState::MainMenu)
+	m_currentGameState(GameState::CarSelect)
 
 {
 
@@ -157,7 +157,7 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::GameScreen:
 		controller->update();
-		m_gameScreen->update(time, *controller);
+		m_gameScreen->update(time, *controller, *m_player);
 		m_player->update(time, *controller, *m_carSelectScreen);
 		break;
 	case GameState::CarSelect:

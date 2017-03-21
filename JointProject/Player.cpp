@@ -18,6 +18,8 @@ Player::Player(Game & game, CarSelect & CarSelect) :
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
 	player.setPosition(200, 200);
+	/*player.setPosition(2239.39, 2281.6);*/
+	player.setRotation(175);
 	player.setOrigin(20, 10);
 
 	// Load in track.
@@ -55,7 +57,7 @@ Player::Player(Game & game, CarSelect & CarSelect) :
 
 	// Car sprite variables.
 	carSprite.setTexture(m_carSpriteSheet);
-	carSprite.rotate(270);
+	carSprite.rotate(78);
 	
 	//if (CarSelect.carOnePicked == true)
 	//{
@@ -154,8 +156,6 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 
 	//carSprite.rotate(player.getRotation());
 	
-		
-			
 		
 		// Code for checking which quadrant the left thumb stick points into. X and y cords checked.
 		if (controller.m_currentState.LeftThumbStick.x <= 100 && controller.m_currentState.LeftThumbStick.x >= 0 && controller.m_currentState.LeftThumbStick.y >= -100 && controller.m_currentState.LeftThumbStick.y <= 0)
@@ -444,7 +444,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 
 		follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120  );
 		
-		std::cout << m_speed << std::endl;
+		/*std::cout << player.getPosition().x << " , " << player.getPosition().y << std::endl;*/
 		
 		if (gearChanged == true)
 		{
