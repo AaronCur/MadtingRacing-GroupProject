@@ -32,7 +32,20 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 
 	miniMapSprite.setTexture(miniMapTexture);
 
-	
+	mapSprite.loadFromFile("MapTexture.png");
+
+	maptiles[16].setTexture(mapSprite);
+
+	sf::IntRect mapRecOne(15, 15, 1000, 650);
+	maptiles[0].setTextureRect(mapRecOne);
+
+
+	//drew rectangle to see collsion box.
+	/*finishLine.setPosition(2212.89, 2279.41);
+	finishLine.setSize(sf::Vector2f(80, 10));
+	finishLine.setFillColor(sf::Color::Blue);
+	finishLine.setOutlineThickness(5);
+	finishLine.setRotation(78);*/
 
 
 	//Set up the game view so its 1 to 1 scale with game window
@@ -49,6 +62,7 @@ GameScreen::GameScreen(Game & game, sf::Font font) :
 	miniMapView.setCenter(2000, 1300);
 	//miniMapWindow.setView(miniMapView);
 	
+	
 
 
 }
@@ -57,7 +71,7 @@ GameScreen::~GameScreen()
 	std::cout << "destructing Help" << std::endl;
 }
 
-void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
+void GameScreen::update(sf::Time dt, Xbox360Controller&controller, Player &player)
 {
 	follow.setCenter(rec.getPosition()); //put in player postion where rec is.
 
@@ -65,6 +79,15 @@ void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
 	{
 		m_game->setGameState(GameState::Pause);
 	}
+
+	//test to see if the lap timer will go up.
+	if (player.player.getPosition().x <= finishLine.getPosition().x && player.player.getPosition().y <= finishLine.getPosition().y)
+	{
+		lap++;
+	}
+
+	// output onto the console.
+	std::cout << lap << std::endl;
 }
 
 void GameScreen::render(sf::RenderWindow & window, Player& player)
@@ -74,11 +97,14 @@ void GameScreen::render(sf::RenderWindow & window, Player& player)
 	//window.setView(gameView);
 	
 	circle.setPosition(player.carSprite.getPosition());
+	
 	circle.setOutlineColor(sf::Color::Black);
 	circle.setFillColor(sf::Color::Green);
+	//window.draw(finishLine);
 	//Draw mini map view
 	window.setView(miniMapView);
 	window.draw(miniMapSprite);
+	/*window.draw(finishLine);*/
 	//player.carSprite.setScale(1.2, 1.2);
 	window.draw(circle);
 	/*window.setView(follow);

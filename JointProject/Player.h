@@ -30,6 +30,10 @@ private:
 	sf::Sprite m_trackSprite;
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
+
+	sf::Texture mapSprite;
+	sf::Sprite mapTiles[16];
+
 	double m_acceleration = 0.1;
 	double m_friction = 0.02;
 	double m_maxSpeed = 1;

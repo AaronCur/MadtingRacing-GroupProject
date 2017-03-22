@@ -41,7 +41,7 @@
     <Image Include="help.png" />
     <Image Include="select.png" />
     <Image Include="Speed.png" />
-    <Image Include="track2.png" />
+    <Image Include="MapTexture.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf" />
