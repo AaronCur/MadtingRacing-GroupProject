@@ -1,6 +1,7 @@
 #pragma once
 #ifndef  GAME
 #define GAME
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 #include "Splash.h"
@@ -10,9 +11,12 @@
 #include "Help.h"
 #include "Options.h"
 #include "GameScreen.h"
+#include "Pause.h"
+#include "PauseOptions.h"
+#include "OptionsHelp.h"
+#include "CarSelect.h"
 #include "Player.h"
 #include "Upgrade.h"
-
 
 //each class is declared
 class License;
@@ -21,8 +25,13 @@ class MainMenu;
 class Help;
 class Options;
 class GameScreen;
+class Pause;
+class PauseOptions;
+class OptionsHelp;
+class CarSelect;
 class Player;
 class Upgrade;
+
 
 enum class
 	GameState
@@ -37,7 +46,14 @@ enum class
 	HighScores,
 	Help,
 	GameScreen,
+<<<<<<< HEAD
 	UpgradeScreen
+=======
+	Pause,
+	PauseOptions,
+	OptionsHelp,
+	CarSelect
+>>>>>>> 1ac788b8c3627e0751ea33b4156d25a0a3004141
 };
 class Game
 {
@@ -67,6 +83,10 @@ protected:
 	Options *m_options;
 	sf::Font m_comicSans;//font 
 	GameScreen *m_gameScreen;
+	Pause *m_pause;
+	PauseOptions *m_pauseOptions;
+	OptionsHelp *m_helpOptions;
+	CarSelect *m_carSelectScreen;
 	Player *m_player;
 	Upgrade *m_upgradeScreen;
 

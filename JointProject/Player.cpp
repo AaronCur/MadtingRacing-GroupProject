@@ -1,18 +1,25 @@
 #include "Player.h"
+#include <iostream>
 #include <math.h>
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
 
-Player::Player(Game & game) :
+Player::Player(Game & game, CarSelect & CarSelect) :
 	m_game(&game),
 
 	m_angle(0)
-	
+
 {
+	m_carOneSpeedMax = 1.9;
+	m_carTwoSpeedMax = .3;
+	m_carThreeSpeedMax = .6;
+
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
 	player.setPosition(200, 200);
+	/*player.setPosition(2239.39, 2281.6);*/
+	player.setRotation(175);
 	player.setOrigin(20, 10);
 
 	// Load in track.
@@ -21,7 +28,7 @@ Player::Player(Game & game) :
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
 	}
-	
+
 	// Load in car.
 	if (!m_carSpriteSheet.loadFromFile("CarSprite.png"))
 	{
@@ -38,7 +45,7 @@ Player::Player(Game & game) :
 	//follow.setCenter(500, 325);
 	follow.setViewport(sf::FloatRect(0, 0, 1.5, 1.5));
 	follow.setSize(1000, 650);
-	follow.setCenter(player.getPosition().x , player.getPosition().y );
+	follow.setCenter(player.getPosition().x, player.getPosition().y);
 
 
 	m_trackSprite.setTexture(m_trackTexture);
@@ -50,12 +57,114 @@ Player::Player(Game & game) :
 
 	// Car sprite variables.
 	carSprite.setTexture(m_carSpriteSheet);
+
 	sf::IntRect carOneRect(35, 30, 178, 313);
 	carSprite.setTextureRect(carOneRect);
 	carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	carSprite.rotate(270);
 	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
 	carSprite.setScale(0.13, 0.13);
+
+
+	//if (CarSelect.carOnePicked == true)
+	//{
+	//	carSprite.setTextureRect(carOneRect);
+	//}
+	//if (CarSelect.carTwoPicked == true)
+	//{
+	//	carSprite.setTextureRect(carTwoRect);
+	//}
+	//if (CarSelect.carThreePicked == true)
+	//{
+	//	carSprite.setTextureRect(carThreeRect);
+	//}
+	////carSprite.setTextureRect(carTwoRect);
+	//carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	//carSprite.rotate(270);
+	//carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+	//carSprite.setScale(0.3, 0.3);
+
+
+
+	if (!mapSprite.loadFromFile("MapTexture.png"))
+	{
+
+	}
+
+
+	//sets the texture  for each of the sprites in the arrary
+	for (int i = 0; i < 16; i++)
+	{
+		mapTiles[i].setTexture(mapSprite);
+		mapTiles[i].setOrigin(mapTiles[i].getOrigin().x / 2, mapTiles[i].getOrigin().y / 2);
+	}
+
+
+	//sets postion of each tile 
+	sf::IntRect mapRecOne(15, 15, 1000, 650);
+	mapTiles[0].setTextureRect(mapRecOne);
+	mapTiles[0].setPosition(0, 0);
+
+	sf::IntRect mapRecTwo(1105, 15, 1000, 650);
+	mapTiles[1].setTextureRect(mapRecTwo);
+	mapTiles[1].setPosition(1000, 0);
+
+	sf::IntRect mapRecThree(2254, 15, 1000, 650);
+	mapTiles[2].setTextureRect(mapRecThree);
+	mapTiles[2].setPosition(2000, 0);
+
+	sf::IntRect mapRecFour(3364, 23, 1000, 650);
+	mapTiles[3].setTextureRect(mapRecFour);
+	mapTiles[3].setPosition(3000, 0);
+	//
+	sf::IntRect mapRecFive(19, 714, 1000, 650);
+	mapTiles[4].setTextureRect(mapRecFive);
+	mapTiles[4].setPosition(0, 650);
+
+	sf::IntRect mapRecSix(1105, 714, 1000, 650);
+	mapTiles[5].setTextureRect(mapRecSix);
+	mapTiles[5].setPosition(1000, 650);
+
+	sf::IntRect mapRecSeven(2239, 706, 1000, 650);
+	mapTiles[6].setTextureRect(mapRecSeven);
+	mapTiles[6].setPosition(2000, 650);
+
+	sf::IntRect mapRecEight(3360, 710, 1000, 650);
+	mapTiles[7].setTextureRect(mapRecEight);
+	mapTiles[7].setPosition(3000, 650);
+	//
+	sf::IntRect mapRecNine(14, 1408, 1000, 650);
+	mapTiles[8].setTextureRect(mapRecNine);
+	mapTiles[8].setPosition(0, 1300);
+
+	sf::IntRect mapRecTen(1113, 1412, 1000, 650);
+	mapTiles[9].setTextureRect(mapRecTen);
+	mapTiles[9].setPosition(1000, 1300);
+
+	sf::IntRect mapRecEleven(2254, 1404, 1000, 650);
+	mapTiles[10].setTextureRect(mapRecEleven);
+	mapTiles[10].setPosition(2000, 1300);
+
+	sf::IntRect mapRecTweleve(3368, 1412, 1000, 650);
+	mapTiles[11].setTextureRect(mapRecTweleve);
+	mapTiles[11].setPosition(3000, 1300);
+
+	sf::IntRect mapRecThirteen(7, 2099, 1000, 650);
+	mapTiles[12].setTextureRect(mapRecThirteen);
+	mapTiles[12].setPosition(0, 1950);
+	//
+	sf::IntRect mapRecFourteen(1109, 2103, 1000, 650);
+	mapTiles[13].setTextureRect(mapRecFourteen);
+	mapTiles[13].setPosition(1000, 1950);
+
+	sf::IntRect mapRecFithteen(2262, 2111, 1000, 650);
+	mapTiles[14].setTextureRect(mapRecFithteen);
+	mapTiles[14].setPosition(2000, 1950);
+
+	sf::IntRect mapRecSixteen(3380, 2119, 1000, 650);
+	mapTiles[15].setTextureRect(mapRecSixteen);
+	mapTiles[15].setPosition(3000, 1950);
+
 
 }
 
@@ -67,9 +176,20 @@ void Player::render(sf::RenderWindow& window)
 {
 
 	window.setView(follow);
-	window.draw(m_trackSprite);
+	//drawing the tile when needed.
+	for (int x = 0; x < 16; x++)
+	{
+		if (player.getPosition().x + 400 > mapTiles[x].getPosition().x && player.getPosition().y + 350 > mapTiles[x].getPosition().y)
+		{
+			window.draw(mapTiles[x]);
+		}
+	}
+	
+	/*window.draw(m_trackSprite);*/
 	//window.draw(player)
 	window.draw(carSprite);
+	
+	
 	// Only draw when gear is changed
 	if (gearChanged == true)
 	{
@@ -80,10 +200,35 @@ void Player::render(sf::RenderWindow& window)
 
 void Player::carDraw(sf::RenderWindow& window)
 {
+	
 	window.draw(carSprite);
 }
-void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
+
+
+void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect)
 {
+	//draws rectangle around the car that can be used.
+	sf::IntRect carOneRect(35, 30, 178, 313);
+	sf::IntRect carTwoRect(399, 30, 176, 316);
+	sf::IntRect carThreeRect(363, 551, 178, 308);
+
+	if (CarSelect.carOnePicked == true)
+	{
+		carSprite.setTextureRect(carOneRect);
+	}
+	if (CarSelect.carTwoPicked == true)
+	{
+		carSprite.setTextureRect(carTwoRect);
+	}
+	if (CarSelect.carThreePicked == true)
+	{
+		carSprite.setTextureRect(carThreeRect);
+	}
+	//carSprite.setTextureRect(carTwoRect);
+	carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
+	carSprite.setScale(0.13, 0.13);
+
 	// Set up time for acceleration.
 	m_time += deltaTime;
 	dt = m_time.asSeconds();
@@ -112,8 +257,6 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 
 	//carSprite.rotate(player.getRotation());
 	
-		
-			
 		
 		// Code for checking which quadrant the left thumb stick points into. X and y cords checked.
 		if (controller.m_currentState.LeftThumbStick.x <= 100 && controller.m_currentState.LeftThumbStick.x >= 0 && controller.m_currentState.LeftThumbStick.y >= -100 && controller.m_currentState.LeftThumbStick.y <= 0)
@@ -243,15 +386,16 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		}
 		else if (m_gear == 1)
 		{
-			m_maxSpeed = 1;
+			m_maxSpeed = 2;
 		}
 		else if (m_gear == 2)
 		{
-			m_maxSpeed = 3;
+			m_maxSpeed = 4;
 		}
 		else if (m_gear == 3)
 		{
 			m_maxSpeed = 6;
+			
 		}
 
 		// Car stalls when too low speed
@@ -349,6 +493,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 					m_speed = m_speed - m_acceleration;
 				}
 			}
+			
 		}
 
 		// Handbrake when X is pressed.
@@ -396,9 +541,25 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 		}
 
 		// Move car in correct direction with given speed.
-		player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
+		//also each some has a different speed variable so the car will travel slower or faster.
+		if (CarSelect.carOnePicked == true)
+		{
+			player.move(cos(player.getRotation()*3.14159265 / 180) * (m_speed * m_carOneSpeedMax), sin(player.getRotation()*3.14159265 / 180)* (m_speed * m_carOneSpeedMax));
+		}
+
+		if (CarSelect.carTwoPicked == true)
+		{
+			player.move(cos(player.getRotation()*3.14159265 / 180) * (m_speed * m_carTwoSpeedMax), sin(player.getRotation()*3.14159265 / 180)* (m_speed * m_carTwoSpeedMax));
+		}
+		
+		if (CarSelect.carThreePicked == true)
+		{
+			player.move(cos(player.getRotation()*3.14159265 / 180) * (m_speed * m_carThreeSpeedMax), sin(player.getRotation()*3.14159265 / 180)* (m_speed * m_carThreeSpeedMax));
+		}
 
 		follow.setCenter(player.getPosition().x + 170, player.getPosition().y + 120  );
+		
+		/*std::cout << player.getPosition().x << " , " << player.getPosition().y << std::endl;*/
 		
 		if (gearChanged == true)
 		{
@@ -410,7 +571,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 				gearChanged = false;
 			}
 		}
-		
+
 }
 
 void Player::move()
