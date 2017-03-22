@@ -3,7 +3,19 @@
 #include <math.h>
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
-
+/// <summary>
+/// Sync gamescreen with mini map Aaron Curry
+/// time taken: 9:00 - 14:0
+/// <summary>
+/// <summary>
+/// Off track detection author Aaron Curry
+/// time taken: 9:00 - 13:50
+///             21:00 - 22:30
+///             9:00 - 16:00
+///             19:00 - 22:00
+///             9:00 - 11:00
+///             13:00 - 14:00
+/// <summary>
 Player::Player(Game & game, CarSelect & CarSelect) :
 	m_game(&game),
 
