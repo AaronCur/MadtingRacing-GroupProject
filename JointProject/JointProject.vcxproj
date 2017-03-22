@@ -146,6 +146,7 @@
     <ClCompile Include="PauseOptions.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="PauseOptions.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
+    <ClInclude Include="Upgrade.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>

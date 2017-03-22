@@ -309,46 +309,52 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 		{
 			distanceLeft = distanceLeft + 360;
 		}
-	
-		// Stop the player rotating if it is withing a certain rotation of desired angle.
-		if (player.getRotation() <= (m_angle + 5) && player.getRotation() >= (m_angle - 5))
+		// If statement for dead zone
+		if (controller.m_currentState.LeftThumbStick.x > 10 || controller.m_currentState.LeftThumbStick.x < -10 || controller.m_currentState.LeftThumbStick.y < -10 || controller.m_currentState.LeftThumbStick.y > 10)
 		{
-			player.rotate(0);
-		}
-		// Rotate left or right depending on the distance to the desired angle.
-		else if (distanceRight > distanceLeft)
-		{
-			// Only allow rotation when car is moving
-			if (m_speed != 0)
+			// Stop the player rotating if it is withing a certain rotation of desired angle.
+			if (player.getRotation() <= (m_angle + 5) && player.getRotation() >= (m_angle - 5))
 			{
-				// Rotate more if handbrake is pulled.
-				if (controller.m_currentState.X == true)
+				player.rotate(0);
+			}
+
+			// Rotate left or right depending on the distance to the desired angle.
+			else if (distanceRight > distanceLeft)
+			{
+
+				// Only allow rotation when car is moving
+				if (m_speed != 0)
 				{
-					player.rotate(-4);
-					carSprite.rotate(-4);
-				}
-				else
-				{
-					player.rotate(-1);
-					carSprite.rotate(-1);
+					// Rotate more if handbrake is pulled.
+					if (controller.m_currentState.X == true)
+					{
+						player.rotate(-4);
+						carSprite.rotate(-4);
+					}
+					else
+					{
+						player.rotate(-2);
+						carSprite.rotate(-2);
+					}
 				}
 			}
-		}
-		else if (distanceLeft > distanceRight)
-		{
-			// Only allow rotation when car is moving
-			if (m_speed != 0)
+		
+			else if (distanceLeft > distanceRight)
 			{
-				// Rotate more if handbrake is pulled.
-				if (controller.m_currentState.X == true)
+				// Only allow rotation when car is moving
+				if (m_speed != 0)
 				{
-					player.rotate(4);
-					carSprite.rotate(4);
-				}
-				else
-				{
-					player.rotate(1);
-					carSprite.rotate(1);
+					// Rotate more if handbrake is pulled.
+					if (controller.m_currentState.X == true)
+					{
+						player.rotate(4);
+						carSprite.rotate(4);
+					}
+					else
+					{
+						player.rotate(2);
+						carSprite.rotate(2);
+					}
 				}
 			}
 		}

@@ -15,6 +15,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CarSelect.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Xbox360Controller.h" />
+    <ClInclude Include="Upgrade.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="background2.png" />
