@@ -151,12 +151,13 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 	}
 
 	
-	else if (controller.m_currentState.B && !controller.m_previousState.B)
+	else if (controller.m_currentState.B && !controller.m_previousState.B )
 	{
 	
 		m_game->setGameState(GameState::MainMenu);
 		
 	}
+	
 
 	
 	
@@ -177,7 +178,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		m_game->setGameState(GameState::Help);
 	}
 
-	controller.m_previousState = controller.m_currentState;
+//	controller.m_previousState = controller.m_currentState;
 
 	buttonUpdate();
 }

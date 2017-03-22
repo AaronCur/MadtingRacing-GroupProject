@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MAINMENU
 #define MAINMENU	
 #include <SFML\Graphics.hpp>
@@ -53,6 +54,8 @@ private:
 	bool pressed = false;
 	int alpha = 0;
 	bool alphaCount = true;
+
+	sf::Text m_speed;
 
 	Options *m_optionScreen;
 };

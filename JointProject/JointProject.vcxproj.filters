@@ -1,103 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="resources">
-      <UniqueIdentifier>{78abfcfd-bec4-46d7-9a19-afb2c4d1a7b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source">
-      <UniqueIdentifier>{60492744-58cf-46dc-a67d-3e0d71259ae1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="header">
-      <UniqueIdentifier>{205bc4a0-00d0-4d75-a2a9-936cac57c368}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="License.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Options.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Splash.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Xbox360Controller.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Help.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScreen.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="Adventure Hollow.otf">
-      <Filter>resources</Filter>
-    </Font>
-    <Font Include="Adventure.otf">
-      <Filter>resources</Filter>
-    </Font>
-    <Font Include="Meatloaf.ttf">
-      <Filter>resources</Filter>
-    </Font>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="background2.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="background3.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="CarSprite.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="help.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="select.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="track2.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="bigTrack.png">
-      <Filter>resources</Filter>
-    </Image>
-    <Image Include="fire.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScreen.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="Help.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="License.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="Options.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="Splash.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="Xbox360Controller.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
+    <ClCompile Include="CarSelect.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -105,26 +9,43 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Options.cpp" />
-    <ClCompile Include="Splash.cpp" />
-    <ClCompile Include="Xbox360Controller.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameScreen.cpp" />
-    <ClCompile Include="Help.cpp" />
-    <ClCompile Include="License.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Options.cpp" />
-    <ClCompile Include="Splash.cpp" />
-    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="OptionsHelp.cpp" />
+    <ClCompile Include="Pause.cpp" />
+    <ClCompile Include="PauseOptions.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameScreen.cpp" />
-    <ClCompile Include="Help.cpp" />
-    <ClCompile Include="License.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CarSelect.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Help.h" />
+    <ClInclude Include="License.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionsHelp.h" />
+    <ClInclude Include="Pause.h" />
+    <ClInclude Include="PauseOptions.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Splash.h" />
+    <ClInclude Include="Xbox360Controller.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="background2.png" />
+    <Image Include="background3.png" />
+    <Image Include="bigTrack.png" />
+    <Image Include="CarSprite.png" />
+    <Image Include="garage.png" />
+    <Image Include="fire.png" />
+    <Image Include="help.png" />
+    <Image Include="select.png" />
+    <Image Include="Speed.png" />
+    <Image Include="MapTexture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Adventure Hollow.otf" />
+    <Font Include="Adventure.otf" />
+    <Font Include="Meatloaf.ttf" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+#pragma once
 #include "MainMenu.h"
 #include <iostream>
 
@@ -33,17 +34,19 @@ MainMenu::MainMenu(Game & game, sf::Font font) :
 	}
 
 	m_carOne.setTexture(m_carSpriteSheet);
-	sf::IntRect carOneRect(15, 13, 73, 129);
+	sf::IntRect carOneRect(35, 30, 178, 313);
 	m_carOne.setTextureRect(carOneRect);
 	m_carOne.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	m_carOne.rotate(270);
+	m_carOne.setScale(.5, .5);
 	m_carOne.setPosition(0, 250);
 
 	m_carTwo.setTexture(m_carSpriteSheet);
-	sf::IntRect carTwoRect(317, 233, 72, 131);
+	sf::IntRect carTwoRect(363, 551, 178, 308);
 	m_carTwo.setTextureRect(carTwoRect);
 	m_carTwo.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	m_carTwo.rotate(90);
+	m_carTwo.scale(.5, .5);
 	m_carTwo.setPosition(800, 400);
 
 	m_backgroundSprite.setTexture(m_backgroundTexture);
@@ -89,6 +92,7 @@ MainMenu::~MainMenu()
 void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 {
 	
+	
 	if (buttonCounter == 1)
 	{
 		buttonOneSelected = true;
@@ -117,24 +121,25 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 		buttonThreeSelected = false;
 		buttonFourSelected = true;
 	}
-	if (buttonOneSelected == true)
-	{
-		if (controller.m_currentState.A)
+	//if (buttonOneSelected == true)
+	//{
+		if (controller.m_currentState.A&& controller.m_previousState.A == false && buttonOneSelected)
 		{
-			m_game->setGameState(GameState::GameScreen);
+			m_game->setGameState(GameState::CarSelect);
 		}
-	}
+		//controller.m_previousState = controller.m_currentState;
+	//}
 	if (buttonTwoSelected == true)
 	{
 
-		if (controller.m_currentState.A)
+		if (controller.m_currentState.A&& controller.m_previousState.A == false)
 		{
 			m_game->setGameState(GameState::License);
 		}
 	}
 	if (buttonThreeSelected == true)
 	{
-		if (controller.m_currentState.A)
+		if (controller.m_currentState.A&& controller.m_previousState.A == false)
 		{
 
 			m_game->setGameState(GameState::Options);
@@ -143,7 +148,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	}
 	if (buttonFourSelected == true)
 	{
-		if (controller.m_previousState.A)
+		if (controller.m_previousState.A == true)
 		{
 
 			close = true;
@@ -275,7 +280,7 @@ void MainMenu::update(sf::Time deltaTime, Xbox360Controller& controller)
 	}
 	
 	
-
+	
 
 }
 

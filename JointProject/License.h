@@ -37,7 +37,7 @@ private:
 	int alpha;
 	int alpha2;
 	bool flip;
-	bool m_pressed = false;
+	
 
 };
 #endif // !License
