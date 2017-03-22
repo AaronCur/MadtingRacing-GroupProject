@@ -148,6 +148,7 @@
     <ClCompile Include="PauseOptions.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="PauseOptions.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
+    <ClInclude Include="Upgrade.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
@@ -180,9 +182,9 @@
     <Image Include="garage.png" />
     <Image Include="fire.png" />
     <Image Include="help.png" />
+    <Image Include="MapTexture.png" />
     <Image Include="select.png" />
     <Image Include="Speed.png" />
-    <Image Include="track2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

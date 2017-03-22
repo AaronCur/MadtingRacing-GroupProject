@@ -20,10 +20,11 @@ class GameScreen
 public:
 	GameScreen(Game& game, sf::Font font);
 	~GameScreen();
-	void update(sf::Time dt, Xbox360Controller&controller);
+	void update(sf::Time dt, Xbox360Controller&controller, Player &player);
 	void render(sf::RenderWindow& window, Player& player);
 private:
 	Game *m_game;
+	int lap = 0;
 	sf::Font m_font;
 	sf::RectangleShape rectangle;
 	//Track sprite and texture
@@ -33,12 +34,21 @@ private:
 	sf::Texture miniMapTexture;
 	sf::Sprite miniMapSprite;
 	sf::Sprite sprite;
+
+	sf::Sprite dirtSprite;
+	sf::Texture dirtTexture;
 	//The two views that wil make up the render window
 	sf::View gameView;
 	sf::View miniMapView;
 	sf::CircleShape circle;
 	sf::View follow;
 	sf::RectangleShape rec;
+
+	sf::Texture mapSprite;
+	sf::Sprite maptiles[16];
+
+
+	sf::RectangleShape finishLine;
 };
 
 #endif // !Help

@@ -16,6 +16,7 @@
 #include "OptionsHelp.h"
 #include "CarSelect.h"
 #include "Player.h"
+#include "Upgrade.h"
 
 
 //each class is declared
@@ -30,6 +31,7 @@ class PauseOptions;
 class OptionsHelp;
 class CarSelect;
 class Player;
+class Upgrade;
 
 
 enum class
@@ -48,6 +50,7 @@ enum class
 	Pause,
 	PauseOptions,
 	OptionsHelp,
+	UpgradeScreen,
 	CarSelect
 };
 class Game
@@ -83,5 +86,7 @@ protected:
 	OptionsHelp *m_helpOptions;
 	CarSelect *m_carSelectScreen;
 	Player *m_player;
+	Upgrade *m_upgradeScreen;
+
 };
 #endif // !GAME

@@ -18,7 +18,7 @@ static double const MS_PER_UPDATE = 10.0;
 Game::Game():
 
 	m_window(sf::VideoMode(1000, 650, 32), "Madting Racing"),
-	m_currentGameState(GameState::GameScreen)
+	m_currentGameState(GameState::CarSelect)
 
 {
 
@@ -38,7 +38,8 @@ Game::Game():
 	m_pauseOptions = new PauseOptions(*this, m_agentOrange);
 	m_helpOptions = new OptionsHelp(*this, m_agentOrange);
 	m_carSelectScreen = new CarSelect(*this, m_agentOrange);
-	m_player = new Player(*this);
+	m_upgradeScreen = new Upgrade(*this, m_comicSans);
+	m_player = new Player(*this, *m_carSelectScreen);
 	controller = new Xbox360Controller();
 
 	//miniMapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.35f));
@@ -56,6 +57,7 @@ Game::~Game()
 	delete(m_pauseOptions);
 	delete(m_helpOptions);
 	delete(m_carSelectScreen);
+	delete(m_upgradeScreen);
 	std::cout << "destructing game" << std::endl;
 }
 
@@ -145,6 +147,10 @@ void Game::update(sf::Time time)
 		m_mainMenu->update(time, *controller);
 		controller->update();
 		break;
+	case GameState::Upgrade:
+		controller->update();
+		m_upgradeScreen->update(time, *controller);
+		break;
 	case GameState::Help:
 		controller->update();
 		m_helpScreen->update(time, *controller);
@@ -157,8 +163,8 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::GameScreen:
 		controller->update();
-		m_gameScreen->update(time, *controller);
-		m_player->update(time, *controller, m_window);
+		m_gameScreen->update(time, *controller, *m_player);
+		m_player->update(time, *controller, *m_carSelectScreen);
 		break;
 	case GameState::CarSelect:
 		controller->update();
@@ -224,6 +230,9 @@ void Game::render()
 		break;
 	case GameState::OptionsHelp:
 		m_helpOptions->render(m_window);
+		break;
+	case GameState::Upgrade:
+		m_upgradeScreen->render(m_window);
 		break;
 	default:
 		break;

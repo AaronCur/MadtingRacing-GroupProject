@@ -6,21 +6,22 @@
 #include "Xbox360Controller.h"
 // #include <assert.h>
 class Game;
+class CarSelect;
 
 class Player
 {
 public:
-	Player(Game& Game);
+	Player(Game & Game, CarSelect & CarSelect);
 	~Player();
-	void update(sf::Time deltaTime, Xbox360Controller& controller, sf::RenderWindow& window);
+	void update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect);
+
 	void render(sf::RenderWindow& window);
 	void carDraw(sf::RenderWindow& window);
 	void move();
 	void offTrackDetection();
 	double m_angle;
 	double m_currentAngle;
-	//bool collision(Player p);
-	
+
 	sf::RectangleShape player;
 	sf::Sprite carSprite;
 private:
@@ -39,11 +40,20 @@ private:
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
 	sf::Color pixel;
-	
+
+	sf::Texture mapSprite;
+	sf::Sprite mapTiles[16];
+
 	double m_acceleration = 0.1;
 	double m_friction = 0.02;
 	double m_maxSpeed = 1;
 	double m_gear = 0;
+
+	double m_carOneSpeedMax;
+	
+	double m_carTwoSpeedMax;
+	
+	double m_carThreeSpeedMax;
 
 	double static const RAD_TO_DEG;
 	double static const DEG_TO_RAD;
@@ -70,9 +80,9 @@ private:
 	double dt = 0;
 	sf::Time m_time;
 
+
+
 	sf::View follow;
 
-
-	
 };
 #endif // !Player
