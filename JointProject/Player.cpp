@@ -50,12 +50,12 @@ Player::Player(Game & game) :
 
 	// Car sprite variables.
 	carSprite.setTexture(m_carSpriteSheet);
-	sf::IntRect carOneRect(15, 13, 73, 129);
+	sf::IntRect carOneRect(35, 30, 178, 313);
 	carSprite.setTextureRect(carOneRect);
 	carSprite.setOrigin(carOneRect.width *.5, carOneRect.height * .5);
 	carSprite.rotate(270);
 	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
-	carSprite.setScale(0.3, 0.3);
+	carSprite.setScale(0.13, 0.13);
 
 }
 
@@ -189,13 +189,21 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 				// Rotate more if handbrake is pulled.
 				if (controller.m_currentState.X == true)
 				{
-					player.rotate(-4);
-					carSprite.rotate(-4);
+					player.setOrigin(1000, 0);
+					if (controller.m_currentState.LeftThumbStick.x > 10 || controller.m_currentState.LeftThumbStick.x < -10 || controller.m_currentState.LeftThumbStick.y < -10 || controller.m_currentState.LeftThumbStick.y > 10)
+					{
+						player.rotate(-4);
+						//player.setOrigin(-100, 0);
+						carSprite.rotate(-4);
+					}
 				}
 				else
 				{
-					player.rotate(-1);
-					carSprite.rotate(-1);
+					if (controller.m_currentState.LeftThumbStick.x > 10 || controller.m_currentState.LeftThumbStick.x < -10 || controller.m_currentState.LeftThumbStick.y < -10 || controller.m_currentState.LeftThumbStick.y > 10)
+					{
+						player.rotate(-2);
+						carSprite.rotate(-2);
+					}
 				}
 			}
 		}
@@ -207,13 +215,19 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller)
 				// Rotate more if handbrake is pulled.
 				if (controller.m_currentState.X == true)
 				{
-					player.rotate(4);
-					carSprite.rotate(4);
+					if (controller.m_currentState.LeftThumbStick.x > 10 || controller.m_currentState.LeftThumbStick.x < -10 || controller.m_currentState.LeftThumbStick.y < -10 || controller.m_currentState.LeftThumbStick.y > 10)
+					{
+						player.rotate(4);
+						carSprite.rotate(4);
+					}
 				}
 				else
 				{
-					player.rotate(1);
-					carSprite.rotate(1);
+					if (controller.m_currentState.LeftThumbStick.x > 10 || controller.m_currentState.LeftThumbStick.x < -10 || controller.m_currentState.LeftThumbStick.y < -10 || controller.m_currentState.LeftThumbStick.y > 10)
+					{
+						player.rotate(2);
+						carSprite.rotate(2);
+					}
 				}
 			}
 		}

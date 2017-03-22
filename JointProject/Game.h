@@ -11,6 +11,7 @@
 #include "Options.h"
 #include "GameScreen.h"
 #include "Player.h"
+#include "Upgrade.h"
 
 
 //each class is declared
@@ -21,6 +22,7 @@ class Help;
 class Options;
 class GameScreen;
 class Player;
+class Upgrade;
 
 enum class
 	GameState
@@ -34,7 +36,8 @@ enum class
 	Exit,
 	HighScores,
 	Help,
-	GameScreen
+	GameScreen,
+	UpgradeScreen
 };
 class Game
 {
@@ -65,6 +68,7 @@ protected:
 	sf::Font m_comicSans;//font 
 	GameScreen *m_gameScreen;
 	Player *m_player;
+	Upgrade *m_upgradeScreen;
 
 };
 #endif // !GAME

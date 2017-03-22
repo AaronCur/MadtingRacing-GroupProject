@@ -142,6 +142,7 @@
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="Options.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
+    <ClInclude Include="Upgrade.h" />
     <ClInclude Include="Xbox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,10 +165,15 @@
     <Image Include="background2.png" />
     <Image Include="background3.png" />
     <Image Include="bigTrack.png" />
+    <Image Include="brake.png" />
     <Image Include="CarSprite.png" />
     <Image Include="fire.png" />
+    <Image Include="handling.png" />
     <Image Include="help.png" />
+    <Image Include="mechanicBackground.png" />
     <Image Include="select.png" />
+    <Image Include="Speed.png" />
+    <Image Include="speedGauge.png" />
     <Image Include="track2.png" />
   </ItemGroup>
   <ItemGroup>

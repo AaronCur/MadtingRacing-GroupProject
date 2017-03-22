@@ -34,6 +34,7 @@
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Upgrade.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Adventure Hollow.otf">
@@ -69,6 +70,11 @@
       <Filter>resources</Filter>
     </Image>
     <Image Include="fire.png" />
+    <Image Include="Speed.png" />
+    <Image Include="brake.png" />
+    <Image Include="handling.png" />
+    <Image Include="speedGauge.png" />
+    <Image Include="mechanicBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -117,6 +123,25 @@
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Xbox360Controller.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="License.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="Xbox360Controller.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Help.cpp" />
