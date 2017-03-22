@@ -5,6 +5,18 @@
 #include <algorithm>
 double const Player::DEG_TO_RAD = 3.14 * 180.0f;
 double const Player::RAD_TO_DEG = 57.295779513;
+// <summary>
+/// Sync gamescreen with mini map Aaron Curry
+/// time taken: 9:00 - 14:0
+/// <summary>
+/// <summary>
+/// Off track detection author Aaron Curry
+/// time taken: 9:00 - 13:50
+///             21:00 - 22:30
+///             9:00 - 16:00
+///             19:00 - 22:00
+///             9:00 - 11:00
+/// <summary>
 
 Player::Player(Game & game) :
 	m_game(&game),
@@ -16,48 +28,14 @@ Player::Player(Game & game) :
 	rect.setPosition(player.getPosition());
 	rect.setSize(player.getSize());
 
-	/*m_renderTexture.create(rect.getSize().x, rect.getSize().y);
-	sf::RectangleShape tempRect(rect);
-	tempRect.setPosition(0, 0);
-	m_renderTexture.draw(tempRect);
-	m_renderTexture.display();
-
-	texture = m_renderTexture.getTexture();
-	image = texture.copyToImage();
-
-
-	for (int i = 0; i < image.getSize().x; i++)
-	{
-		std::vector<bool>tempmask;
-
-		for(int j = 0; j < image.getSize().y; j++)
-		{
-			if (image.getPixel(i, j).a > 0)
-			{
-				tempmask.push_back(true);
-			}
-			else
-			{
-
-				tempmask.push_back(false);
-			}
-
-			mask.push_back(tempmask);
-		}
-	}*/
-
-
-
-
-
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
-	player.setPosition(200, 200);
+	player.setPosition(1000, 800);
 	player.setOrigin(20, 10);
 
 	// Load in track.
-	if (!m_trackTexture.loadFromFile("testTrack.png"))
+	if (!m_trackTexture.loadFromFile("bigTrack.png"))
 	{
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
@@ -79,10 +57,10 @@ Player::Player(Game & game) :
 		throw std::exception(s.c_str());
 	}
 	//follow.setCenter(500, 325);
-	follow.setViewport(sf::FloatRect(0, 0, 1, 1));
-	follow.setSize(4000, 2600);
-	//follow.setCenter(player.getPosition().x , player.getPosition().y );
-	follow.setCenter(2000, 1300);
+	follow.setViewport(sf::FloatRect(0, 0, 1.5, 1.5));
+	follow.setSize(1000, 650);
+	follow.setCenter(player.getPosition().x , player.getPosition().y );
+	//follow.setCenter(2000, 1300);
 
 
 	m_trackSprite.setTexture(m_trackTexture);
@@ -93,8 +71,11 @@ Player::Player(Game & game) :
 
 
 	m_renderTexture.create(4000, 2600); //create the render texture
+	m_renderTexture.clear(sf::Color(0, 0, 0, 0));
 	m_renderTexture.draw(m_trackSprite); //draw track sprite to the render texture
+	m_renderTexture.display();
 	image = m_renderTexture.getTexture().copyToImage(); //copy to the image
+
 	
 
 	// Set fire sprite initial position
@@ -150,22 +131,8 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	dt = m_time.asSeconds();
 	double speed = 0;
 
-	
-	/*bottom = rect.getPosition().y + rect.getSize().y;
-	left = rect.getPosstd::endl;ition().x;
-	right = rect.getPosition().x + rect.getSize().x;
-	top = rect.getPosition().y;*/
+	//Call off track collision detection every frame.
 	offTrackDetection();
-
-	//if (pixel.r >= 80 && pixel.g >= 80 && pixel.b >= 80
-	//	&& pixel.r <= 150 && pixel.g <= 150 && pixel.b <= 150)
-	//{
-	//	m_friction = 0.8;
-	//}
-	//else
-	//{
-	//	m_friction = 0.02;
-	//}
 
 	// Check for left thumb stick input.
 	if (controller.m_currentState.LeftThumbStick.y != 0)
@@ -178,8 +145,6 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	// Set car sprite to ontop of plater cube.
 	carSprite.setPosition(player.getPosition().x, player.getPosition().y);
 
-	/*m_carFireSprite.setPosition(carSprite.getPosition().x - 30, carSprite.getPosition().y + 5);*/
-
 	m_centre.x = player.getPosition().x + player.getTextureRect().width / 2;
 	m_centre.y = player.getPosition().y + player.getTextureRect().height / 2;
 
@@ -187,10 +152,6 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	m_carFireSprite.setOrigin(4, +32);
 
 	m_carFireSprite.setRotation(carSprite.getRotation());
-
-	//carSprite.rotate(player.getRotation());
-
-
 
 
 	// Code for checking which quadrant the left thumb stick points into. X and y cords checked.
@@ -446,12 +407,12 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	// Friction for slowing down car.
 	if (m_speed > 0.1)
 	{
-		m_speed = m_speed - m_friction;
+		m_speed = m_speed * -m_friction;
 		
 	}
 	if (m_speed < -0.1)
 	{
-		m_speed = m_speed + m_friction;
+		m_speed = m_speed * -m_friction;
 	}
 
 	// Stop car completly.
@@ -463,7 +424,8 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 	// Move car in correct direction with given speed.
 	player.move(cos(player.getRotation()*3.14159265 / 180) * m_speed, sin(player.getRotation()*3.14159265 / 180)* m_speed);
 
-	//follow.setCenter(player.getPosition().x , player.getPosition().y );
+	//Set the center of the view to the player position plus an offset due to scaling the view
+	follow.setCenter(player.getPosition().x + 170, player.getPosition().y +120 );
 	
 
 	if (gearChanged == true)
@@ -477,17 +439,6 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, sf::Rende
 		}
 	}
 	
-
-	//sf::Image image = window.capture();
-	// assert(player.getPosition().x < image.getSize().x && player.getPosition().y < image.getSize().y);
-	sf::Color color = image.getPixel(player.getPosition().x,player.getPosition().y);
-	//int y = image.getSize().y;
-
-	std::cout <<  (int)color.a << std::endl;
-//	std::cout << y << std::endl;
-	
-	
-		
 }
 
 void Player::move()
@@ -497,48 +448,19 @@ void Player::move()
 
 void Player::offTrackDetection()
 {
-// pixel = image.getPixel(follow.getCenter().x, follow.getCenter().y );
-	int i = player.getPosition().x;
-	int j = player.getPosition().y;
-
-	sf::Color color = image.getPixel(i, j);
-	//std::cout << m_friction << std::endl;
-
-	if (color.a < 200)
+	//Get the colour of the pixel at the players co-ordinate
+	sf::Color color = image.getPixel(player.getPosition().x, player.getPosition().y);
+	
+	if (color.r > color.b)
 	{
-		m_friction = 0.01;
-		std::cout << "OffTrack" << std::endl;
-	   
+		//Friction when car is off track
+		m_friction = 0.8;
 	}
 	else
 	{
-		m_friction = 0.01;
-		std::cout << color.a << std::endl;
-		//std::cout << "on" << std::endl;
+		//friction whe ncar is on track
+		m_friction = 0.995;
 	}
+	//std::cout << m_speed << std::endl;
 }
 
-//bool Player::collision(Player p)
-//{
-//	if (right <= p.left || left >= p.right || top >= p.bottom || bottom <= p.top)
-//	{
-//
-//	}
-//	else
-//	{
-//		float colBottom, colTop, colLeft, colRight;
-//		colBottom = std::min(bottom, p.bottom);
-//		colTop = std::max(top, p.top);
-//		colLeft = std::max(left, p.left);
-//		colRight = std::min(right, p.right);
-//
-//		for (int i = colTop; i < colBottom; i++)
-//		{
-//			for (int j = 0; j < length; i++)
-//			{
-//
-//			}
-//		}
-//
-//	}
-//}
