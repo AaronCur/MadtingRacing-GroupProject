@@ -48,6 +48,9 @@ private:
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
 
+	sf::RenderTexture m_renderTexture;
+	sf::Image image;
+
 	sf::Texture m_skidTexture;
 	sf::Sprite m_skidSprite[1000];
 
@@ -81,7 +84,6 @@ private:
 	double distanceRight = 0;
 
 	double m_speed = 0;
-	sf::Image image;
 	sf::Time skidTime;
 	bool topRight = false;
 	bool topLeft = false;

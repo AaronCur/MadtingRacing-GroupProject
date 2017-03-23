@@ -113,6 +113,14 @@ Player::Player(Game & game, sf::Font font) :
 	carSprite.setTexture(m_carSpriteSheet);
 	carSprite.rotate(270);
 
+	m_renderTexture.create(4000, 2600); //create the render texture
+	m_renderTexture.clear(sf::Color(0, 0, 0, 0));
+	m_renderTexture.draw(m_trackSprite); //draw track sprite to the render texture
+	m_renderTexture.display();
+	image = m_renderTexture.getTexture().copyToImage(); //copy to the image
+
+
+
 	if (!mapSprite.loadFromFile("./resources/images/MapTexture.png"))
 	{
 
@@ -240,6 +248,7 @@ void Player::carDraw(sf::RenderWindow& window)
 void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect)
 {
 	offTrackDetection();
+
 	circle.setPosition(player.getPosition().x - 30, player.getPosition().y - 30);
 	noOfLaps.setPosition(player.getPosition().x + 180, player.getPosition().y - 80);
 	lapOneText.setPosition(player.getPosition().x - 300, player.getPosition().y - 160);
@@ -604,11 +613,11 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 		// Friction for slowing down car.
 		if (m_speed > 0.1)
 		{
-			m_speed = m_speed - m_friction;
+			m_speed = m_speed * m_friction;
 		}
 		if (m_speed < -0.1)
 		{
-			m_speed = m_speed + m_friction;
+			m_speed = m_speed * m_friction;
 		}
 
 		// Stop car completly.
@@ -762,18 +771,19 @@ void Player::move()
 void Player::offTrackDetection()
 {
 	////Get the colour of the pixel at the players co-ordinate
-	//sf::Color color = image.getPixel(player.getPosition().x, player.getPosition().y);
+	sf::Color color = image.getPixel(player.getPosition().x, player.getPosition().y);
 
-	//if (color.r > color.b)
-	//{
-	//	//Friction when car is off track
-	//	m_friction = 0.8;
-
-	//}
-	//else
-	//{
-	//	//friction whe ncar is on track
-	//	m_friction = 0.995;
-	//}
+	if (color.r > color.b)
+	{
+		//Friction when car is off track
+		m_friction = 0.9;
+		std::cout << " off track" << std::endl;
+	}
+	else
+	{
+		//friction whe ncar is on track
+		m_friction = 0.995;
+		std::cout << "on track" << std::endl;
+	}
 	//std::cout << "off circuit";
 }
