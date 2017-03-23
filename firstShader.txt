@@ -1,0 +1,29 @@
+uniform vec2 resolution;
+uniform float time;
+
+// radius
+// float r = 0.25; 
+
+vec2 centre = vec2(0.5);
+
+void main() {
+	// normalize position
+	vec2 st = gl_FragCoord.xy / resolution;
+	
+	float r = abs(st.y);
+	
+	// distance from centre
+	float d = clamp(distance(st, centre) / r, 0.0, 1.0);
+
+	// base color shade
+	float c = abs(sin(d));
+	
+	// base; convert to washed-out & invert 
+	float b = (1.0 - c) * 1.4;
+	
+	// tweak individual channels
+	vec3 rgb = vec3(b + .1, b + st.y * .3, b + st.x * .4);
+
+	
+	gl_FragColor = vec4(rgb + cos(time*8.) / 50., 0.5);
+	}
