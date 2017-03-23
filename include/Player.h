@@ -28,6 +28,8 @@ public:
 	bool restartGame = false;
 	bool restartAi = false;
 
+	bool onTrack = false;
+
 	double m_carOneSpeedMax = 1.2;
 	double m_carTwoSpeedMax = 0.4;
 	double m_carThreeSpeedMax = 0.6;

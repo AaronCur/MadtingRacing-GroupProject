@@ -638,9 +638,12 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			// For loop too quick, needed a delay bud :P
 			if (m_time.asSeconds() >= 0.01)
 			{
-				m_skidSprite[counter].setOrigin(carSprite.getOrigin());
-				m_skidSprite[counter].setPosition(carSprite.getPosition());
-				m_skidSprite[counter].setRotation(carSprite.getRotation());
+				if (onTrack == true)
+				{
+					m_skidSprite[counter].setOrigin(carSprite.getOrigin());
+					m_skidSprite[counter].setPosition(carSprite.getPosition());
+					m_skidSprite[counter].setRotation(carSprite.getRotation());
+				}
 				skidTime = sf::Time::Zero;
 				if (counter < 999)
 				{
@@ -852,12 +855,14 @@ void Player::offTrackDetection()
 	{
 		//Friction when car is off track
 		m_friction = 0.9;
+		onTrack = false;
 		std::cout << " off track" << std::endl;
 	}
 	else
 	{
 		//friction whe ncar is on track
 		m_friction = 0.995;
+		onTrack = true;
 		std::cout << "on track" << std::endl;
 	}
 	//std::cout << "off circuit";

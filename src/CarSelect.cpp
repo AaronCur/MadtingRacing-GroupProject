@@ -11,7 +11,8 @@ CarSelect::CarSelect(Game & game, sf::Font font) :
 	m_game(&game),
 	m_agentOrange(font),
 	m_speed("Speed:", m_agentOrange),
-	m_brake("Brake:", m_agentOrange)
+	m_brake("Brake:", m_agentOrange),
+	m_handling("Handling:", m_agentOrange)
 {
 
 	//loading texture from file
@@ -62,6 +63,18 @@ CarSelect::CarSelect(Game & game, sf::Font font) :
 	m_brakeSprite[4].setPosition(920, 465);
 	m_brakeSprite[5].setPosition(950, 465);
 
+	// An array of sprites of the handling
+	for (int i = 0; i < 6; i++)
+	{
+		m_handlingSprite[i].setTexture(m_speedTexture);
+	}
+
+	m_handlingSprite[0].setPosition(880, 510);
+	m_handlingSprite[1].setPosition(895, 510);
+	m_handlingSprite[2].setPosition(910, 510);
+	m_handlingSprite[3].setPosition(925, 510);
+	m_handlingSprite[4].setPosition(940, 510);
+	m_handlingSprite[5].setPosition(955, 510);
 
 	m_selectSpriteCarOne.setTexture(m_selectTexture);
 	m_selectSpriteCarOne.setPosition(170, 130);
@@ -129,6 +142,8 @@ CarSelect::CarSelect(Game & game, sf::Font font) :
 	m_speed.setColor(sf::Color::Black);
 	m_brake.setPosition(660, 450);
 	m_brake.setColor(sf::Color::Black);
+	m_handling.setPosition(660, 500);
+	m_handling.setColor(sf::Color::Black);
 }
 
 
@@ -240,7 +255,7 @@ void CarSelect::update(sf::Time deltaTime, Xbox360Controller &controller)
 }
 
 
-void CarSelect::render(sf::RenderWindow & window)
+void CarSelect::render(sf::RenderWindow & window, Upgrade & upgrade)
 {
 
 
@@ -251,6 +266,7 @@ void CarSelect::render(sf::RenderWindow & window)
 	window.draw(m_carSelectThree);
 	window.draw(m_speed);
 	window.draw(m_brake);
+	window.draw(m_handling);
 
 
 	//Draws first car and all its speed and break speed, when user is on it
@@ -258,30 +274,36 @@ void CarSelect::render(sf::RenderWindow & window)
 	{
 		window.draw(m_selectSpriteCarOne);
 		window.draw(m_carSelectOneBig);
-		window.draw(m_speedSprite[0]);
-		window.draw(m_speedSprite[1]);
-		window.draw(m_speedSprite[2]);
-		window.draw(m_speedSprite[3]);
-		window.draw(m_speedSprite[4]);
-		window.draw(m_speedSprite[5]);
-
-
-		window.draw(m_brakeSprite[0]);
-		window.draw(m_brakeSprite[1]);
-		window.draw(m_brakeSprite[2]);
+		for (int i = 0; i < upgrade.m_oneSpeed; i++)
+		{
+			window.draw(m_speedSprite[i]);
+		}
+		for (int x = 0; x < upgrade.m_oneBrake; x++)
+		{
+			window.draw(m_brakeSprite[x]);
+		}
+		for (int y = 0; y < upgrade.m_oneHandling; y++)
+		{
+			window.draw(m_handlingSprite[y]);
+		}
 	}
 	//draws car two, when user is on it
 	else if (buttonCount == 2 && buttonTwoSelected == true)
 	{
 		window.draw(m_selectSpriteCarTwo);
 		window.draw(m_carSelectTwoBig);
-		window.draw(m_speedSprite[0]);
-		window.draw(m_speedSprite[1]);
-
-		window.draw(m_brakeSprite[0]);
-		window.draw(m_brakeSprite[1]);
-		window.draw(m_brakeSprite[2]);
-		window.draw(m_brakeSprite[3]);
+		for (int i = 0; i < upgrade.m_twoSpeed; i++)
+		{
+			window.draw(m_speedSprite[i]);
+		}
+		for (int x = 0; x < upgrade.m_twoBrake; x++)
+		{
+			window.draw(m_brakeSprite[x]);
+		}
+		for (int y = 0; y < upgrade.m_twoHandling; y++)
+		{
+			window.draw(m_handlingSprite[y]);
+		}
 	}
 
 	//draws car three, the big one when user is on it
@@ -289,16 +311,20 @@ void CarSelect::render(sf::RenderWindow & window)
 	{
 		window.draw(m_selectSpriteCarThree);
 		window.draw(m_carSelectThreeBig);
-		window.draw(m_speedSprite[0]);
-		window.draw(m_speedSprite[1]);
-		window.draw(m_speedSprite[2]);
-
-		window.draw(m_brakeSprite[0]);
-		window.draw(m_brakeSprite[1]);
-		window.draw(m_brakeSprite[2]);
-		window.draw(m_brakeSprite[3]);
-		window.draw(m_brakeSprite[4]);
+		for (int i = 0; i < upgrade.m_threeSpeed; i++)
+		{
+			window.draw(m_speedSprite[i]);
+		}
+		for (int x = 0; x < upgrade.m_threeBrake; x++)
+		{
+			window.draw(m_brakeSprite[x]);
+		}
+		for (int y = 0; y < upgrade.m_threeHandling; y++)
+		{
+			window.draw(m_handlingSprite[y]);
+		}
 	}
+
 
 
 

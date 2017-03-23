@@ -16,6 +16,20 @@ public:
 	~Upgrade();
 	void update(sf::Time dt, Xbox360Controller&controller, Player & player);
 	void render(sf::RenderWindow& window);
+
+	// Variables for different car specs
+
+	int m_oneSpeed = 6;
+	int m_oneBrake = 1;
+	int m_oneHandling = 1;
+
+	int m_twoSpeed = 2;
+	int m_twoBrake = 2;
+	int m_twoHandling = 2;
+
+	int m_threeSpeed = 3;
+	int m_threeBrake = 1;
+	int m_threeHandling = 2;
 private:
 	Game *m_game;
 	Player *m_player;
@@ -89,20 +103,6 @@ private:
 	bool twoSelected = false;
 	bool threeSelected = false;
 
-
-	// Variables for different car specs
-
-	int m_oneSpeed = 6;
-	int m_oneBrake = 1;
-	int m_oneHandling = 1;
-
-	int m_twoSpeed = 2;
-	int m_twoBrake = 2;
-	int m_twoHandling = 2;
-
-	int m_threeSpeed = 3;
-	int m_threeBrake = 1;
-	int m_threeHandling = 2;
 
 	bool pressed = false;
 	double alpha;

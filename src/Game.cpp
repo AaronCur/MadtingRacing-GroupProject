@@ -411,7 +411,7 @@ void Game::render()
 		
 		break;
 	case GameState::CarSelect:
-		m_carSelectScreen->render(m_window);
+		m_carSelectScreen->render(m_window, *m_upgradeScreen);
 		break;
 	case GameState::Pause:
 		m_pause->render(m_window);

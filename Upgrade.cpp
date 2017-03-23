@@ -422,7 +422,7 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 					{
 						m_twoHandling = m_twoHandling + 1;
 					}
-					if (oneSelected == true)
+					if (threeSelected == true)
 					{
 						m_threeHandling = m_threeHandling + 1;
 					}
@@ -652,27 +652,27 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 		}
 		else if (threeSelected == true)
 		{
-			if (m_threeSpeed == 1)
+			if (m_threeBrake == 1)
 			{
 				m_price = 200;
 			}
-			else if (m_threeSpeed == 2)
+			else if (m_threeBrake== 2)
 			{
 				m_price = 300;
 			}
-			else if (m_threeSpeed == 3)
+			else if (m_threeBrake == 3)
 			{
 				m_price = 400;
 			}
-			else if (m_threeSpeed == 4)
+			else if (m_threeBrake == 4)
 			{
 				m_price = 500;
 			}
-			else if (m_threeSpeed == 5)
+			else if (m_threeBrake == 5)
 			{
 				m_price = 600;
 			}
-			else if (m_threeSpeed == 6)
+			else if (m_threeBrake == 6)
 			{
 				m_price = 000;
 			}

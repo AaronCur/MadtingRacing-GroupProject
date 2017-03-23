@@ -3,13 +3,14 @@
 #include"Game.h"
 #include "Xbox360Controller.h"
 
+class Upgrade;
 class CarSelect
 {
 public:
 	CarSelect(Game& game, sf::Font font);
 	~CarSelect();
 	void update(sf::Time dt, Xbox360Controller&controller);
-	void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow& window, Upgrade & upgrade);
 
 	bool carOnePicked = false;
 	bool carTwoPicked = false;
@@ -21,6 +22,7 @@ public:
 
 	int buttonCount = 0;
 private:
+	Upgrade *m_upgrade;
 	Game *m_game;
 	sf::Font m_agentOrange;
 	sf::Font m_font;
@@ -45,12 +47,14 @@ private:
 	sf::Texture m_speedTexture;
 	sf::Sprite m_speedSprite[6];
 	sf::Sprite m_brakeSprite[6];
+	sf::Sprite m_handlingSprite[6];
 
 	sf::Texture m_garageTexture;
 	sf::Sprite m_garageSprite;
 
 	sf::Text m_speed;
 	sf::Text m_brake;
+	sf::Text m_handling;
 
 
 	int alpha = 0;
