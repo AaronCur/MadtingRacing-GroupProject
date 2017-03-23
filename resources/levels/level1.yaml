@@ -93,8 +93,6 @@ paths:
    - type: path
      position: {x: 3385, y: 300}
    - type: path
-     position: {x: 3550, y: 775}
-   - type: path
      position: {x: 3530, y: 795}
    - type: path
      position: {x: 3495, y: 861}
@@ -163,8 +161,6 @@ paths:
 pathsTwo:
    - type: path
      position: {x: 1700, y: 330}
-   - type: path
-     position: {x: 1920, y: 330}
    - type: path
      position: {x: 1950, y: 410}
    - type: path

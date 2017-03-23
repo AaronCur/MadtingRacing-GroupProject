@@ -10,7 +10,6 @@ Player::Player(Game & game, sf::Font font) :
 	m_angle(0)
 	
 {
-	
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
@@ -216,6 +215,23 @@ Player::Player(Game & game, sf::Font font) :
 	sf::IntRect mapRecSixteen(3380, 2119, 1000, 650);
 	mapTiles[15].setTextureRect(mapRecSixteen);
 	mapTiles[15].setPosition(3000, 1950);
+
+	if (!buffer.loadFromFile("./resources/images/button.wav"))
+	{
+		std::string main("Error Loading sound");
+		throw std::exception(main.c_str());
+	}
+	buttonPress.setBuffer(buffer);
+	if (!revBuffer.loadFromFile("./resources/images/newwer.wav"))
+	{
+		std::string main("Error Loading sound");
+		throw std::exception(main.c_str());
+	}
+	revSound.setBuffer(revBuffer);
+
+	revSound.play();
+	revSound.setVolume(0.0f);
+	revSound.setLoop(true);
 }
 
 Player::~Player()
@@ -236,7 +252,7 @@ void Player::render(sf::RenderWindow& window)
 	//window.draw(player)
 	/*window.draw(circle);
 	window.draw(halfwayCircle);*/
-	window.draw(lapCircle);
+	//window.draw(lapCircle);
 	for (int i = 0; i < 1000; i++)
 	{
 		window.draw(m_skidSprite[i]);
@@ -267,9 +283,14 @@ void Player::carDraw(sf::RenderWindow& window)
 {
 	window.draw(carSprite);
 }
-
+/// <summary>
+/// resets all 
+/// </summary>
 void Player::restart()
 {
+	firstLap = 0;
+	secondLap = 0;
+	thirdLap = 0;
 	player.setPosition(1390, 475);
 	m_speed = 0;
 	m_gear = 1;
@@ -277,9 +298,21 @@ void Player::restart()
 	m_time = sf::Time::Zero;
 	currentTime = sf::Time::Zero;
 	countdown = 3;
+	lapCount = 0;
+	laps = 0;
+	minute = 0;
+	noOfLaps.setString("Laps " + std::to_string(laps) + "/3");
+	lapOneText.setString("1st Lap: " + std::to_string(firstLap));
+	lapTwoText.setString("2nd Lap: " + std::to_string(secondLap));
+	lapThreeText.setString("3rd Lap: " + std::to_string(thirdLap));
 	start = false;
 	restartAi = true;
 	restartGame = false;
+	bool lap = false;
+	bool lap2 = false;
+	bool lap3 = false;
+	dt = 0;
+	lapText.setString("Time: " + std::to_string(minute) + ":0" + std::to_string(dt));
 	
 }
 void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect, Upgrade & upgrade)
@@ -366,13 +399,14 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 	skidTime += deltaTime;
 	// Set up time for acceleration.
 	countdownTime += deltaTime;
-	double laperTime = 0;
+
 	if (countdownTime.asSeconds() > 1 && !start)
 	{
 		countdown--;
 		countdownTime = sf::Time::Zero;
 		countdownTxt.setString(std::to_string(countdown));
 		countdownTxt.setPosition(player.getPosition().x - 40, player.getPosition().y - 120);
+		buttonPress.play();
 	}
 
 	if (countdown <= 0)
@@ -619,9 +653,16 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			}
 		}
 
+		// sets the volume of the car to 0 
+		if (controller.m_currentState.RTrigger < 10)
+		{
+			revSound.setVolume(0.0f);
+		}
+
 		// Accelerate car when right trigger is pressed.
 		if (controller.m_currentState.RTrigger > 10)
 		{
+			revSound.setVolume(70.0f);
 			// Going forward.
 			if (m_speed < m_maxSpeed)
 			{
@@ -779,6 +820,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 		}
 		if (dt >= 60)
 		{
+			//increments the minutes if more than 60
 			minute++;
 			m_time = sf::Time::Zero;
 			dt = m_time.asSeconds();
@@ -822,7 +864,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			
 			firstLap = laperTime;
 			lapOneText.setString("1st Lap: " + std::to_string(firstLap));
-			
+			lapCount = lapCount + 1;
 		}
 	}
 	else if (halfway && lap && !lap2)
@@ -838,7 +880,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			secondLap = laperTime - firstLap;
 			lapTwoText.setString("2nd Lap: " + std::to_string(secondLap));
 			
-			
+			lapCount = lapCount + 1;
 		}
 	}
 	else if (halfway && lap && lap2 && !lap3)
@@ -852,12 +894,21 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			noOfLaps.setString("Laps " + std::to_string(laps) + "/3");
 				
 
-			thridLap = laperTime - secondLap;
-			lapThreeText.setString("3rd Lap: " + std::to_string(thridLap));
+			thirdLap = laperTime - (secondLap + thirdLap);
+			lapThreeText.setString("3rd Lap: " + std::to_string(thirdLap));
 			
+			lapCount = lapCount + 1;
 		}
 	}
-	std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
+	if (lapCount == 3)
+	{
+		m_game->setGameState(GameState::EndGame);
+	}
+	
+	if (player.getPosition().x < 50 || player.getPosition().x > 3950 || player.getPosition().y < 50 || player.getPosition().y > 2550)
+	{
+		m_speed = -m_speed;
+	}
 }
 
 

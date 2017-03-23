@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="BTMath.h" />
+    <ClInclude Include="EndGame.h" />
     <ClInclude Include="include\CarSelect.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameScreen.h" />
@@ -49,6 +50,7 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="BTMath.cpp" />
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="OptionsHelp.cpp" />
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="PauseOptions.cpp" />

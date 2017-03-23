@@ -26,6 +26,8 @@ public:
 	sf::RectangleShape player;
 	sf::Sprite carSprite;
 
+	double laperTime = 0;
+
 	bool restartGame = false;
 	bool restartAi = false;
 
@@ -42,6 +44,12 @@ public:
 	double m_carOneBraking;
 	double m_carTwoBraking;
 	double m_carThreeBraking;
+
+	double firstLap = 0;
+	double secondLap = 0;
+	double thirdLap = 0;
+
+	int lapCount = 0;
 
 private:
 	bool skiding = false;
@@ -86,13 +94,14 @@ private:
 	double m_maxSpeed = 1;
 	double m_gear = 1;
 
+	double m_handlingUpgrade = 0;
+	double m_brakingUpgrade = 0;
+
 	double m_revs = 0;
 	double m_revsStart = 0;
 
 	double m_rotationAngle = 270;
 
-	double m_handlingUpgrade = 0;
-	double m_brakingUpgrade = 0;
 
 	int minute = 0;
 	int laps = 0;
@@ -104,6 +113,7 @@ private:
 	double distanceRight = 0;
 
 	double m_speed = 0;
+	
 	sf::Time skidTime;
 	bool topRight = false;
 	bool topLeft = false;
@@ -118,9 +128,6 @@ private:
 
 	double fireCount = 0;
 
-	double firstLap = 0;
-	double secondLap = 0;
-	double thridLap = 0;
 	sf::Vector2f m_centre;
 	sf::Texture m_carSpriteSheet;
 
@@ -133,5 +140,10 @@ private:
 	sf::Time m_time;
 
 	sf::View follow;
+
+	sf::Sound buttonPress;
+	sf::SoundBuffer buffer;
+	sf::Sound revSound;
+	sf::SoundBuffer revBuffer;
 };
 #endif // !Player

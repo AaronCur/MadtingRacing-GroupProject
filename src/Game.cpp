@@ -27,6 +27,7 @@ Game::Game() :
 	m_upgradeScreen = new Upgrade(*this, m_comicSans);
 	m_carSelectScreen = new CarSelect(*this, m_agentOrange);
 	m_player = new Player(*this, m_agentOrange);
+	m_endGame = new EndGame(*this, m_agentOrange);
 	controller = new Xbox360Controller();
 
 	if (!LevelLoader::load(currentLevel, m_level))
@@ -120,6 +121,7 @@ Game::Game() :
 		delete(m_helpOptions);
 		delete(m_carSelectScreen);
 		delete(m_upgradeScreen);
+		delete(m_endGame);
 		std::cout << "destructing game" << std::endl;
 	}
 
@@ -362,6 +364,10 @@ void Game::update(sf::Time time)
 		controller->update();
 		m_helpOptions->update(time, *controller);
 		break;
+	case GameState::EndGame:
+		controller->update();
+		m_endGame->update(time, *controller, *m_player, *m_ai, *m_upgradeScreen);
+		break;
 	default:
 		break;
 
@@ -424,6 +430,9 @@ void Game::render()
 		break;
 	case GameState::Upgrade:
 		m_upgradeScreen->render(m_window);
+		break;
+	case GameState::EndGame:
+		m_endGame->render(m_window);
 		break;
 	default:
 		break;

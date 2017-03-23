@@ -10,7 +10,7 @@ Pause::Pause(Game & game, sf::Font font) :
 	m_game(&game),
 	m_font(font),
 	m_resume("Resume", m_font, 30),
-	m_options("Options", m_font, 30),
+	m_options("Main Menu", m_font, 30),
 	m_exit("Press B to exit to MAIN MENU", m_adventure, 30),
 	m_paused("GAME PAUSED", m_font, 45),
 	alpha(0),
@@ -99,6 +99,7 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller, Player & p
 
 	m_cumulativeTime += deltaTime;
 
+
 	if (buttonCounter == 1)
 	{
 		buttonOneSelected = true;
@@ -152,7 +153,7 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller, Player & p
 		//When the animations are done and the button was selected , then change game state
 		if (animaOut == false && selected == true)
 		{
-			m_game->setGameState(GameState::PauseOptions);
+			m_game->setGameState(GameState::MainMenu);
 			selected = false;
 		}
 	}
@@ -176,12 +177,12 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller, Player & p
 	}
 
 
-	if (controller.m_currentState.B && controller.m_previousState.B == false)
+	/*if (controller.m_currentState.B && controller.m_previousState.B == false)
 	{
-		animaOut = true;
-		exit = true;
+	animaOut = true;
+	exit = true;
 
-	}
+	}*/
 	//Exits the game once the B button is pressed and after the animations going out are finished
 	if (animaOut == false && exit == true)
 	{
@@ -322,7 +323,7 @@ void Pause::render(sf::RenderWindow & window)
 
 	window.draw(m_resume);
 	window.draw(m_options);
-	window.draw(m_exit);
+	//window.draw(m_exit);
 	window.draw(m_paused);
 
 

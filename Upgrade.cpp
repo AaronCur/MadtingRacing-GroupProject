@@ -306,7 +306,7 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 	if (controller.m_currentState.B)
 	{
 		// Set the car speed to the upgraded amount
-		m_game->setGameState(GameState::Options);
+		m_game->setGameState(GameState::MainMenu);
 
 	}
 	// Check which button is pressed.

@@ -65,5 +65,8 @@ private:
 	bool changed = false;
 	sf::Sprite m_muteSprite;
 	sf::Texture m_muteTexture[2];
+
+	sf::Sound buttonPress;
+	sf::SoundBuffer buffer;
 };
 #endif // !Options

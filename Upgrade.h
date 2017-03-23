@@ -30,6 +30,8 @@ public:
 	int m_threeSpeed = 3;
 	int m_threeBrake = 1;
 	int m_threeHandling = 2;
+
+	double m_funds = 0;
 private:
 	Game *m_game;
 	Player *m_player;
@@ -89,7 +91,6 @@ private:
 	double m_handlingCount = 0;
 
 	double m_price = 0;
-	double m_funds = 6000;
 	std::stringstream m_priceStream;
 	std::stringstream m_fundStream;
 

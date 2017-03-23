@@ -15,16 +15,23 @@ public:
 	~Ai();
 	void update(sf::Time deltaTime, Xbox360Controller& controller, Player & player);
 	void render(sf::RenderWindow &window);
-	sf::Vector2f seek();
-	sf::Vector2f seekTwo();
-	sf::Vector2f seekThree();
-	sf::Vector2f seekFour();
+	sf::Vector2f seek(sf::Time deltaTime);
+	sf::Vector2f seekTwo(sf::Time deltaTime);
+	sf::Vector2f seekThree(sf::Time deltaTime);
+	sf::Vector2f seekFour(sf::Time deltaTime);
 	sf::Sprite m_aiSprite[4];
 	std::vector<sf::CircleShape> & m_nodes;
 	std::vector<sf::CircleShape> & m_nodesTwo;
 	std::vector<sf::CircleShape> & m_nodesThree;
 	std::vector<sf::CircleShape> & m_nodesFour;
 	float randomFloat(float a, float b);
+	bool first = false;
+
+	int count1 = 0;
+	int count2 = 0;
+	int count3 = 0;
+	int count4 = 0;
+
 private:
 
 	float m_speed = 10.0f;
@@ -35,7 +42,8 @@ private:
 
 	sf::Vector2f m_ahead;
 	sf::Vector2f m_halfAhead;
-
+	sf::Text firstText;
+	sf::Font m_font;
 	sf::Texture m_aiTexture;
 	//car one 
 	sf::Vector2f m_position;
@@ -62,8 +70,24 @@ private:
 	int currentNodeFour = 0;
 	double m_rotation4;
 
+	sf::Time firstTime;
+	sf::Time secondTime;
+	sf::Time thirdTime;
+	sf::Time fourthTime;
+
+	double dt1 = 0;
+	double dt2 = 0;
+	double dt3 = 0;
+	double dt4 = 0;
+
+
+	double firstlap1 = 0;
+	double firstLap2 = 0;
+	double firstLap3 = 0;
+	double firstLap4 = 0;
 
 	
+
 	const float MAX_SEE_AHEAD = 50.0f;
 
 	const float MAX_AVOID_FORCE = 50.0f;

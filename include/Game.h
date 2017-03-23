@@ -16,6 +16,7 @@
 #include "Player.h"
 #include "CarSelect.h"
 #include "Upgrade.h"
+#include "EndGame.h"
 #include "AI.h"
 
 /// <summary>
@@ -38,6 +39,7 @@ class CarSelect;
 class Player;
 class Ai;
 class Upgrade;
+class EndGame;
 
 enum class
 	GameState
@@ -56,7 +58,8 @@ enum class
 	PauseOptions,
 	OptionsHelp,
 	UpgradeScreen,
-	CarSelect
+	CarSelect,
+	EndGame
 };
 
 class Game
@@ -119,5 +122,6 @@ protected:
 	Player *m_player;
 	Ai *m_ai;
 	Upgrade *m_upgradeScreen;
+	EndGame *m_endGame;
 
 };

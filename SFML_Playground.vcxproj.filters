@@ -68,6 +68,9 @@
     <ClInclude Include="PauseOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EndGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -116,6 +119,7 @@
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="OptionsHelp.cpp" />
     <ClCompile Include="PauseOptions.cpp" />
+    <ClCompile Include="EndGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="firstShader.txt" />

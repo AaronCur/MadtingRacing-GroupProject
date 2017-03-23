@@ -2,11 +2,14 @@
 #include "BTMath.h"
 /// <summary>
 /// James Condon
+/// c00207200
 /// Time Taken 
 /// 9:00 - 5:00 16/03/17
 /// 9:00 - 5:00 20/03/17
 /// 9:00 - 5:00 21/03/17
-/// c00207200
+/// 9:00 - 12:00 23/03/17
+/// 
+/// This is where all the AI for the game is handled 
 /// </summary>
 /// <param name="game"></param>
 /// <param name="path"></param>
@@ -17,7 +20,7 @@ Ai::Ai(Game & game, std::vector<sf::CircleShape> & path, std::vector<sf::CircleS
 	m_nodesTwo(pathTwo),
 	m_nodesThree(pathThree),
 	m_nodesFour(pathFour),
-	m_steering(0,0),
+	m_steering(0, 0),
 	m_steeringTwo(0, 0),
 	m_position(1435, 411),
 	m_position2(1460, 435),
@@ -29,16 +32,41 @@ Ai::Ai(Game & game, std::vector<sf::CircleShape> & path, std::vector<sf::CircleS
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		m_aiSprite[i].setTexture(m_aiTexture);
-		sf::IntRect carOneRect(35, 30, 178, 313);
-		m_aiSprite[i].setTextureRect(carOneRect);
-		m_aiSprite[i].setOrigin(carOneRect.width *.5, carOneRect.height * .5);
-		m_aiSprite[i].setScale(0.13, 0.13);
-	}
-	
 
+	if (!m_font.loadFromFile("./resources/images/Adventure.otf"))
+	{
+		std::cout << "problem loading font" << std::endl;
+	}
+
+	firstText.setFont(m_font);
+	firstText.setColor(sf::Color(0, 0, 0, 0));
+	firstText.setStyle(sf::Text::Bold);
+	firstText.setCharacterSize(22);
+
+	//sets all the sprite texture rectangles
+	m_aiSprite[0].setTexture(m_aiTexture);
+	sf::IntRect carOneRect(35, 30, 178, 313);
+	m_aiSprite[0].setTextureRect(carOneRect);
+	m_aiSprite[0].setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	m_aiSprite[0].setScale(0.13, 0.13);
+	m_aiSprite[1].setTexture(m_aiTexture);
+	sf::IntRect carTwoRect(399, 30, 176, 316);
+	m_aiSprite[1].setTextureRect(carTwoRect);
+	m_aiSprite[1].setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	m_aiSprite[1].setScale(0.13, 0.13);
+	m_aiSprite[2].setTexture(m_aiTexture);
+	sf::IntRect carThreeRect(363, 551, 178, 308);
+	m_aiSprite[2].setTextureRect(carThreeRect);
+	m_aiSprite[2].setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	m_aiSprite[2].setScale(0.13, 0.13);
+	m_aiSprite[3].setTexture(m_aiTexture);
+	sf::IntRect carFourRect(35, 30, 178, 313);
+	m_aiSprite[3].setTextureRect(carFourRect);
+	m_aiSprite[3].setOrigin(carOneRect.width *.5, carOneRect.height * .5);
+	m_aiSprite[3].setScale(0.13, 0.13);
+
+
+	//calls the random float function
 	MAX_SPEED = randomFloat(5.0, 6.0);
 	MAX_SPEED2 = randomFloat(5.0, 6.0);
 	MAX_SPEED3 = randomFloat(5.0, 6.0);
@@ -49,7 +77,7 @@ Ai::~Ai()
 	std::cout << "destructing Help" << std::endl;
 }
 
-void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
+void Ai::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 {
 	if (player.restartAi == true)
 	{
@@ -71,12 +99,15 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 	}
 	double time = dt.asSeconds();
 	int count = 0;
-	
+
+
+	//passes back a random float value so the cars will change speed 
+	//after a ce4rtain amount of nodes to allow for realism 
 	if (currentNode == 20 || currentNode == 30 || currentNode == 40)
 	{
 		MAX_SPEED = randomFloat(5.0, 6.0);
 	}
-	
+
 	if (currentNodeTwo == 20 || currentNodeTwo == 30 || currentNodeTwo == 40)
 	{
 		MAX_SPEED2 = randomFloat(5.0, 6.0);
@@ -94,7 +125,7 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 	if (player.start)
 	{
 		sf::Vector2f vectorToNode;
-		vectorToNode = seek();
+		vectorToNode = seek(dt);
 
 		if (thor::length(vectorToNode) != 0)
 		{
@@ -127,7 +158,7 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 		/***************************************************************************************/
 
 		sf::Vector2f vectorToNodeTwo;
-		vectorToNodeTwo = seekTwo();
+		vectorToNodeTwo = seekTwo(dt);
 
 		if (thor::length(vectorToNodeTwo) != 0)
 		{
@@ -161,7 +192,7 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 		/***************************************************************************************/
 
 		sf::Vector2f vectorToNodeThree;
-		vectorToNodeThree = seekThree();
+		vectorToNodeThree = seekThree(dt);
 
 		if (thor::length(vectorToNodeThree) != 0)
 		{
@@ -183,7 +214,7 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 		else if ((static_cast<int>(std::round(dest3 - currentRotation3 + 360))) % 360 < 180)
 		{
 			// rotate clockwise
-			m_rotation3 = static_cast<int>((m_rotation3) + 4) % 360;
+			m_rotation3 = static_cast<int>((m_rotation3)+4) % 360;
 
 		}
 		else
@@ -195,7 +226,7 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 		/***************************************************************************************/
 
 		sf::Vector2f vectorToNodeFour;
-		vectorToNodeFour = seekFour();
+		vectorToNodeFour = seekFour(dt);
 
 		if (thor::length(vectorToNodeFour) != 0)
 		{
@@ -239,11 +270,11 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 
 	m_speedTwo = thor::length(m_velocityTwo);
 	auto speedTwo = m_speedTwo;
-	
+
 	m_aiSprite[2].setPosition(m_position3);
 	m_aiSprite[2].setRotation(m_rotation3 - 90);
 
-	m_speedThree= thor::length(m_velocityThree);
+	m_speedThree = thor::length(m_velocityThree);
 	auto speedThree = m_speedThree;
 
 	m_aiSprite[3].setPosition(m_position4);
@@ -251,6 +282,54 @@ void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 
 	m_speedFour = thor::length(m_velocityFour);
 	auto speedFour = m_speedFour;
+
+	/// <summary>
+	/// figures out who is currently coming first in the game 
+	/// by using a count and checking all the laps against each other 
+	/// using the nodes 
+	/// </summary>
+	/// <param name="dt"></param>
+	/// <param name="controller"></param>
+	/// <param name="player"></param>
+	if (count1 == 1 || count2 == 1 || count3 == 1 || count4 == 1)
+	{
+		if (player.firstLap < firstlap1 && player.firstLap < firstLap2 && player.firstLap < firstLap3
+			&& player.firstLap < firstLap4)
+		{
+			first = true;
+		}
+		else
+		{
+			first = false;
+		}
+	}
+	if (count1 == 2 || count2 == 2 || count3 == 2 || count4 == 2)
+	{
+		if (player.firstLap + player.secondLap < firstlap1 && player.firstLap + player.secondLap < firstLap2
+			&& player.firstLap + player.secondLap < firstLap3 && player.firstLap + player.secondLap < firstLap4)
+		{
+			first = true;
+		}
+		else
+		{
+			first = false;
+		}
+	}
+	if (count1 == 3 || count2 == 3 || count3 == 3 || count4 == 3)
+	{
+		if (player.firstLap + player.secondLap + player.thirdLap < firstlap1
+			&& player.firstLap + player.secondLap + player.thirdLap < firstLap2
+			&& player.firstLap + player.secondLap + player.thirdLap < firstLap3
+			&& player.firstLap + player.secondLap + player.thirdLap < firstLap4)
+		{
+			first = true;
+		}
+		else
+		{
+			first = false;
+		}
+	}
+
 }
 
 void Ai::render(sf::RenderWindow &window)
@@ -259,13 +338,17 @@ void Ai::render(sf::RenderWindow &window)
 	{
 		window.draw(m_aiSprite[i]);
 	}
+	window.draw(firstText);
 }
 //seek function to increment the nodes 
 //the ai can find the most current node move to it
 //creating a vector and returning that vector 
-sf::Vector2f Ai::seek()
+sf::Vector2f Ai::seek(sf::Time deltaTime)
 {
-	
+
+	firstTime += deltaTime;
+	dt1 = firstTime.asSeconds();
+
 	sf::Vector2f target;
 	target = m_nodes[currentNode].getPosition();
 	if (Math::distance(m_position, target) <= 15)
@@ -274,8 +357,10 @@ sf::Vector2f Ai::seek()
 
 		if (currentNode >= m_nodes.size()) {
 			currentNode = 0;
+			firstlap1 = dt1;
+			count1++;
 		}
-		
+
 	}
 
 	if (thor::length(target) != 0)
@@ -286,14 +371,16 @@ sf::Vector2f Ai::seek()
 	{
 		return sf::Vector2f();
 	}
-	
+
 }
 
 //seek function to increment the nodes 
 //the ai can find the most current node move to it
 //creating a vector and returning that vector 
-sf::Vector2f Ai::seekTwo()
+sf::Vector2f Ai::seekTwo(sf::Time deltaTime)
 {
+	secondTime += deltaTime;
+	dt2 = secondTime.asSeconds();
 
 	sf::Vector2f target;
 	target = m_nodesTwo[currentNodeTwo].getPosition();
@@ -303,6 +390,8 @@ sf::Vector2f Ai::seekTwo()
 
 		if (currentNodeTwo >= m_nodesTwo.size()) {
 			currentNodeTwo = 0;
+			firstLap2 = dt2;
+			count2++;
 		}
 	}
 
@@ -320,8 +409,10 @@ sf::Vector2f Ai::seekTwo()
 //seek function to increment the nodes 
 //the ai can find the most current node move to it
 //creating a vector and returning that vector 
-sf::Vector2f Ai::seekThree()
+sf::Vector2f Ai::seekThree(sf::Time deltaTime)
 {
+	thirdTime += deltaTime;
+	dt3 = thirdTime.asSeconds();
 
 	sf::Vector2f target;
 	target = m_nodesThree[currentNodeThree].getPosition();
@@ -331,6 +422,8 @@ sf::Vector2f Ai::seekThree()
 
 		if (currentNodeThree >= m_nodesThree.size()) {
 			currentNodeThree = 0;
+			firstLap3 = dt3;
+			count3++;
 		}
 	}
 
@@ -348,8 +441,10 @@ sf::Vector2f Ai::seekThree()
 //seek function to increment the nodes 
 //the ai can find the most current node move to it
 //creating a vector and returning that vector 
-sf::Vector2f Ai::seekFour()
+sf::Vector2f Ai::seekFour(sf::Time deltaTime)
 {
+	fourthTime += deltaTime;
+	dt4 = fourthTime.asSeconds();
 
 	sf::Vector2f target;
 	target = m_nodesFour[currentNodeFour].getPosition();
@@ -359,6 +454,8 @@ sf::Vector2f Ai::seekFour()
 
 		if (currentNodeFour >= m_nodesFour.size()) {
 			currentNodeFour = 0;
+			firstLap4 = dt4;
+			count4++;
 		}
 	}
 
@@ -372,6 +469,13 @@ sf::Vector2f Ai::seekFour()
 	}
 
 }
+/// <summary>
+/// random float function allows arandom float to 
+/// be passed back 
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
 float Ai::randomFloat(float a, float b) {
 	float random = ((float)rand()) / (float)RAND_MAX;
 	float diff = b - a;
