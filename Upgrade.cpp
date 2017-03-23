@@ -233,6 +233,7 @@ Upgrade::~Upgrade()
 	std::cout << "destructing Help" << std::endl;
 }
 
+
 void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 {
 	shaderTime += dt;
@@ -259,7 +260,7 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 	}
 
 	m_cumulativeTime += dt;
-
+	// Fade in text
 	if (logoSprite.getPosition().y > -421 && logoSprite.getPosition().y > 0)
 	{
 		alpha = alpha + 2.8;
@@ -287,6 +288,8 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 
 
 	}
+
+	// Move the car to the right until it reaches move limit
 	if (carSprite.getPosition().x <= m_moveLimit)
 	{
 		carSprite.move(3.5, 0);
@@ -303,20 +306,6 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 	if (controller.m_currentState.B)
 	{
 		// Set the car speed to the upgraded amount
-
-		player.m_carOneSpeedMax = (0.1 * m_oneSpeed);
-		player.m_carTwoSpeedMax = (0.1 * m_twoSpeed);
-		player.m_carThreeSpeedMax = (0.1 * m_twoSpeed);
-
-		player.m_carOneHandling = (0.2 * m_oneHandling);
-		player.m_carTwoHandling = (0.2 * m_twoHandling);
-		player.m_carThreeHandling = (0.2 * m_threeHandling);
-
-		player.m_carOneBraking = (0.01 * m_oneBrake);
-		player.m_carTwoBraking = (0.01 * m_twoBrake);
-		player.m_carThreeBraking = (0.01 * m_threeBrake);
-
-
 		m_game->setGameState(GameState::Options);
 
 	}
@@ -372,19 +361,19 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 				{
 					if (oneSelected == true)
 					{
-
+						// Upgrade the variable if you have enough cash
 						m_oneSpeed = m_oneSpeed + 1;
 
 					}
 					if (twoSelected == true)
 					{
-
+						// Upgrade the variable if you have enough cash
 						m_twoSpeed = m_twoSpeed + 1;
 
 					}
 					if (threeSelected == true)
 					{
-
+						// Upgrade the variable if you have enough cash
 						m_threeSpeed = m_threeSpeed + 1;
 
 					}
@@ -397,14 +386,17 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 				{
 					if (oneSelected == true)
 					{
+						// Upgrade the variable if you have enough cash
 						m_oneBrake = m_oneBrake + 1;
 					}
 					if (twoSelected == true)
 					{
+						// Upgrade the variable if you have enough cash
 						m_twoBrake = m_twoBrake + 1;
 					}
 					if (threeSelected == true)
 					{
+						// Upgrade the variable if you have enough cash
 						m_threeBrake = m_threeBrake + 1;
 					}
 				}
@@ -416,14 +408,17 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 				{
 					if (oneSelected == true)
 					{
+						// Upgrade the variable if you have enough cash
 						m_oneHandling = m_oneHandling + 1;
 					}
 					if (twoSelected == true)
 					{
+						// Upgrade the variable if you have enough cash
 						m_twoHandling = m_twoHandling + 1;
 					}
 					if (threeSelected == true)
 					{
+						// Upgrade the variable if you have enough cash
 						m_threeHandling = m_threeHandling + 1;
 					}
 				}
@@ -433,10 +428,11 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 	}
 
 	m_time += dt;
-	// Switch car with RB
+	// Switch car with RB only after time interval
 	if (controller.m_currentState.RB == true && pressed == false && m_time.asSeconds() > 3)
 	{
 		m_time = sf::Time::Zero;
+		// Change move limit to second car
 		if (m_moveLimit == 340)
 		{
 			m_moveLimit = 1200;
@@ -445,6 +441,7 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 			oneSelected = false;
 			threeSelected = false;
 		}
+		// Change move limit to third car
 		else if (m_moveLimit2 == 340)
 		{
 			threeSelected = true;
@@ -455,6 +452,7 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 
 		}
 
+		// Change move limit to first car
 		else if (m_moveLimit3 == 340)
 		{
 			oneSelected = true;
@@ -466,6 +464,7 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 
 		pressed = true;
 	}
+	// Reset car sprites when they go off the screen
 	if (carSprite3.getPosition().x >= 1100)
 	{
 		carSprite3.setPosition(-400, 280);

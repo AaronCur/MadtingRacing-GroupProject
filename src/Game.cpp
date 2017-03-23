@@ -342,7 +342,7 @@ void Game::update(sf::Time time)
 	case GameState::GameScreen:
 		
 		controller->update();
-		m_player->update(time, *controller, *m_carSelectScreen);
+		m_player->update(time, *controller, *m_carSelectScreen, *m_upgradeScreen);
 		m_ai->update(time, *controller, *m_player);
 		m_gameScreen->update(time, *controller);	
 		break;

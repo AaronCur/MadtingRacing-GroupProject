@@ -7,13 +7,14 @@
 
 class Game;
 class CarSelect;
+class Upgrade;
 
 class Player
 {
 public:
 	Player(Game& Game, sf::Font font);
 	~Player();
-	void update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect);
+	void update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect, Upgrade & upgrade);
 	void render(sf::RenderWindow& window);
 	void carDraw(sf::RenderWindow& window);
 	void restart();
@@ -30,17 +31,17 @@ public:
 
 	bool onTrack = false;
 
-	double m_carOneSpeedMax = 1.2;
-	double m_carTwoSpeedMax = 0.4;
-	double m_carThreeSpeedMax = 0.6;
+	double m_carOneSpeedMax;
+	double m_carTwoSpeedMax;
+	double m_carThreeSpeedMax;
 
-	double m_carOneHandling = 0.2;
-	double m_carTwoHandling = 0.4;
-	double m_carThreeHandling = 0.6;
+	double m_carOneHandling;
+	double m_carTwoHandling;
+	double m_carThreeHandling;
 
-	double m_carOneBraking = 0.1;
-	double m_carTwoBraking = 0.2;
-	double m_carThreeBraking = 0.1;
+	double m_carOneBraking;
+	double m_carTwoBraking;
+	double m_carThreeBraking;
 
 private:
 	bool skiding = false;
@@ -48,6 +49,8 @@ private:
 	sf::CircleShape halfwayCircle;
 	sf::CircleShape lapCircle;
 	Game *m_game;
+	Upgrade *m_upgrade;
+	Player *m_player;
 	sf::Font m_font;
 	sf::Texture m_trackTexture;
 	sf::Sprite m_trackSprite;

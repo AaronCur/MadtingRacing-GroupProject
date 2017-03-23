@@ -11,7 +11,6 @@ Player::Player(Game & game, sf::Font font) :
 	
 {
 	
-
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
@@ -271,7 +270,6 @@ void Player::carDraw(sf::RenderWindow& window)
 
 void Player::restart()
 {
-	player.setRotation(270);
 	player.setPosition(1390, 475);
 	m_speed = 0;
 	m_gear = 1;
@@ -284,8 +282,22 @@ void Player::restart()
 	restartGame = false;
 	
 }
-void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect)
+void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect, Upgrade & upgrade)
 {
+	// Call upgrade to set variables
+
+	m_carOneSpeedMax = (0.2 * upgrade.m_oneSpeed);
+	m_carTwoSpeedMax = (0.2 * upgrade.m_twoSpeed);
+	m_carThreeSpeedMax = (0.2 * upgrade.m_twoSpeed);
+
+	m_carOneHandling = (0.2 * upgrade.m_oneHandling);
+	m_carTwoHandling = (0.2 * upgrade.m_twoHandling);
+	m_carThreeHandling = (0.2 * upgrade.m_threeHandling);
+
+	m_carOneBraking = (0.01 * upgrade.m_oneBrake);
+	m_carTwoBraking = (0.01 * upgrade.m_twoBrake);
+	m_carThreeBraking = (0.01 *upgrade.m_threeBrake);
+
 	offTrackDetection();
 	if (restartGame == true)
 	{
@@ -681,10 +693,18 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			if (m_speed > 0)
 			{
 				m_speed = m_speed - (m_acceleration + m_brakingUpgrade);
+				if (m_speed < 0.05)
+				{
+					m_speed = 0;
+				}
 			}
 			if (m_speed < 0)
 			{
 				m_speed = m_speed + (m_acceleration + m_brakingUpgrade);
+				if (m_speed > -0.05)
+				{
+					m_speed = 0;
+				}
 			}
 		}
 
