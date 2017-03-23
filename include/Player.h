@@ -24,9 +24,9 @@ public:
 	sf::RectangleShape player;
 	sf::Sprite carSprite;
 
-	double m_carOneSpeedMax = 1.8;
-	double m_carTwoSpeedMax = 0.6;
-	double m_carThreeSpeedMax = 0.9;
+	double m_carOneSpeedMax = 1.2;
+	double m_carTwoSpeedMax = 0.4;
+	double m_carThreeSpeedMax = 0.6;
 
 	double m_carOneHandling = 0.2;
 	double m_carTwoHandling = 0.4;
@@ -47,6 +47,12 @@ private:
 	sf::Sprite m_trackSprite;
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
+
+	sf::Texture m_gaugeTexture;
+	sf::Texture m_speedoPointerTexture;
+
+	sf::Sprite m_gaugeSprite;
+	sf::Sprite m_speedoPointerSprite;
 
 	sf::RenderTexture m_renderTexture;
 	sf::Image image;

@@ -304,9 +304,9 @@ void Upgrade::update(sf::Time dt, Xbox360Controller&controller, Player & player)
 	{
 		// Set the car speed to the upgraded amount
 
-		player.m_carOneSpeedMax = (0.3 * m_oneSpeed);
-		player.m_carTwoSpeedMax = (0.3 * m_twoSpeed);
-		player.m_carThreeSpeedMax = (0.3 * m_twoSpeed);
+		player.m_carOneSpeedMax = (0.1 * m_oneSpeed);
+		player.m_carTwoSpeedMax = (0.1 * m_twoSpeed);
+		player.m_carThreeSpeedMax = (0.1 * m_twoSpeed);
 
 		player.m_carOneHandling = (0.2 * m_oneHandling);
 		player.m_carTwoHandling = (0.2 * m_twoHandling);

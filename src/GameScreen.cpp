@@ -57,6 +57,10 @@ GameScreen::~GameScreen()
 void GameScreen::update(sf::Time dt, Xbox360Controller&controller)
 {
 	//follow.setCenter(rec.getPosition()); //put in player postion where rec is.
+	if (controller.m_currentState.Start && controller.m_previousState.Start == false)
+	{
+		m_game->setGameState(GameState::Pause);
+	}
 }
 
 void GameScreen::render(sf::RenderWindow & window, Player& player, Ai & ai)

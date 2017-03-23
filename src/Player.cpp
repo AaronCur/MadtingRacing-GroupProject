@@ -10,6 +10,19 @@ Player::Player(Game & game, sf::Font font) :
 	m_angle(0)
 	
 {
+	//Initiialise upgrades
+	m_carOneSpeedMax = 1.2;
+	m_carTwoSpeedMax = 0.4;
+	m_carThreeSpeedMax = 0.6;
+
+	m_carOneHandling = 0.2;
+	m_carTwoHandling = 0.4;
+    m_carThreeHandling = 0.6;
+
+	m_carOneBraking = 0.1;
+	m_carTwoBraking = 0.2;
+	m_carThreeBraking = 0.1;
+
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
 	player.setFillColor(sf::Color::Red);
@@ -582,14 +595,14 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 
 			skiding = true;
 			// Effect spead appropriatly due to direction of travel.
-			/*if (m_speed > 0)
+			if (m_speed > 0)
 			{
 				m_speed = m_speed - 0.15;
 			}
 			if (m_speed < 0)
 			{
 				m_speed = m_speed + 0.15;
-			}*/
+			}
 		}
 		else
 		{
@@ -606,7 +619,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			}
 			if (m_speed < 0)
 			{
-				m_speed = m_speed + (m_acceleration - m_brakingUpgrade);
+				m_speed = m_speed + (m_acceleration + m_brakingUpgrade);
 			}
 		}
 
