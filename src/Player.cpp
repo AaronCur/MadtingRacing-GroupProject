@@ -70,6 +70,24 @@ Player::Player(Game & game, sf::Font font) :
 		std::string s("Error Loading Texture");
 		throw std::exception(s.c_str());
 	}
+
+	// Load in speedo.
+	if (!m_speedoTexture.loadFromFile("./resources/images/Speedo.png"))
+	{
+		std::string s("Error Loading Texture");
+		throw std::exception(s.c_str());
+	}
+
+	m_speedoSprite.setTexture(m_speedoTexture);
+
+	if (!m_speedoPointerTexture.loadFromFile("./resources/images/SpeedoPointer.png"))
+	{
+		std::string s("Error Loading Texture");
+		throw std::exception(s.c_str());
+	}
+
+	m_speedoPointerSprite.setTexture(m_speedoPointerTexture);
+
 	lapText.setFont(m_font);
 	lapText.setString("Time: ");
 	lapText.setStyle(sf::Text::Italic | sf::Text::Bold);
@@ -247,6 +265,9 @@ void Player::render(sf::RenderWindow& window)
 	window.draw(lapOneText);
 	window.draw(lapTwoText);
 	window.draw(lapThreeText);
+
+	window.draw(m_speedoSprite);
+	window.draw(m_speedoPointerSprite);
 	if (countdown > 0)
 	{
 		window.draw(countdownTxt);
@@ -267,6 +288,35 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 	lapOneText.setPosition(player.getPosition().x - 300, player.getPosition().y - 160);
 	lapTwoText.setPosition(player.getPosition().x - 300, player.getPosition().y - 140);
 	lapThreeText.setPosition(player.getPosition().x - 300, player.getPosition().y - 120);
+
+	// Set the position of gauge in relation to car;
+	m_speedoSprite.setPosition(player.getPosition().x + 230, player.getPosition().y + 140);
+	m_speedoPointerSprite.setPosition(m_speedoSprite.getPosition().x + 95, m_speedoSprite.getPosition().y + 80);
+	m_speedoPointerSprite.setOrigin(11, 80);
+	m_speedoPointerSprite.setRotation(-m_rotationAngle);
+	
+	
+	if (revStartSet == false && m_speed > 0)
+	{
+		m_revsStart = m_maxSpeed - m_speed;
+		revStartSet = true;
+   	}
+	if (m_maxSpeed > m_speed)
+	{
+		m_revs = m_maxSpeed - m_speed;
+	}
+	m_rotationAngle = ((m_revs / m_revsStart) * 90);
+	if (m_rotationAngle > 90)
+	{
+		m_rotationAngle = 90;
+	}
+
+
+	std::cout << m_rotationAngle << std::endl;
+	std::cout << m_speed << std::endl;
+	
+	
+	// Convert revs to angle
 
 	//draws rectangle around the car that can be used.
 	sf::IntRect carOneRect(35, 30, 178, 313);
@@ -498,21 +548,25 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 			{
 				m_gear = m_gear + 1;
 				gearChanged = true;
+		
 			}
 			else if (m_gear == 0 && m_speed == 0)
 			{
 				m_gear = m_gear + 1;
 				gearChanged = true;
+			
 			}
 			else if (m_gear == 1 && m_speed >= 0.8)
 			{
 				m_gear = m_gear + 1;
 				gearChanged = true;
+			
 			}
 			else if (m_gear == 2 && m_speed >= 2.8)
 			{
 				m_gear = m_gear + 1;
 				gearChanged = true;
+				
 			}
 		}
 		// Gear down when LB is hit.
@@ -613,7 +667,7 @@ void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect
 		if (controller.m_currentState.LTrigger > 10)
 		{
 			// Effect spead appropriatly due to direction of travel.
-			if (m_speed > -1)
+			if (m_speed > 0)
 			{
 				m_speed = m_speed - (m_acceleration + m_brakingUpgrade);
 			}

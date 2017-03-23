@@ -48,10 +48,10 @@ private:
 	sf::Texture m_carFireTexture;
 	sf::Sprite m_carFireSprite;
 
-	sf::Texture m_gaugeTexture;
+	sf::Texture m_speedoTexture;
 	sf::Texture m_speedoPointerTexture;
 
-	sf::Sprite m_gaugeSprite;
+	sf::Sprite m_speedoSprite;
 	sf::Sprite m_speedoPointerSprite;
 
 	sf::RenderTexture m_renderTexture;
@@ -77,6 +77,11 @@ private:
 	double m_maxSpeed = 1;
 	double m_gear = 1;
 
+	double m_revs = 0;
+	double m_revsStart = 0;
+
+	double m_rotationAngle = 270;
+
 	double m_handlingUpgrade = 0;
 	double m_brakingUpgrade = 0;
 
@@ -95,6 +100,8 @@ private:
 	bool topLeft = false;
 	bool bottomLeft = false;
 	bool bottomRight = false;
+
+	bool revStartSet = false;
 
 	int counter = 0;
 
