@@ -123,6 +123,7 @@ Game::Game() :
 		std::cout << "destructing game" << std::endl;
 	}
 
+	
 /// <summary>
 /// Main game entry point - runs until user quits.
 /// </summary>
@@ -351,7 +352,7 @@ void Game::update(sf::Time time)
 		break;
 	case GameState::Pause:
 		controller->update();
-		m_pause->update(time, *controller);
+		m_pause->update(time, *controller, *m_player);
 		break;
 	case GameState::PauseOptions:
 		controller->update();

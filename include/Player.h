@@ -16,6 +16,7 @@ public:
 	void update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect);
 	void render(sf::RenderWindow& window);
 	void carDraw(sf::RenderWindow& window);
+	void restart();
 	void offTrackDetection();
 	void move();
 	double m_angle;
@@ -23,6 +24,9 @@ public:
 	bool start = false;
 	sf::RectangleShape player;
 	sf::Sprite carSprite;
+
+	bool restartGame = false;
+	bool restartAi = false;
 
 	double m_carOneSpeedMax = 1.2;
 	double m_carTwoSpeedMax = 0.4;

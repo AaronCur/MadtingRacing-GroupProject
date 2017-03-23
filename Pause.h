@@ -6,13 +6,14 @@
 #include "Xbox360Controller.h"
 
 class Game;
+class Player;
 //class Pause;
 class Pause
 {
 public:
 	Pause(Game& Game, sf::Font font);
 	~Pause();
-	void update(sf::Time deltaTime, Xbox360Controller& controller);
+	void update(sf::Time deltaTime, Xbox360Controller& controller, Player & player);
 	void render(sf::RenderWindow& window);
 	bool close = false;
 

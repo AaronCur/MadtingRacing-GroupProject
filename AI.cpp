@@ -51,6 +51,24 @@ Ai::~Ai()
 
 void Ai::update(sf::Time dt, Xbox360Controller&controller,	Player & player)
 {
+	if (player.restartAi == true)
+	{
+		m_position = sf::Vector2f(1435, 411);
+		m_position2 = sf::Vector2f(1460, 435);
+		m_position3 = sf::Vector2f(1445, 465);
+		m_position4 = sf::Vector2f(1390, 430);
+
+		m_aiSprite[0].setRotation(270);
+		m_aiSprite[1].setRotation(270);
+		m_aiSprite[2].setRotation(270);
+		m_aiSprite[3].setRotation(270);
+
+		currentNode = 0;
+		currentNodeTwo = 0;
+		currentNodeThree = 0;
+		currentNodeFour = 0;
+		player.restartAi = false;
+	}
 	double time = dt.asSeconds();
 	int count = 0;
 	

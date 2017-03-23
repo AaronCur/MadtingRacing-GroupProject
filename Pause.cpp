@@ -94,11 +94,10 @@ Pause::~Pause()
 }
 
 
-void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
+void Pause::update(sf::Time deltaTime, Xbox360Controller& controller, Player & player)
 {
 
 	m_cumulativeTime += deltaTime;
-
 
 	if (buttonCounter == 1)
 	{
@@ -186,6 +185,7 @@ void Pause::update(sf::Time deltaTime, Xbox360Controller& controller)
 	//Exits the game once the B button is pressed and after the animations going out are finished
 	if (animaOut == false && exit == true)
 	{
+		player.restartGame = true;
 		m_game->setGameState(GameState::MainMenu);
 		exit = false;
 	}

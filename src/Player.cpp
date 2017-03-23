@@ -10,18 +10,7 @@ Player::Player(Game & game, sf::Font font) :
 	m_angle(0)
 	
 {
-	//Initiialise upgrades
-	m_carOneSpeedMax = 1.2;
-	m_carTwoSpeedMax = 0.4;
-	m_carThreeSpeedMax = 0.6;
-
-	m_carOneHandling = 0.2;
-	m_carTwoHandling = 0.4;
-    m_carThreeHandling = 0.6;
-
-	m_carOneBraking = 0.1;
-	m_carTwoBraking = 0.2;
-	m_carThreeBraking = 0.1;
+	
 
 	// Variables for player cube.
 	player.setSize(sf::Vector2f(40, 20));
@@ -279,10 +268,29 @@ void Player::carDraw(sf::RenderWindow& window)
 {
 	window.draw(carSprite);
 }
+
+void Player::restart()
+{
+	player.setRotation(270);
+	player.setPosition(1390, 475);
+	m_speed = 0;
+	m_gear = 1;
+	countdownTime = sf::Time::Zero;
+	m_time = sf::Time::Zero;
+	currentTime = sf::Time::Zero;
+	countdown = 3;
+	start = false;
+	restartAi = true;
+	restartGame = false;
+	
+}
 void Player::update(sf::Time deltaTime, Xbox360Controller& controller, CarSelect & CarSelect)
 {
 	offTrackDetection();
-
+	if (restartGame == true)
+	{
+		restart();
+	}
 	circle.setPosition(player.getPosition().x - 30, player.getPosition().y - 30);
 	noOfLaps.setPosition(player.getPosition().x + 180, player.getPosition().y - 80);
 	lapOneText.setPosition(player.getPosition().x - 300, player.getPosition().y - 160);
