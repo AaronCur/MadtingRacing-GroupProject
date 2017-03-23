@@ -8,7 +8,7 @@ OptionsHelp::OptionsHelp(Game & game, sf::Font font) :
 	m_game(&game),
 	m_comicSans(font)
 {
-	m_font.loadFromFile("AGENTORANGE.TTF");
+	m_font.loadFromFile("./resources/images/AGENTORANGE.TTF");
 
 	m_R1.setFont(m_font);
 	m_R1.setString("Gear Up");

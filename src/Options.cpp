@@ -94,6 +94,13 @@ Options::Options(Game & game, sf::Font font) :
 	m_shader.setParameter("resolution", 1000, 650);
 
 	m_blankSprite.setPosition(0, 0);
+
+	if (!buffer.loadFromFile("./resources/images/button.wav"))
+	{
+		std::string main("Error Loading sound");
+		throw std::exception(main.c_str());
+	}
+	buttonPress.setBuffer(buffer);
 }
 
 Options::~Options()
@@ -235,6 +242,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 
 		if (controller.m_currentState.A && onSong1 && !controller.m_previousState.A)
 		{
+			buttonPress.play();
 			song1.play();
 			song2.stop();
 			song3.stop();
@@ -243,6 +251,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		}
 		if (controller.m_currentState.A && onSong2 && !controller.m_previousState.A)
 		{
+			buttonPress.play();
 			song1.stop();
 			song2.play();
 			song3.stop();
@@ -251,6 +260,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		}
 		if (controller.m_currentState.A && onSong3 && !controller.m_previousState.A)
 		{
+			buttonPress.play();
 			song1.stop();
 			song2.stop();
 			song3.play();
@@ -259,6 +269,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 		//Button has to be released and then pressed before allowing the player to go to the help menu
 		if (controller.m_currentState.A && controller.m_previousState.A == false && onHelp)
 		{
+			buttonPress.play();
 			m_game->setGameState(GameState::Help);
 		}
 	}
@@ -266,6 +277,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 
 	if (controller.m_currentState.A && onMute && !controller.m_previousState.A && !changed)
 	{
+		buttonPress.play();
 		changed = true;
 		if (changed)
 		{
@@ -282,6 +294,7 @@ void Options::update(sf::Time deltaTime, Xbox360Controller &controller)
 	}
 	else if (controller.m_currentState.A && onMute && !controller.m_previousState.A && changed)
 	{
+		buttonPress.play();
 		changed = false;
 		if (changed)
 		{
